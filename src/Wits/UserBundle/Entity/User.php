@@ -14,6 +14,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const PASSWORD_RESET_CODE_DURATION = '+2day';
+
     /**
      * @var integer
      *

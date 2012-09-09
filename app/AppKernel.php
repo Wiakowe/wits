@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Wits\HelperBundle\WitsHelperBundle(),
             new Wits\FrontendBundle\WitsFrontendBundle(),
             new Wits\ProjectBundle\WitsProjectBundle(),
+            new Wits\IssueBundle\WitsIssueBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
