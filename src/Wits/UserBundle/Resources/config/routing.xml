@@ -4,7 +4,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="wits_user_homepage" pattern="/hello/{name}">
-        <default key="_controller">WitsUserBundle:Default:index</default>
+    <route id="wits_user_homepage" pattern="/">
+        <default key="_controller">WitsUserBundle:User:index</default>
     </route>
+
+    <route id="wits_user_login" pattern="/login">
+        <default key="_controller">WitsUserBundle:User:login</default>
+    </route>
+
+    <route id="wits_user_register" pattern="/register">
+        <default key="_controller">WitsUserBundle:User:register</default>
+    </route>
+
+    <route id="wits.user.security.login_check" pattern="/login_check" />
+    <route id="wits.user.security.logout" pattern="/logout" />
+
+
 </routes>

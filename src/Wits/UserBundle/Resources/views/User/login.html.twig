@@ -1,0 +1,9 @@
+Login
+
+<form action="{{ path('wits.user.security.login_check') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+
+<a href="{{ path('wits_user_register') }}">{% trans %}Registro{% endtrans %}</a>
