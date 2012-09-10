@@ -6,12 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Project;
 use Wits\IssueBundle\Entity\Comment;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CommentController extends Controller
 {
     public function createAction(Project $project, Issue $issue)
     {
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+        if (!$issueRepository->checkIssueFromProject($issue, $project)) {
+            throw new ResourceNotFoundException();
+        }
+
         $comment = new Comment();
 
         $form = $this->createFormBuilder($comment)

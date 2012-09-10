@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\ProjectBundle\Entity\Project;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Version;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class VersionController extends Controller
 {
@@ -15,6 +16,11 @@ class VersionController extends Controller
 
         if (!$isEdit)  {
             $version = new Version();
+        } else {
+            $versionRepository = $this->getDoctrine()->getRepository('WitsVersionBundle:Version');
+            if (!$versionRepository->checkVersionFromProject($version, $project)) {
+                throw new ResourceNotFoundException();
+            }
         }
 
         $form = $this->createFormBuilder($version)
@@ -50,9 +56,15 @@ class VersionController extends Controller
 
     public function showAction(Project $project, Version $version)
     {
+        $versionRepository = $this->getDoctrine()->getRepository('WitsVersionBundle:Version');
+        if (!$versionRepository->checkVersionFromProject($version, $project)) {
+            throw new ResourceNotFoundException();
+        }
+
         return $this->render('WitsProjectBundle:Version:show.html.twig',
             array(
-                'version'  => $version
+                'project'   => $project,
+                'version'   => $version
             )
         );
     }

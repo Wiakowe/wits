@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="issue")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Wits\IssueBundle\Repository\IssueRepository")
  */
 class Issue
 {

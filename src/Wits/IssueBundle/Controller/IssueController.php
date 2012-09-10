@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class IssueController extends Controller
 {
@@ -15,6 +16,11 @@ class IssueController extends Controller
 
         if (!$isEdit)  {
             $issue = new Issue();
+        } else {
+            $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+            if (!$issueRepository->checkIssueFromProject($issue, $project)) {
+                throw new ResourceNotFoundException();
+            }
         }
 
         $form = $this->createFormBuilder($issue)
@@ -53,6 +59,11 @@ class IssueController extends Controller
 
     public function showAction(Project $project, Issue $issue)
     {
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+        if (!$issueRepository->checkIssueFromProject($issue, $project)) {
+            throw new ResourceNotFoundException();
+        }
+
         $commentRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Comment');
 
         $comments = $commentRepository->findBy(array('issue' => $issue->getId()));
