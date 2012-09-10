@@ -4,17 +4,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="wits_helper.example.class">Wits\HelperBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="wits_helper.example" class="%wits_helper.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="wits.base.converter"
+                 class="Wits\HelperBundle\ParamConverter\DoctrineParamConverter"
+                 parent="sensio_framework_extra.converter.doctrine.orm">
+            <tag name="request.param_converter" priority="50" />
         </service>
     </services>
-    -->
 </container>

@@ -17,9 +17,26 @@
         <requirement key="id">\d+</requirement>
     </route>
 
-    <route id="wits_project_show" pattern="/project/{id}/show">
+    <route id="wits_project_show" pattern="/project/{id}">
         <default key="_controller">WitsProjectBundle:Project:show</default>
         <requirement key="id">\d+</requirement>
     </route>
+
+    <route id="wits_version_new" pattern="/project/{project_id}/version/new">
+        <default key="_controller">WitsProjectBundle:Version:edit</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits_version_edit" pattern="/project/{project_id}/version/{version_id}/edit">
+        <default key="_controller">WitsProjectBundle:Version:edit</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="version_id">\d+</requirement>
+    </route>
+    <route id="wits_version_show" pattern="/project/{project_id}/version/{version_id}">
+        <default key="_controller">WitsProjectBundle:Version:show</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="version_id">\d+</requirement>
+    </route>
+
 
 </routes>

@@ -23,9 +23,17 @@ class ProjectController extends Controller
 
     public function showAction(Project $project)
     {
+        //get issues
+        $issues = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue')->findBy(array('project' => $project->getId()));
+
+        //get versions
+        $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
+
         return $this->render('WitsProjectBundle:Project:show.html.twig',
             array(
-                'project' => $project
+                'project'   => $project,
+                'issues'    => $issues,
+                'versions'  => $versions
             )
         );
     }
@@ -40,6 +48,7 @@ class ProjectController extends Controller
 
         $form = $this->createFormBuilder($project)
             ->add('name')
+            ->add('leader')
             ->getForm()
         ;
 

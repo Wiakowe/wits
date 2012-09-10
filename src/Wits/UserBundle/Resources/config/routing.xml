@@ -19,5 +19,17 @@
     <route id="wits.user.security.login_check" pattern="/login_check" />
     <route id="wits.user.security.logout" pattern="/logout" />
 
+    <route id="wits_user_list" pattern="/user">
+        <default key="_controller">WitsUserBundle:User:list</default>
+    </route>
+
+    <route id="wits_user_new" pattern="/user/new">
+        <default key="_controller">WitsUserBundle:User:edit</default>
+    </route>
+
+    <route id="wits_user_edit" pattern="/user/{id}/edit">
+        <default key="_controller">WitsUserBundle:User:edit</default>
+    </route>
+
 
 </routes>

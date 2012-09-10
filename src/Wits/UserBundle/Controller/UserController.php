@@ -29,6 +29,8 @@ class UserController extends Controller
 
         $form = $this->createFormBuilder($user)
             ->add('email', 'email', array('label' => 'E-mail'))
+            ->add('name')
+            ->add('surname')
             ->add('plainPassword', 'repeated', array(
                 'first_name' => 'password',
                 'second_name' => 'password_repeat',
@@ -56,7 +58,7 @@ class UserController extends Controller
 
                 $securityManager->setUserPassword($user);
 
-                $user->addRole('ROLE_USER');
+                $user->addRole('ROLE_REPORTER');
 
                 $securityManager->loginUserWithoutCredentials($user);
 
@@ -72,5 +74,81 @@ class UserController extends Controller
         ));
 
 
+    }
+
+    public function listAction()
+    {
+        $userRepository = $this->getDoctrine()->getRepository('WitsUserBundle:User');
+
+        $users = $userRepository->findAll();
+
+        return $this->render('WitsUserBundle:User:list.html.twig', array(
+            'users'     => $users
+        ));
+    }
+
+
+    public function editAction(User $user = null)
+    {
+        $isEdit = (boolean) $user;
+
+        if (!$isEdit)  {
+            $user = new User();
+        }
+
+        $rolesToDisplay = array(
+            'ROLE_SUPER_ADMIN',
+            'ROLE_PROJECT_LEADER',
+            'ROLE_DEVELOPER',
+            'ROLE_REPORTER'
+        );
+
+        $rolesChoice = array_combine($rolesToDisplay, $rolesToDisplay);
+
+        $form = $this->createFormBuilder($user)
+            ->add('email', 'email')
+            ->add('name')
+            ->add('surname')
+            ->add('plainPassword', 'repeated', array(
+                'required'  => !$isEdit,
+                'first_name' => 'password',
+                'second_name' => 'password_repeat',
+                'first_options' => array('label' => 'Contraseña'),
+                'second_options' => array('label' => 'Repetir contraseña'),
+                'type' => 'password'
+                )
+            )
+            ->add('roles', 'choice', array('choices' => $rolesChoice, 'expanded' => true, 'multiple' => true))
+            ->getForm()
+        ;
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+
+                $securityManager = $this->get('wits.security_manager');
+                /* @var \Wits\UserBundle\Service\SecurityManager $securityManager */
+
+                $securityManager->setUserPassword($user);
+
+                $manager = $this->getDoctrine()->getManager();
+
+                $manager->persist($user);
+                $manager->flush();
+
+
+                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'User has been edited' : 'User has been created');
+
+                return $this->redirect($this->get('router')->generate('wits_user_list'));
+            }
+        }
+
+        return $this->render('WitsProjectBundle:Project:edit.html.twig',
+            array(
+                'form'  => $form->createView()
+            )
+        );
     }
 }

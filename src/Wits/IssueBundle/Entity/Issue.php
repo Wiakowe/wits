@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wits\UserBundle\Entity\User;
 use Wits\ProjectBundle\Entity\Project;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="issue")
@@ -66,13 +67,13 @@ class Issue
      *
      * @ORM\Column(type="integer")
      */
-    protected $status;
+    protected $status = self::STATUS_NEW;
 
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="Wits\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=false)
      *
      */
     protected $creator;
@@ -96,6 +97,27 @@ class Issue
      */
     private $comments;
 
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="timestamp")
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="timestamp", nullable=true, columnDefinition="TIMESTAMP NULL")
+     */
+    protected $updatedAt;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * @return int
@@ -207,5 +229,26 @@ class Issue
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * @param \Wits\ProjectBundle\Entity\Version $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @return \Wits\ProjectBundle\Entity\Version
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

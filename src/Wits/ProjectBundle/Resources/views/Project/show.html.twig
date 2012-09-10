@@ -2,7 +2,23 @@
 
 {% block body %}
 
+<div>
 {{ project.name }}
-
-<a href="{{ path('wits_issue_new', {'id': project.id}) }}">{% trans %}Crear issue{% endtrans %}</a>
+</div>
+<a href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}Crear issue{% endtrans %}</a>
+{% if issues %}
+<ul id="issues">
+    {% for issue in issues %}
+    <li><a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}Crear version{% endtrans %}</a>
+{% if versions %}
+<ul id="versions">
+    {% for version in versions %}
+    <li><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

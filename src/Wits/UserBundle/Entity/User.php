@@ -289,4 +289,9 @@ class User implements UserInterface
     {
         return $this->passwordResetCodeExpires;
     }
+
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
 }

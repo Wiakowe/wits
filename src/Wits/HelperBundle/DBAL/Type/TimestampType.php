@@ -16,10 +16,7 @@ class TimestampType extends DateTimeType
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'TIMESTAMP' .
-            (isset($fieldDeclaration['is_nullable']) && $fieldDeclaration['is_nullable']
-                ? ' NULL'
-                : '');
+        return 'TIMESTAMP' . (($fieldDeclaration['notnull']) ? ' DEFAULT 0' : ' NULL');
     }
 
     public function __toString()

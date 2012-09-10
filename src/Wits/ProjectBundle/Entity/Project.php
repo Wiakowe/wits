@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\IssueBundle\Entity\Version;
 use Wits\UserBundle\Entity\User;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="project")
@@ -61,6 +61,18 @@ class Project
      */
     protected $leader;
 
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="timestamp")
+     */
+    protected $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * @return int
@@ -116,5 +128,10 @@ class Project
     public function getLeader()
     {
         return $this->leader;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }
