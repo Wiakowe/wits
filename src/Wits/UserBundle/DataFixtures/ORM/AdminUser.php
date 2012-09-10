@@ -1,11 +1,11 @@
 <?php
 
-namespace FashionWeb\UserBundle\DataFixtures\ORM;
+namespace Wits\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 
-use FashionWeb\UserBundle\Entity\User;
+use Wits\UserBundle\Entity\User;
 
 // Required to be able to acceed to the symfony container.
 use Symfony\Component\DependencyInjection\ContainerAware;
