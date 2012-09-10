@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="wits_issue_new" pattern="/project/{id}/issue/new">
+        <default key="_controller">WitsIssueBundle:Issue:edit</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+
+    <route id="wits_issue_edit" pattern="/project/{project_id}/issue/{issue_id}/edit">
+        <default key="_controller">WitsIssueBundle:Issue:edit</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="issue_id">\d+</requirement>
+    </route>
+
+    <route id="wits_issue_show" pattern="/project/{project_id}/issue/{issue_id}">
+        <default key="_controller">WitsIssueBundle:Issue:edit</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="issue_id">\d+</requirement>
+    </route>
+</routes>

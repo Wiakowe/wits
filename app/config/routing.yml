@@ -1,18 +1,11 @@
 wits_project:
     resource: "@WitsProjectBundle/Resources/config/routing.xml"
-    prefix:   /
 
-wits_frontend:
-    resource: "@WitsFrontendBundle/Resources/config/routing.xml"
-    prefix:   /
-
-wits_helper:
-    resource: "@WitsHelperBundle/Resources/config/routing.xml"
-    prefix:   /
+wits_issue:
+    resource: "@WitsIssueBundle/Resources/config/routing.xml"
 
 wits_user:
     resource: "@WitsUserBundle/Resources/config/routing.xml"
-    prefix:   /
 
 # Internal routing configuration to handle ESI
 #_internal:

@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="wits_frontend.example.class">Wits\FrontendBundle\Example</parameter>
+        <parameter key="wits_issue.example.class">Wits\IssueBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="wits_frontend.example" class="%wits_frontend.example.class%">
+        <service id="wits_issue.example" class="%wits_issue.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

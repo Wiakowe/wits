@@ -1,6 +1,6 @@
 <?php
 
-namespace Wits\FrontendBundle\Tests\Controller;
+namespace Wits\IssueBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

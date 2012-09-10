@@ -1,5 +1,5 @@
 {
-    "hash": "d5450083d87257fee4ffbecd82fed6e5",
+    "hash": "d53d810d9379ff20dea71adf2e3e4d0e",
     "packages": [
         {
             "package": "doctrine/common",
@@ -126,6 +126,12 @@
             "version": "dev-master",
             "source-reference": "v2.1.0-RC2",
             "commit-date": "1346138171"
+        },
+        {
+            "package": "simplethings/entity-audit-bundle",
+            "version": "dev-master",
+            "source-reference": "60a5bcb61a43fc4360ff5190cb4b5e63864fc3b7",
+            "commit-date": "1343892178"
         },
         {
             "package": "swiftmailer/swiftmailer",

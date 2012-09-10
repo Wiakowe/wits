@@ -4,7 +4,22 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="wits_project_dashboard" pattern="/secure/dashboard">
+    <route id="wits_project_dashboard" pattern="/">
         <default key="_controller">WitsProjectBundle:Project:dashboard</default>
     </route>
+
+    <route id="wits_project_new" pattern="/project/new">
+        <default key="_controller">WitsProjectBundle:Project:edit</default>
+    </route>
+
+    <route id="wits_project_edit" pattern="/project/{id}/edit">
+        <default key="_controller">WitsProjectBundle:Project:edit</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+
+    <route id="wits_project_show" pattern="/project/{id}/show">
+        <default key="_controller">WitsProjectBundle:Project:show</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+
 </routes>

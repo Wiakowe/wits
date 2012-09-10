@@ -62,3 +62,7 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+simple_things_entity_audit:
+    audited_entities:
+        - Wits\IssueBundle\Entity\Issue

@@ -39,4 +39,4 @@ security:
          - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY}
          - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY}
          - { path: ^/login_check$, role: ROLE_USER}
-         - { path: ^/secure, role: ROLE_USER }
+         - { path: ^/, role: ROLE_USER }
