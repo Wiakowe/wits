@@ -53,9 +53,15 @@ class IssueController extends Controller
 
     public function showAction(Project $project, Issue $issue)
     {
+        $commentRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Comment');
+
+        $comments = $commentRepository->findBy(array('issue' => $issue->getId()));
+
         return $this->render('WitsIssueBundle:Issue:show.html.twig',
             array(
-                'issue'  => $issue
+                'project'   => $project,
+                'issue'     => $issue,
+                'comments'  => $comments
             )
         );
     }
