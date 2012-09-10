@@ -1,9 +1,19 @@
+{% extends '::base.html.twig'%}
+{% block body %}
 Login
 
-<form action="{{ path('wits.user.security.login_check') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+<form class="iskoa_form" action="{{ path('wits.user.security.login_check') }}" method="post">
+    {% if error %}
+    <div class="error">{{ error.message|trans }}</div>
+    {% endif %}
+    <label for="username">{% trans %}E-mail{% endtrans %}</label>
+    <input type="email" id="username" name="_username" value="{{ last_username }}" />
+
+    <label for="password">{% trans %}Contraseña{% endtrans %}</label>
+    <input type="password" id="password" name="_password" />
 
     <input type="submit" />
 </form>
 
 <a href="{{ path('wits_user_register') }}">{% trans %}Registro{% endtrans %}</a>
+{% endblock %}

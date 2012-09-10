@@ -13,41 +13,11 @@ class UserController extends Controller
         $securityManager = $this->get('wits.security_manager');
         /* @var \Wits\UserBundle\Service\SecurityManager $securityManager */
 
-        $user = new User();
-
-        $form = $this->createFormBuilder($user)
-            ->add('email')
-            ->add('password', 'password')
-            ->getForm()
-        ;
-
         $request = $this->getRequest();
-
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-
-            if ($form->isValid()) {
-
-                $manager = $this->getDoctrine()->getManager();
-
-                $user = $manager->getRepository('WitsUserBundle:User')
-                    ->findOneBy(array('email' => $user->getEmail()));
-
-                $user->addRole('ROLE_USER');
-
-                $securityManager->setUserPassword($user, $user->getPassword());
-                $securityManager->loginUserWithoutCredentials($user);
-
-                if ($form->isValid()) {
-                    return $this->redirect($this->generateUrl('wits_project_dashboard'));
-                }
-            }
-        }
 
         return $this->render('WitsUserBundle:User:login.html.twig', array(
             'last_username' => $securityManager->getLoginLastUsername($request),
             'error'         => $securityManager->getLoginError($request),
-            'form'          => $form->createView(),
         ));
 
         return $this->render('WitsUserBundle:User:login.html.twig');
