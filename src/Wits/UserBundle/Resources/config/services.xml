@@ -4,17 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="wits_user.example.class">Wits\UserBundle\Example</parameter>
-    </parameters>
 
     <services>
-        <service id="wits_user.example" class="%wits_user.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="wits.security_manager" class="Wits\UserBundle\Service\SecurityManager">
+            <argument type="service" id="security.context" />
+            <argument type="service" id="security.encoder_factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="request" strict="false"/>
         </service>
+
     </services>
-    -->
+
 </container>
