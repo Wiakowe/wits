@@ -7,6 +7,7 @@ use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class IssueController extends Controller
 {
@@ -16,7 +17,15 @@ class IssueController extends Controller
 
         if (!$isEdit)  {
             $issue = new Issue();
+            if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_CREATE')) {
+                throw new AccessDeniedException();
+            }
+
         } else {
+            if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_EDIT')) {
+                throw new AccessDeniedException();
+            }
+
             $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
             if (!$issueRepository->checkIssueFromProject($issue, $project)) {
                 throw new ResourceNotFoundException();
@@ -59,6 +68,10 @@ class IssueController extends Controller
 
     public function showAction(Project $project, Issue $issue)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_SHOW')) {
+            throw new AccessDeniedException();
+        }
+
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
         if (!$issueRepository->checkIssueFromProject($issue, $project)) {
             throw new ResourceNotFoundException();

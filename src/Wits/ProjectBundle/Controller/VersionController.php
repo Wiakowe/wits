@@ -7,6 +7,7 @@ use Wits\ProjectBundle\Entity\Project;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Version;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class VersionController extends Controller
 {
@@ -15,8 +16,14 @@ class VersionController extends Controller
         $isEdit = (boolean) $version;
 
         if (!$isEdit)  {
+            if (false === $this->get('security.context')->isGranted('ROLE_VERSION_EDIT')) {
+                throw new AccessDeniedException();
+            }
             $version = new Version();
         } else {
+            if (false === $this->get('security.context')->isGranted('ROLE_VERSION_CREATE')) {
+                throw new AccessDeniedException();
+            }
             $versionRepository = $this->getDoctrine()->getRepository('WitsVersionBundle:Version');
             if (!$versionRepository->checkVersionFromProject($version, $project)) {
                 throw new ResourceNotFoundException();
@@ -47,7 +54,7 @@ class VersionController extends Controller
             }
         }
 
-        return $this->render('WitsIssueBundle:Issue:edit.html.twig',
+        return $this->render('WitsProjectBundle:Version:edit.html.twig',
             array(
                 'form'  => $form->createView()
             )
@@ -56,7 +63,11 @@ class VersionController extends Controller
 
     public function showAction(Project $project, Version $version)
     {
-        $versionRepository = $this->getDoctrine()->getRepository('WitsVersionBundle:Version');
+        if (false === $this->get('security.context')->isGranted('ROLE_VERSION_SHOW')) {
+            throw new AccessDeniedException();
+        }
+
+        $versionRepository = $this->getDoctrine()->getRepository('WitsProjectBundle:Version');
         if (!$versionRepository->checkVersionFromProject($version, $project)) {
             throw new ResourceNotFoundException();
         }

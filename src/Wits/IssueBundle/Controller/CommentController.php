@@ -7,11 +7,17 @@ use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Project;
 use Wits\IssueBundle\Entity\Comment;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class CommentController extends Controller
 {
     public function createAction(Project $project, Issue $issue)
     {
+
+        if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_COMMENT')) {
+            throw new AccessDeniedException();
+        }
+
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
         if (!$issueRepository->checkIssueFromProject($issue, $project)) {
             throw new ResourceNotFoundException();
