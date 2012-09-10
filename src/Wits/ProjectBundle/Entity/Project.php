@@ -1,11 +1,12 @@
 <?php
 
-namespace Wits\IssueBundle\Entity;
+namespace Wits\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Wits\IssueBundle\Entity\Issue;
+use Wits\IssueBundle\Entity\Version;
 use Wits\UserBundle\Entity\User;
 
 
@@ -35,7 +36,7 @@ class Project
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(
-     *          targetEntity="Issue",
+     *          targetEntity="Wits\IssueBundle\Entity\Issue",
      *          mappedBy="project"
      * )
      */
@@ -45,7 +46,7 @@ class Project
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(
-     *          targetEntity="Version",
+     *          targetEntity="Wits\ProjectBundle\Entity\Version",
      *          mappedBy="project"
      * )
      */
@@ -86,59 +87,11 @@ class Project
     }
 
     /**
-     * @param array|\Doctrine\Common\Collections\Collection $issues
-     */
-    public function setIssues($issues)
-    {
-        $this->setDoctrineCollectionElement('issues', $issues);
-    }
-
-    /**
-     * @param Issue $issue
-     */
-    public function addIssue(Issue $issue)
-    {
-        $this->issues->add($issue);
-    }
-
-    /**
-     * @param Issue $issue
-     */
-    public function removeIssue(Issue $issue)
-    {
-        $this->products->removeElement($issue);
-    }
-
-    /**
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getIssues()
     {
         return $this->issues;
-    }
-
-    /**
-     * @param array|\Doctrine\Common\Collections\Collection $versions
-     */
-    public function setVersions($versions)
-    {
-        $this->setDoctrineCollectionElement('versions', $versions);
-    }
-
-    /**
-     * @param Version $version
-     */
-    public function addVersion(Version $version)
-    {
-        $this->versions->add($version);
-    }
-
-    /**
-     * @param Version $version
-     */
-    public function removeVersion(Version $version)
-    {
-        $this->versions->removeElement($version);
     }
 
     /**

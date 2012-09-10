@@ -5,6 +5,7 @@ namespace Wits\IssueBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wits\UserBundle\Entity\User;
+use Wits\ProjectBundle\Entity\Project;
 
 
 /**
@@ -45,11 +46,20 @@ class Issue
     /**
      * @var Project
      *
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="issue")
+     * @ORM\ManyToOne(targetEntity="Wits\ProjectBundle\Entity\Project", inversedBy="issues")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      *
      */
     protected $project;
+
+    /**
+     * @var \Wits\ProjectBundle\Entity\Version
+     *
+     * @ORM\ManyToOne(targetEntity="Wits\ProjectBundle\Entity\Version", inversedBy="issues")
+     * @ORM\JoinColumn(name="version_id", referencedColumnName="id")
+     *
+     */
+    protected $version;
 
     /**
      * @var integer
@@ -71,10 +81,10 @@ class Issue
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="Wits\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="assigned_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="assignee_id", referencedColumnName="id")
      *
      */
-    protected $assigned;
+    protected $assignee;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -144,19 +154,19 @@ class Issue
     }
 
     /**
-     * @param \Wits\UserBundle\Entity\User $assigned
+     * @param \Wits\UserBundle\Entity\User $assignee
      */
-    public function setAssigned($assigned)
+    public function setAssignee($assignee)
     {
-        $this->assigned = $assigned;
+        $this->assignee = $assignee;
     }
 
     /**
      * @return \Wits\UserBundle\Entity\User
      */
-    public function getAssigned()
+    public function getAssignee()
     {
-        return $this->assigned;
+        return $this->assignee;
     }
 
     /**
@@ -192,36 +202,10 @@ class Issue
     }
 
     /**
-     * @param array|\Doctrine\Common\Collections\Collection $comments
-     */
-    public function setComments($comments)
-    {
-        $this->setDoctrineCollectionElement('comments', $comments);
-    }
-
-    /**
-     * @param Comment $comment
-     */
-    public function addComment(Comment $comment)
-    {
-        $this->comments->add($comment);
-    }
-
-    /**
-     * @param Comment $comment
-     */
-    public function removeComment(Comment $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
         return $this->comments;
     }
-
-
 }

@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new Wits\FrontendBundle\WitsFrontendBundle(),
             new Wits\ProjectBundle\WitsProjectBundle(),
             new Wits\IssueBundle\WitsIssueBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

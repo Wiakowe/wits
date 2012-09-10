@@ -1,3 +1,7 @@
+wits_version:
+    resource: "@WitsVersionBundle/Resources/config/routing.xml"
+    prefix:   /
+
 wits_project:
     resource: "@WitsProjectBundle/Resources/config/routing.xml"
 
