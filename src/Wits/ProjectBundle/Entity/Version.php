@@ -9,7 +9,7 @@ use Wits\ProjectBundle\Entity\Project;
 
 /**
  * @ORM\Table(name="version")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Wits\ProjectBundle\Repository\VersionRepository")
  */
 class Version
 {

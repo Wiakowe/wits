@@ -3,5 +3,16 @@
 {% block body %}
 
 {{ issue.name }}
+<br />
+{% if is_granted('ROLE_ISSUE_COMMENT') %}
+<a href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">Comentar</a>
+{% endif %}
 
+{% if comments %}
+<ul id="comments">
+    {% for comment in comments %}
+    <li>{{ comment.comment }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

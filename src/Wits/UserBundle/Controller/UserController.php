@@ -4,6 +4,7 @@ namespace Wits\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserController extends Controller
 {
@@ -78,6 +79,10 @@ class UserController extends Controller
 
     public function listAction()
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_USERS_LIST')) {
+            throw new AccessDeniedException();
+        }
+
         $userRepository = $this->getDoctrine()->getRepository('WitsUserBundle:User');
 
         $users = $userRepository->findAll();
@@ -94,6 +99,13 @@ class UserController extends Controller
 
         if (!$isEdit)  {
             $user = new User();
+            if (false === $this->get('security.context')->isGranted('ROLE_USERS_CREATE')) {
+                throw new AccessDeniedException();
+            }
+        } else {
+            if (false === $this->get('security.context')->isGranted('ROLE_USERS_EDIT')) {
+                throw new AccessDeniedException();
+            }
         }
 
         $rolesToDisplay = array(

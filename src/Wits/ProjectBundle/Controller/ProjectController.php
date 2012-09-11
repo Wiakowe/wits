@@ -4,6 +4,7 @@ namespace Wits\ProjectBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\ProjectBundle\Entity\Project;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProjectController extends Controller
 {
@@ -40,6 +41,10 @@ class ProjectController extends Controller
 
     public function editAction(Project $project = null)
     {
+        if (false === $this->get('security.context')->isGranted('ROLE_PROJECT_EDIT')) {
+            throw new AccessDeniedException();
+        }
+
         $isEdit = (boolean) $project;
 
         if (!$isEdit)  {

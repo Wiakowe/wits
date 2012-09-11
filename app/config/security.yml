@@ -11,19 +11,25 @@ security:
           - ROLE_WITS_ADMIN
           - ROLE_USER
           - ROLE_ALLOWED_TO_SWITCH
+          - ROLE_PROJECT_CREATE
+          - ROLE_LEADER
         ROLE_LEADER:
           - ROLE_DEVELOPER
+          - ROLE_PROJECT_EDIT
           - ROLE_ISSUE_ASSIGN
           - ROLE_ISSUE_SET_VERSION
           - ROLE_VERSION_CREATE
           - ROLE_VERSION_EDIT
+          - ROLE_USERS_LIST
           - ROLE_USERS_CREATE
           - ROLE_USERS_EDIT
         ROLE_DEVELOPER:
           - ROLE_REPORTER
           - ROLE_ISSUE_EDIT_STATUS
+          - ROLE_VERSION_SHOW
         ROLE_REPORTER:
           - ROLE_USER
+          - ROLE_ISSUE_SHOW
           - ROLE_ISSUE_CREATE
           - ROLE_ISSUE_EDIT
           - ROLE_ISSUE_COMMENT

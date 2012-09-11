@@ -20,4 +20,11 @@
         <requirement key="project_id">\d+</requirement>
         <requirement key="issue_id">\d+</requirement>
     </route>
+
+    <route id="wits_comment_create" pattern="/project/{project_id}/issue/{issue_id}/comment">
+        <default key="_controller">WitsIssueBundle:Comment:create</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="issue_id">\d+</requirement>
+    </route>
+
 </routes>
