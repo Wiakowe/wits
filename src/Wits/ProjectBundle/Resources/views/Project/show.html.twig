@@ -2,11 +2,11 @@
 
 {% block body %}
 
-<h1 class="span11 offset1">
+<h1 class="">
 {{ project.name }}
 </h1>
 
-<div class="span11 offset1">
+<div class="">
     <a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}Crear issue{% endtrans %}</a>
     {% if issues %}
     <ul id="issues" class="unstyled">
