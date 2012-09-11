@@ -1,19 +1,31 @@
 {% extends '::base.html.twig'%}
 {% block body %}
-Login
+<h1 class="span11 offset1">{% trans %}Login{% endtrans %}</h1>
 
-<form class="iskoa_form" action="{{ path('wits.user.security.login_check') }}" method="post">
+<form class="form-horizontal span11 offset1" action="{{ path('wits.user.security.login_check') }}" method="post">
     {% if error %}
-    <div class="error">{{ error.message|trans }}</div>
+    <div class="alert alert-error span12">{{ error.message|trans }}</div>
     {% endif %}
-    <label for="username">{% trans %}E-mail{% endtrans %}</label>
-    <input type="email" id="username" name="_username" value="{{ last_username }}" />
+    <div>
+        <div>
+            <label for="username" >{% trans %}E-mail{% endtrans %}</label>
+            <input type="email" id="username" name="_username" value="{{ last_username }}" placeholder="Email" />
+        </div>
 
-    <label for="password">{% trans %}Contraseña{% endtrans %}</label>
-    <input type="password" id="password" name="_password" />
+        <div>
+            <label for="password" >{% trans %}Contraseña{% endtrans %}</label>
+            <input type="password" id="password" name="_password" placeholder="Password"/>
+        </div>
 
-    <input type="submit" />
+        <div>
+            <input type="submit" class="btn btn-primary" value="{% trans %}Entrar{% endtrans %}"/>
+        </div>
+
+        <div>
+            <a class="btn" href="{{ path('wits_user_register') }}">{% trans %}Registro{% endtrans %}</a>
+        </div>
+    </div>
+
 </form>
 
-<a href="{{ path('wits_user_register') }}">{% trans %}Registro{% endtrans %}</a>
 {% endblock %}
