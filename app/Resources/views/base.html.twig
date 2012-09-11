@@ -15,7 +15,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    <div class="row">
+    <div class="container-fluid">
     {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="alert alert-success span12">
             {{ flashMessage }}

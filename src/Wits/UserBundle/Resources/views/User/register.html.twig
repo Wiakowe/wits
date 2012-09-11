@@ -1,10 +1,11 @@
-{% extends '::base.html.twig'%}
+{% extends '::base_login.html.twig'%}
 {% block body %}
-<h1 class="span11 offset1">{% trans %}Registrarse{% endtrans %}</h1>
+<h1 class="">{% trans %}Registrarse{% endtrans %}</h1>
 
-<form class="form-horizontal span11 offset1" action="" method="post" {{ form_enctype(form) }}>
+<form class="form-horizontal" action="" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
+    <br />
     <input class="btn btn-primary" type="submit" value="{% trans %}Registrarse{% endtrans %}"/>
 </form>
 {% endblock %}
