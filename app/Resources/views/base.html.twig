@@ -27,29 +27,39 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li>
-                            <a href="#">{% trans %}Inicio{% endtrans %}</a>
+                            <a href="{{ path('wits_project_dashboard')}}">{% trans %}Inicio{% endtrans %}</a>
                         </li>
+                        {% if is_granted('ROLE_ISSUE_LIST') %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Tickets{% endtrans %}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="">tickets</a>
                                 </li>
+                                {% if is_granted('ROLE_ISSUE_CREATE')%}
                                 <li>
                                     <a href="">crear ticket</a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_VERSION_LIST') %}
                         <li><a href="#">{% trans %}Versiones{% endtrans %}</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_USERS_LIST') %}
                         <li><a href="#">{% trans %}Usuarios{% endtrans %}</a></li>
+                        {% endif %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ app.user.username }}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                {% if is_granted('ROLE_USER_SELF_EDIT') %}
                                 <li>
                                     <a href="">Editar</a>
                                 </li>
+                                {% endif %}
                                 <li>
-                                    <a href="">Desconectar</a>
+                                    <a href="{{ path('wits.user.security.logout') }}">Desconectar</a>
                                 </li>
                             </ul>
                         </li>
