@@ -26,7 +26,7 @@ class CommentController extends Controller
         $comment = new Comment();
 
         $form = $this->createFormBuilder($comment)
-            ->add('comment')
+            ->add('comment', 'textarea')
             ->getForm()
         ;
 
@@ -50,7 +50,7 @@ class CommentController extends Controller
             }
         }
 
-        return $this->render('WitsIssueBundle:Issue:edit.html.twig',
+        return $this->render('WitsIssueBundle:Comment:edit.html.twig',
             array(
                 'form'  => $form->createView()
             )

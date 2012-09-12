@@ -32,12 +32,22 @@ class IssueController extends Controller
             }
         }
 
-        $form = $this->createFormBuilder($issue)
+        $formBuilder = $this->createFormBuilder($issue)
             ->add('name')
-            ->add('description')
-            ->add('version', null, array('required' => false))
-            ->getForm()
+            ->add('description', 'textarea')
+
         ;
+        if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_VERSION')) {
+            $formBuilder->add('version', null, array('required' => false));
+        }
+
+        if ($this->get('security.context')->isGranted('ROLE_ISSUE_ASSIGN')) {
+            $formBuilder->add('assignee', null, array('required' => false));
+        }
+
+
+        $form = $formBuilder->getForm();
+
 
         if ($this->getRequest()->getMethod() == 'POST') {
 
@@ -62,6 +72,24 @@ class IssueController extends Controller
         return $this->render('WitsIssueBundle:Issue:edit.html.twig',
             array(
                 'form'  => $form->createView()
+            )
+        );
+    }
+
+    public function listAction(Project $project)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
+        $issues = $issueRepository->findBy(array('project' => $project->getId()));
+
+        return $this->render('WitsIssueBundle:Issue:list.html.twig',
+            array(
+                'project'   => $project,
+                'issues'    => $issues,
             )
         );
     }

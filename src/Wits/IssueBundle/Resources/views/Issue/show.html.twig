@@ -4,9 +4,15 @@
 
 {{ issue.name }}
 <br />
-{% if is_granted('ROLE_ISSUE_COMMENT') %}
-<a href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">Comentar</a>
+
+{% if is_granted('ROLE_ISSUE_EDIT') %}
+<a class="btn" href="{{ path('wits_issue_edit', {'project_id': project.id, 'issue_id': issue.id }) }}">Editar</a>
 {% endif %}
+{% if is_granted('ROLE_ISSUE_COMMENT') %}
+<a class="btn btn-primary" href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">Comentar</a>
+{% endif %}
+
+
 
 {% if comments %}
 <ul id="comments">

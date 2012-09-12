@@ -15,6 +15,11 @@
         <requirement key="issue_id">\d+</requirement>
     </route>
 
+    <route id="wits_issue_list" pattern="/project/{project_id}/issue/list">
+        <default key="_controller">WitsIssueBundle:Issue:list</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
     <route id="wits_issue_show" pattern="/project/{project_id}/issue/{issue_id}">
         <default key="_controller">WitsIssueBundle:Issue:show</default>
         <requirement key="project_id">\d+</requirement>

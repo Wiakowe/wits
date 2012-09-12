@@ -140,10 +140,65 @@ class UserController extends Controller
 
             if ($form->isValid()) {
 
-                $securityManager = $this->get('wits.security_manager');
-                /* @var \Wits\UserBundle\Service\SecurityManager $securityManager */
+                if ($form->getData()->getPlainPassword()) {
 
-                $securityManager->setUserPassword($user);
+                    $securityManager = $this->get('wits.security_manager');
+                    /* @var \Wits\UserBundle\Service\SecurityManager $securityManager */
+
+                    $securityManager->setUserPassword($user);
+                }
+
+                $manager = $this->getDoctrine()->getManager();
+
+                $manager->persist($user);
+                $manager->flush();
+
+                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'User has been edited' : 'User has been created');
+
+                return $this->redirect($this->get('router')->generate('wits_users_list'));
+            }
+        }
+
+        return $this->render('WitsUserBundle:User:edit.html.twig',
+            array(
+                'form'  => $form->createView()
+            )
+        );
+    }
+
+    public function editSelfAction()
+    {
+        $user = $this->getUser();
+
+        $form = $this->createFormBuilder($user)
+            ->add('email', 'email')
+            ->add('name')
+            ->add('surname')
+            ->add('plainPassword', 'repeated', array(
+                'required'  => false,
+                'first_name' => 'password',
+                'second_name' => 'password_repeat',
+                'first_options' => array('label' => 'Contraseña'),
+                'second_options' => array('label' => 'Repetir contraseña'),
+                'type' => 'password'
+            )
+        )
+            ->getForm()
+        ;
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+
+                if ($form->getData()->getPlainPassword()) {
+
+                    $securityManager = $this->get('wits.security_manager');
+                    /* @var \Wits\UserBundle\Service\SecurityManager $securityManager */
+
+                    $securityManager->setUserPassword($user);
+                }
 
                 $manager = $this->getDoctrine()->getManager();
 
@@ -151,16 +206,17 @@ class UserController extends Controller
                 $manager->flush();
 
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'User has been edited' : 'User has been created');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', 'User has been edited');
 
-                return $this->redirect($this->get('router')->generate('wits_user_list'));
+                return $this->redirect($this->get('router')->generate('wits_user_self_edit'));
             }
         }
 
-        return $this->render('WitsProjectBundle:Project:edit.html.twig',
+        return $this->render('WitsUserBundle:User:edit.html.twig',
             array(
                 'form'  => $form->createView()
             )
         );
     }
+
 }

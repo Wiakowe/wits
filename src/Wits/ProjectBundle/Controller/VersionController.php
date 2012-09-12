@@ -24,7 +24,7 @@ class VersionController extends Controller
             if (false === $this->get('security.context')->isGranted('ROLE_VERSION_CREATE')) {
                 throw new AccessDeniedException();
             }
-            $versionRepository = $this->getDoctrine()->getRepository('WitsVersionBundle:Version');
+            $versionRepository = $this->getDoctrine()->getRepository('WitsProjectBundle:Version');
             if (!$versionRepository->checkVersionFromProject($version, $project)) {
                 throw new ResourceNotFoundException();
             }
@@ -61,6 +61,24 @@ class VersionController extends Controller
         );
     }
 
+    public function listAction(Project $project)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_VERSION_LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $versionRepository = $this->getDoctrine()->getRepository('WitsProjectBundle:Version');
+
+        $versions = $versionRepository->findBy(array('project' => $project->getId()));
+
+        return $this->render('WitsProjectBundle:Version:list.html.twig',
+            array(
+                'project'   => $project,
+                'versions'  => $versions
+            )
+        );
+    }
+
     public function showAction(Project $project, Version $version)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_VERSION_SHOW')) {
@@ -72,10 +90,15 @@ class VersionController extends Controller
             throw new ResourceNotFoundException();
         }
 
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
+        $issues = $issueRepository->findAll(array('version' => $version));
+
         return $this->render('WitsProjectBundle:Version:show.html.twig',
             array(
                 'project'   => $project,
-                'version'   => $version
+                'version'   => $version,
+                'issues'    => $issues
             )
         );
     }
