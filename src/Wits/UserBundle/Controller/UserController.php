@@ -5,6 +5,7 @@ namespace Wits\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Wits\ProjectBundle\Entity\Project;
 
 class UserController extends Controller
 {
@@ -77,11 +78,14 @@ class UserController extends Controller
 
     }
 
-    public function listAction()
+    public function listAction(Project $project)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_USERS_LIST')) {
             throw new AccessDeniedException();
         }
+
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry('Usarios', 'wits_users_list', array('project_id' => $project->getId()));
 
         $userRepository = $this->getDoctrine()->getRepository('WitsUserBundle:User');
 
@@ -93,19 +97,26 @@ class UserController extends Controller
     }
 
 
-    public function editAction(User $user = null)
+    public function editAction(User $user = null, Project $project)
     {
         $isEdit = (boolean) $user;
+
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry('Usarios', 'wits_users_list', array('project_id' => $project->getId()));
+
 
         if (!$isEdit)  {
             $user = new User();
             if (false === $this->get('security.context')->isGranted('ROLE_USERS_CREATE')) {
                 throw new AccessDeniedException();
             }
+            $breadcrumb->addEntry('Crear', 'wits_users_new', array('project_id' => $project->getId()));
         } else {
             if (false === $this->get('security.context')->isGranted('ROLE_USERS_EDIT')) {
                 throw new AccessDeniedException();
             }
+            $breadcrumb->addEntry($user->getUsername(), 'wits_users_edit', array('user_id' => $user->getId(), 'project_id', $project->getId()));
+
         }
 
         $rolesToDisplay = array(
@@ -161,12 +172,13 @@ class UserController extends Controller
 
         return $this->render('WitsUserBundle:User:edit.html.twig',
             array(
+                'user'  => $user,
                 'form'  => $form->createView()
             )
         );
     }
 
-    public function editSelfAction()
+    public function editSelfAction(Project $project)
     {
         $user = $this->getUser();
 
@@ -185,6 +197,9 @@ class UserController extends Controller
         )
             ->getForm()
         ;
+
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry('Editar Usuario', 'wits_user_self_edit', array('project_id' => $project->getId()));
 
         if ($this->getRequest()->getMethod() == 'POST') {
 

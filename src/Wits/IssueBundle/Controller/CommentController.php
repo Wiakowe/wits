@@ -25,6 +25,11 @@ class CommentController extends Controller
 
         $comment = new Comment();
 
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry('Issues', 'wits_issue_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
+        $breadcrumb->addEntry('Comentar', 'wits_comment_create', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
+
         $form = $this->createFormBuilder($comment)
             ->add('comment', 'textarea')
             ->getForm()

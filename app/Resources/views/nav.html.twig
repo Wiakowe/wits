@@ -48,11 +48,11 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Usuarios{% endtrans %}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ path('wits_users_list') }}">Ver Usuarios</a>
+                            <a href="{{ path('wits_users_list', {'project_id': project_id}) }}">Ver Usuarios</a>
                         </li>
                         {% if is_granted('ROLE_USERS_CREATE')%}
                         <li>
-                            <a href="{{ path('wits_users_new') }}">Crear Usuario</a>
+                            <a href="{{ path('wits_users_new', {'project_id': project_id}) }}">Crear Usuario</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -63,7 +63,7 @@
                     <ul class="dropdown-menu">
                         {% if is_granted('ROLE_USER_SELF_EDIT') %}
                         <li>
-                            <a href="{{ path('wits_user_self_edit') }}">Editar</a>
+                            <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">Editar</a>
                         </li>
                         {% endif %}
                         <li>

@@ -18,5 +18,14 @@
                  parent="sensio_framework_extra.converter.doctrine.orm">
             <tag name="request.param_converter" priority="50" />
         </service>
+
+        <service id="wits.breadcrumb" class="Wits\HelperBundle\Model\BreadcrumbModel" />
+
+        <service id="wits.breadcrumb.twig.extension" class="Wits\HelperBundle\Twig\Extension\BreadcrumbExtension">
+            <tag name="twig.extension"/>
+            <argument id="wits.breadcrumb" type="service" />
+        </service>
+
+
     </services>
 </container>

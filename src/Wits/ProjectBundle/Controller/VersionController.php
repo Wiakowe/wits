@@ -15,11 +15,21 @@ class VersionController extends Controller
     {
         $isEdit = (boolean) $version;
 
+
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
+        $breadcrumb->addEntry('Versiones', 'wits_version_list', array('project_id' => $project->getId()));
+
+
         if (!$isEdit)  {
             if (false === $this->get('security.context')->isGranted('ROLE_VERSION_EDIT')) {
                 throw new AccessDeniedException();
             }
             $version = new Version();
+
+            $breadcrumb->addEntry('Crear', 'wits_version_new', array('project_id' => $project->getId()));
+
+
         } else {
             if (false === $this->get('security.context')->isGranted('ROLE_VERSION_CREATE')) {
                 throw new AccessDeniedException();
@@ -28,6 +38,10 @@ class VersionController extends Controller
             if (!$versionRepository->checkVersionFromProject($version, $project)) {
                 throw new ResourceNotFoundException();
             }
+
+            $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
+            $breadcrumb->addEntry('Editar', 'wits_version_edit', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
+
         }
 
         $form = $this->createFormBuilder($version)
@@ -56,7 +70,8 @@ class VersionController extends Controller
 
         return $this->render('WitsProjectBundle:Version:edit.html.twig',
             array(
-                'form'  => $form->createView()
+                'version'   => $version,
+                'form'      => $form->createView()
             )
         );
     }
@@ -70,6 +85,10 @@ class VersionController extends Controller
         $versionRepository = $this->getDoctrine()->getRepository('WitsProjectBundle:Version');
 
         $versions = $versionRepository->findBy(array('project' => $project->getId()));
+
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
+        $breadcrumb->addEntry('Versiones', 'wits_version_list', array('project_id' => $project->getId()));
 
         return $this->render('WitsProjectBundle:Version:list.html.twig',
             array(
@@ -89,6 +108,11 @@ class VersionController extends Controller
         if (!$versionRepository->checkVersionFromProject($version, $project)) {
             throw new ResourceNotFoundException();
         }
+
+        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
+        $breadcrumb->addEntry('Versiones', 'wits_version_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
 
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
 

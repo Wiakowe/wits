@@ -57,6 +57,14 @@ class ProjectController extends Controller
             ->getForm()
         ;
 
+        $breadcrumb = $this->get('wits.breadcrumb');
+        if ($isEdit) {
+            $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('project_id' => $project->getId()));
+            $breadcrumb->addEntry('Editar', 'wits_project_edit', array('project_id' => $project->getId()));
+        } else {
+            $breadcrumb->addEntry('Crear', 'wits_project_new');
+        }
+
         if ($this->getRequest()->getMethod() == 'POST') {
 
             $form->bind($this->getRequest());
@@ -77,7 +85,8 @@ class ProjectController extends Controller
 
         return $this->render('WitsProjectBundle:Project:edit.html.twig',
             array(
-                'form'  => $form->createView()
+                'project'   => $project,
+                'form'      => $form->createView()
             )
         );
     }
