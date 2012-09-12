@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% set title = issue.name ~ ' - Comentar' %}
+
+{%  block title %}{{ title }}{%  endblock %}
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+<form action="" method="POST">
+    {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="{% trans %}Comentar{% endtrans %}"/>
+</form>
+{% endblock %}

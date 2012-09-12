@@ -4,10 +4,10 @@
 
 <form action="" method="POST">
     {{ form_widget(form) }}
-    {%  if version.id %}
-        {%  set label = 'Editar' %}
+    {%  if user.id %}
+    {%  set label = 'Editar' %}
     {%  else %}
-        {%  set label = 'Crear' %}
+    {%  set label = 'Crear' %}
     {%  endif  %}
     <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
 </form>

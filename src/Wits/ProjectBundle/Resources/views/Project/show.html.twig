@@ -2,11 +2,12 @@
 
 {% block body %}
 
-<div>
+<h1 class="">
 {{ project.name }}
-</div>
+</h1>
+
 {% if is_granted('ROLE_ISSUE_CREATE') %}
-<a href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}Crear issue{% endtrans %}</a>
+<a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}Crear issue{% endtrans %}</a>
 {% endif %}
 {% if issues %}
 <ul id="issues">
@@ -17,9 +18,9 @@
 {% endif %}
 <br />
 {% if is_granted('ROLE_VERSION_CREATE') %}
-<a href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}Crear version{% endtrans %}</a>
+<a class="btn" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}Crear version{% endtrans %}</a>
 {% endif %}
-{% if is_granted('ROLE_VERSION_SHOW') %}
+{% if is_granted('ROLE_VERSION_LIST') %}
 {% if versions %}
 <ul id="versions">
     {% for version in versions %}

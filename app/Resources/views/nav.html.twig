@@ -1,0 +1,77 @@
+<div class="navbar">
+    <div class="navbar-inner">
+        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <span class="brand">WITS</span>
+        <div class="nav-collapse">
+            <ul class="nav">
+                <li>
+                    <a href="{{ path('wits_project_dashboard')}}">{% trans %}Inicio{% endtrans %}</a>
+                </li>
+                {% if project_id is defined %}
+                    {% if is_granted('ROLE_ISSUE_LIST') %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Tickets{% endtrans %}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('wits_issue_list', {'project_id': project_id} )}}">Ver Tickets</a>
+                            </li>
+                            {% if is_granted('ROLE_ISSUE_CREATE')%}
+                            <li>
+                                <a href="{{ path('wits_issue_new', {'project_id': project_id}) }}">Crear Ticket</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_VERSION_LIST') %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Versiones{% endtrans %}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('wits_version_list', {'project_id': project_id }) }}">Ver Versiones</a>
+                            </li>
+                            {% if is_granted('ROLE_VERSION_CREATE')%}
+                            <li>
+                                <a href="{{ path('wits_version_new', {'project_id': project_id}) }}">Crear Versión</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% endif %}
+                {% endif %}
+                {% if is_granted('ROLE_USERS_LIST') %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Usuarios{% endtrans %}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('wits_users_list', {'project_id': project_id}) }}">Ver Usuarios</a>
+                        </li>
+                        {% if is_granted('ROLE_USERS_CREATE')%}
+                        <li>
+                            <a href="{{ path('wits_users_new', {'project_id': project_id}) }}">Crear Usuario</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ app.user.username }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% if is_granted('ROLE_USER_SELF_EDIT') %}
+                        <li>
+                            <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">Editar</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="{{ path('wits.user.security.logout') }}">Desconectar</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,11 @@
 {% extends '::base.html.twig'%}
 {% block body %}
-Users
-<br />
-<a href="{{ path('wits_user_new')}}">Registrar usuario</a>
+<h1>{% trans %}Usuarios{% endtrans %}</h1>
+<a class="btn" href="{{ path('wits_users_new', {'project_id': project_id}) }}">Registrar usuario</a>
 {% if (users) %}
 <ul id="users">
     {% for user in users %}
-    <li><a href="{{ path('wits_user_edit', {'id': user.id}) }}">{{ user.username }}</a></li>
+    <li><a href="{{ path('wits_users_edit', {'user_id': user.id, 'project_id': project_id}) }}">{{ user.username }}</a></li>
     {% endfor %}
 </ul>
 
