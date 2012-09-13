@@ -5,9 +5,9 @@
 <form action="" method="POST">
     {{ form_widget(form) }}
     {%  if issue.id %}
-        {%  set label = 'Editar' %}
+        {%  set label = 'label_edit' %}
     {%  else %}
-        {%  set label = 'Crear' %}
+        {%  set label = 'label_create' %}
     {%  endif  %}
     <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
 </form>

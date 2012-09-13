@@ -33,25 +33,33 @@ class IssueController extends Controller
         }
 
         $formBuilder = $this->createFormBuilder($issue)
-            ->add('name')
-            ->add('description', 'textarea')
+            ->add('name', null, array('label' => 'label_issue_name'))
+            ->add('description', 'textarea', array('label' => 'label_issue_description'))
 
         ;
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_VERSION')) {
-            $formBuilder->add('version', null, array('required' => false));
+            $formBuilder->add('version', null, array('required' => false, 'label' => 'label_issue_version'));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_ASSIGN')) {
-            $formBuilder->add('assignee', null, array('required' => false));
+            $formBuilder->add('assignee', null, array('required' => false, 'label' => 'label_issue_assignee'));
+        }
+
+        if ($this->get('security.context')->isGranted('ROLE_ISSUE_EDIT_STATUS')) {
+            $formBuilder->add('status', 'choice', array('choices' => Issue::$statusList, 'data' => $issue->getStatus(), 'required' => false, 'label' => 'label_issue_status'));
+        }
+
+        if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_PRIORITY')) {
+            $formBuilder->add('priority', 'choice', array('choices' => Issue::$priorityList, 'data' => $issue->getPriority(), 'required' => false, 'label' => 'label_issue_priority'));
         }
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Issues', 'wits_issue_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         if ($isEdit) {
             $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
-            $breadcrumb->addEntry('Editar', 'wits_issue_edit', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
+            $breadcrumb->addEntry('label_edit', 'wits_issue_edit', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
         } else {
-            $breadcrumb->addEntry('Crear', 'wits_issue_new', array('project_id' => $project->getId()));
+            $breadcrumb->addEntry('label_create', 'wits_issue_new', array('project_id' => $project->getId()));
         }
 
 
@@ -72,7 +80,7 @@ class IssueController extends Controller
                 $manager->persist($issue);
                 $manager->flush();
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'Your issue has been edited' : 'Your issue has been created');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'label_issue_edited' : 'label_issue_created');
 
                 return $this->redirect($this->get('router')->generate('wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId())));
             }
@@ -93,7 +101,7 @@ class IssueController extends Controller
         }
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Issues', 'wits_issue_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
 
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
 
@@ -119,9 +127,9 @@ class IssueController extends Controller
         }
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Issues', 'wits_issue_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
-        $breadcrumb->addEntry('Ver', 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
+        $breadcrumb->addEntry('label_view', 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
 
         $commentRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Comment');
 

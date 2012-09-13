@@ -3,7 +3,7 @@
 {% block body %}
 
 {% if is_granted('ROLE_ISSUE_CREATE') %}
-<a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}Crear issue{% endtrans %}</a>
+<a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
 {% endif %}
 {% if issues %}
     <ul id="issues">

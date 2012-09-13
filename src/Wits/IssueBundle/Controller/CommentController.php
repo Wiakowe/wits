@@ -26,12 +26,12 @@ class CommentController extends Controller
         $comment = new Comment();
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Issues', 'wits_issue_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
-        $breadcrumb->addEntry('Comentar', 'wits_comment_create', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
+        $breadcrumb->addEntry('label_comment', 'wits_comment_create', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
 
         $form = $this->createFormBuilder($comment)
-            ->add('comment', 'textarea')
+            ->add('comment', 'textarea', array('label' => 'label_comment'))
             ->getForm()
         ;
 
@@ -49,7 +49,7 @@ class CommentController extends Controller
                 $manager->persist($comment);
                 $manager->flush();
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', 'Your comment has been added to the issue');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', 'label_comment_created');
 
                 return $this->redirect($this->get('router')->generate('wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId())));
             }
@@ -57,6 +57,7 @@ class CommentController extends Controller
 
         return $this->render('WitsIssueBundle:Comment:edit.html.twig',
             array(
+                'issue' => $issue,
                 'form'  => $form->createView()
             )
         );

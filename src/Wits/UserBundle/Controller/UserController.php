@@ -30,14 +30,14 @@ class UserController extends Controller
         $user = new User();
 
         $form = $this->createFormBuilder($user)
-            ->add('email', 'email', array('label' => 'E-mail'))
-            ->add('name')
-            ->add('surname')
+            ->add('email', 'email', array('label' => 'label_user_email'))
+            ->add('name', null, array('label' => 'label_user_name'))
+            ->add('surname', null, array('label' => 'label_user_surname'))
             ->add('plainPassword', 'repeated', array(
                 'first_name' => 'password',
                 'second_name' => 'password_repeat',
-                'first_options' => array('label' => 'Contraseña'),
-                'second_options' => array('label' => 'Repetir contraseña'),
+                'first_options' => array('label' => 'label_user_password'),
+                'second_options' => array('label' => 'label_user_password_repeat'),
                 'type' => 'password'
                 )
             )
@@ -85,7 +85,7 @@ class UserController extends Controller
         }
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Usarios', 'wits_users_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_users', 'wits_users_list', array('project_id' => $project->getId()));
 
         $userRepository = $this->getDoctrine()->getRepository('WitsUserBundle:User');
 
@@ -102,7 +102,7 @@ class UserController extends Controller
         $isEdit = (boolean) $user;
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Usarios', 'wits_users_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_users', 'wits_users_list', array('project_id' => $project->getId()));
 
 
         if (!$isEdit)  {
@@ -110,7 +110,7 @@ class UserController extends Controller
             if (false === $this->get('security.context')->isGranted('ROLE_USERS_CREATE')) {
                 throw new AccessDeniedException();
             }
-            $breadcrumb->addEntry('Crear', 'wits_users_new', array('project_id' => $project->getId()));
+            $breadcrumb->addEntry('label_create', 'wits_users_new', array('project_id' => $project->getId()));
         } else {
             if (false === $this->get('security.context')->isGranted('ROLE_USERS_EDIT')) {
                 throw new AccessDeniedException();
@@ -129,19 +129,19 @@ class UserController extends Controller
         $rolesChoice = array_combine($rolesToDisplay, $rolesToDisplay);
 
         $form = $this->createFormBuilder($user)
-            ->add('email', 'email')
-            ->add('name')
-            ->add('surname')
+            ->add('email', 'email', array('label' => 'label_user_email'))
+            ->add('name', null, array('label' => 'label_user_name'))
+            ->add('surname', null, array('label' => 'label_user_surname'))
             ->add('plainPassword', 'repeated', array(
                 'required'  => !$isEdit,
                 'first_name' => 'password',
                 'second_name' => 'password_repeat',
-                'first_options' => array('label' => 'Contraseña'),
-                'second_options' => array('label' => 'Repetir contraseña'),
+                'first_options' => array('label' => 'label_user_password'),
+                'second_options' => array('label' => 'label_user_password_repeat'),
                 'type' => 'password'
                 )
             )
-            ->add('roles', 'choice', array('choices' => $rolesChoice, 'expanded' => true, 'multiple' => true))
+            ->add('roles', 'choice', array('choices' => $rolesChoice, 'expanded' => true, 'multiple' => true, 'label' => 'label_user_roles'))
             ->getForm()
         ;
 
@@ -164,9 +164,9 @@ class UserController extends Controller
                 $manager->persist($user);
                 $manager->flush();
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'User has been edited' : 'User has been created');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'label_user_edited' : 'label_user_created');
 
-                return $this->redirect($this->get('router')->generate('wits_users_list'));
+                return $this->redirect($this->get('router')->generate('wits_users_list', array('project_id' => $project->getId())));
             }
         }
 
@@ -183,15 +183,15 @@ class UserController extends Controller
         $user = $this->getUser();
 
         $form = $this->createFormBuilder($user)
-            ->add('email', 'email')
-            ->add('name')
-            ->add('surname')
+            ->add('email', 'email', array('label' => 'label_user_email'))
+            ->add('name', null, array('label' => 'label_user_name'))
+            ->add('surname', null, array('label' => 'label_user_surname'))
             ->add('plainPassword', 'repeated', array(
                 'required'  => false,
                 'first_name' => 'password',
                 'second_name' => 'password_repeat',
-                'first_options' => array('label' => 'Contraseña'),
-                'second_options' => array('label' => 'Repetir contraseña'),
+                'first_options' => array('label' => 'label_user_password'),
+                'second_options' => array('label' => 'label_user_password_repeat'),
                 'type' => 'password'
             )
         )
@@ -199,7 +199,7 @@ class UserController extends Controller
         ;
 
         $breadcrumb = $this->get('wits.breadcrumb');
-        $breadcrumb->addEntry('Editar Usuario', 'wits_user_self_edit', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_user_self_edit', 'wits_user_self_edit', array('project_id' => $project->getId()));
 
         if ($this->getRequest()->getMethod() == 'POST') {
 
@@ -221,9 +221,9 @@ class UserController extends Controller
                 $manager->flush();
 
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', 'User has been edited');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', 'label_user_edited');
 
-                return $this->redirect($this->get('router')->generate('wits_user_self_edit'));
+                return $this->redirect($this->get('router')->generate('wits_user_self_edit', array('project_id' => $project->getId())));
             }
         }
 

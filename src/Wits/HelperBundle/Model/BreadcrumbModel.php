@@ -14,7 +14,7 @@ class BreadcrumbModel
     {
         $this->breadcrumbEntries = array();
 
-        $this->addEntry('Inicio', 'wits_project_dashboard');
+        $this->addEntry('label_home', 'wits_project_dashboard');
     }
 
     public function getEntries()

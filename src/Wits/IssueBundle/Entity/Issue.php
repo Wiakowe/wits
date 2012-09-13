@@ -21,6 +21,26 @@ class Issue
             STATUS_RESOLVED     = 4,
             STATUS_CLOSED       = 5;
 
+    public static $statusList = array(
+        self::STATUS_NEW        => 'label_issue_status_new',
+        self::STATUS_ASSIGNED   => 'label_issue_status_assigned',
+        self::STATUS_WORKING    => 'label_issue_status_working',
+        self::STATUS_RESOLVED   => 'label_issue_status_resolved',
+        self::STATUS_CLOSED     => 'label_issue_status_closed',
+    );
+
+    const   PRIORITY_LOW        = 1,
+            PRIORITY_MEDIUM     = 2,
+            PRIORITY_HIGH       = 3,
+            PRIORITY_CRITICAL   = 4;
+
+    public static $priorityList = array(
+        self::PRIORITY_LOW        => 'label_issue_priority_low',
+        self::PRIORITY_MEDIUM     => 'label_issue_priority_medium',
+        self::PRIORITY_HIGH       => 'label_issue_priority_high',
+        self::PRIORITY_CRITICAL   => 'label_issue_priority_critical',
+    );
+
     /**
      * @var integer
      *
@@ -68,6 +88,13 @@ class Issue
      * @ORM\Column(type="integer")
      */
     protected $status = self::STATUS_NEW;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $priority;
 
     /**
      * @var User
@@ -251,4 +278,35 @@ class Issue
     {
         return $this->getName();
     }
+
+    public function getStatusName()
+    {
+        if (array_key_exists($this->getStatus(), self::$statusList)) {
+            return self::$statusList[$this->getStatus()];
+        }
+    }
+
+    /**
+     * @param int $priority
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    public function getPriorityName()
+    {
+        if (array_key_exists($this->getPriority(), self::$priorityList)) {
+            return self::$priorityList[$this->getPriority()];
+        }
+    }
+
 }

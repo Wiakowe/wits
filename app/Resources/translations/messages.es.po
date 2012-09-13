@@ -1,0 +1,131 @@
+msgid "label_issue_status_new"
+msgstr "Nuevo"
+
+msgid "label_issue_status_assigned"
+msgstr "Asignado"
+
+msgid "label_issue_status_working"
+msgstr "Trabajando"
+
+msgid "label_issue_status_resolved"
+msgstr "Resuelto"
+
+msgid "label_issue_status_closed"
+msgstr "Cerrado"
+
+msgid "label_issue_priority_low"
+msgstr "Baja"
+
+msgid "label_issue_priority_medium"
+msgstr "Media"
+
+msgid "label_issue_priority_high"
+msgstr "Alta"
+
+msgid "label_issue_priority_critical"
+msgstr "Crítica"
+
+msgid "label_home"
+msgstr "Inicio"
+
+msgid "label_connect"
+msgstr "Conectarse"
+
+msgid "label_user_email"
+msgstr "Email"
+
+msgid "label_user_name"
+msgstr "Nombre"
+
+msgid "label_user_surname"
+msgstr "Apellidos"
+
+msgid "label_user_password"
+msgstr "Contraseña"
+
+msgid "label_user_password_repeat"
+msgstr "Repetir contraseña"
+
+msgid "label_user_roles"
+msgstr "Roles"
+
+msgid "label_enter"
+msgstr "Entrar"
+
+msgid "label_register"
+msgstr "Registrarse"
+
+msgid "label_issues"
+msgstr "Tickets"
+
+msgid "label_view_issues"
+msgstr "Ver tickets"
+
+msgid "label_create_issue"
+msgstr "Crear ticket"
+
+msgid "label_versions"
+msgstr "Versiones"
+
+msgid "label_view_versions"
+msgstr "Ver versiones"
+
+msgid "label_create_version"
+msgstr "Crear versión"
+
+msgid "label_users"
+msgstr "Usuarios"
+
+msgid "label_view_users"
+msgstr "Ver usuarios"
+
+msgid "label_create_user"
+msgstr "Crear usuario"
+
+msgid "label_user_edit"
+msgstr "Editar usuario"
+
+msgid "label_logout"
+msgstr "Salir"
+
+msgid "label_issue_name"
+msgstr "Nombre"
+
+msgid "label_issue_description"
+msgstr "Descripción"
+
+msgid "label_issue_version"
+msgstr "Versión"
+
+msgid "label_issue_assignee"
+msgstr "Asignado"
+
+msgid "label_issue_status"
+msgstr "Estado"
+
+msgid "label_issue_priority"
+msgstr "Prioridad"
+
+msgid "label_create"
+msgstr "Crear"
+
+msgid "label_edit"
+msgstr "Editar"
+
+msgid "label_comment"
+msgstr "Comentar"
+
+msgid "label_version_name"
+msgstr "Versión"
+
+msgid "ROLE_SUPER_ADMIN"
+msgstr "Super administrador"
+
+msgid "ROLE_PROJECT_LEADER"
+msgstr "Lider del proyecto"
+
+msgid "ROLE_DEVELOPER"
+msgstr "Desarrolador"
+
+msgid "ROLE_REPORTER"
+msgstr "Usuario"

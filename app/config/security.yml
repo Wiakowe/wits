@@ -23,6 +23,7 @@ security:
           - ROLE_USERS_LIST
           - ROLE_USERS_CREATE
           - ROLE_USERS_EDIT
+          - ROLE_ISSUE_SET_PRIORITY
         ROLE_DEVELOPER:
           - ROLE_REPORTER
           - ROLE_ISSUE_EDIT_STATUS

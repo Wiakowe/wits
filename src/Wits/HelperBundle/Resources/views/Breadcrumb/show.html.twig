@@ -2,12 +2,12 @@
     {% for entry in breadcrumb.entries %}
         {% if (loop.last) %}
             <li class="active" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-                <span itemprop="title">{{ entry.name }}</span>
+                <span itemprop="title">{{ entry.name|trans }}</span>
             </li>
         {% else %}
             <li>
                 <a href="{{ path(entry.link, entry.params)}}" itemprop="url">
-                    <span itemprop="title">{{entry.name}}</span>
+                    <span itemprop="title">{{ entry.name|trans }}</span>
                 </a>
                 <span class="divider">/</span>
             </li>

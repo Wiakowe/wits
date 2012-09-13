@@ -6,19 +6,24 @@
 
 <p>{{  issue.description }}</p>
 
+{%  if issue.assignee %}
+<h3>{% trans %}label_issue_assignee{% endtrans %}</h3>
+<span>{{  issue.assignee }}</span>
+{%  endif  %}
+<h3>{%  trans %}label_issue_status{%  endtrans  %}</h3>
+<span>{{  issue.statusName|trans }}</span>
+<br />
 {% if is_granted('ROLE_ISSUE_EDIT') %}
-<a class="btn" href="{{ path('wits_issue_edit', {'project_id': project.id, 'issue_id': issue.id }) }}">Editar</a>
+<a class="btn" href="{{ path('wits_issue_edit', {'project_id': project.id, 'issue_id': issue.id }) }}">{% trans %}label_edit{% endtrans %}</a>
 {% endif %}
 {% if is_granted('ROLE_ISSUE_COMMENT') %}
-<a class="btn btn-primary" href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">Comentar</a>
+<a class="btn btn-primary" href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">{% trans %}label_comment{% endtrans %}</a>
 {% endif %}
-
-
 
 {% if comments %}
 <ul id="comments">
     {% for comment in comments %}
-    <li>{{ comment.comment }}</li>
+        {% include 'WitsIssueBundle:Comment/Partial:comment.html.twig' %}
     {% endfor %}
 </ul>
 {% endif %}

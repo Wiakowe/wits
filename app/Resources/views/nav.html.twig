@@ -9,19 +9,19 @@
         <div class="nav-collapse">
             <ul class="nav">
                 <li>
-                    <a href="{{ path('wits_project_dashboard')}}">{% trans %}Inicio{% endtrans %}</a>
+                    <a href="{{ path('wits_project_dashboard')}}">{% trans %}label_home{% endtrans %}</a>
                 </li>
                 {% if project_id is defined %}
                     {% if is_granted('ROLE_ISSUE_LIST') %}
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Tickets{% endtrans %}<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_issues{% endtrans %}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ path('wits_issue_list', {'project_id': project_id} )}}">Ver Tickets</a>
+                                <a href="{{ path('wits_issue_list', {'project_id': project_id} )}}">{% trans %}label_view_issues{% endtrans %}</a>
                             </li>
                             {% if is_granted('ROLE_ISSUE_CREATE')%}
                             <li>
-                                <a href="{{ path('wits_issue_new', {'project_id': project_id}) }}">Crear Ticket</a>
+                                <a href="{{ path('wits_issue_new', {'project_id': project_id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -29,14 +29,14 @@
                     {% endif %}
                     {% if is_granted('ROLE_VERSION_LIST') %}
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Versiones{% endtrans %}<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_versions{% endtrans %}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ path('wits_version_list', {'project_id': project_id }) }}">Ver Versiones</a>
+                                <a href="{{ path('wits_version_list', {'project_id': project_id }) }}">{% trans %}label_view_versions{% endtrans %}</a>
                             </li>
                             {% if is_granted('ROLE_VERSION_CREATE')%}
                             <li>
-                                <a href="{{ path('wits_version_new', {'project_id': project_id}) }}">Crear Versión</a>
+                                <a href="{{ path('wits_version_new', {'project_id': project_id}) }}">{% trans %}label_create_version{% endtrans %}</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -45,14 +45,14 @@
                 {% endif %}
                 {% if is_granted('ROLE_USERS_LIST') %}
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}Usuarios{% endtrans %}<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_users{% endtrans %}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ path('wits_users_list', {'project_id': project_id}) }}">Ver Usuarios</a>
+                            <a href="{{ path('wits_users_list', {'project_id': project_id}) }}">{% trans %}label_view_users{% endtrans %}</a>
                         </li>
                         {% if is_granted('ROLE_USERS_CREATE')%}
                         <li>
-                            <a href="{{ path('wits_users_new', {'project_id': project_id}) }}">Crear Usuario</a>
+                            <a href="{{ path('wits_users_new', {'project_id': project_id}) }}">{% trans %}label_create_user{% endtrans %}</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -63,11 +63,11 @@
                     <ul class="dropdown-menu">
                         {% if is_granted('ROLE_USER_SELF_EDIT') %}
                         <li>
-                            <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">Editar</a>
+                            <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">{% trans %}label_user_edit{% endtrans %}</a>
                         </li>
                         {% endif %}
                         <li>
-                            <a href="{{ path('wits.user.security.logout') }}">Desconectar</a>
+                            <a href="{{ path('wits.user.security.logout') }}">{% trans %}label_logout{% endtrans %}</a>
                         </li>
                     </ul>
                 </li>
