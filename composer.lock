@@ -1,5 +1,5 @@
 {
-    "hash": "3bfe67d645d0c16ee0daf5712ce7de6d",
+    "hash": "6684deee2a6534cac0e224d67f75f023",
     "packages": [
         {
             "package": "doctrine/common",
@@ -228,6 +228,18 @@
             "version": "dev-master",
             "source-reference": "68b8c4619c5bbe82bd345fe56070dec8c356610a",
             "commit-date": "1347025342"
+        },
+        {
+            "package": "wiakowe/breadcrumb-bundle",
+            "version": "dev-develop",
+            "alias-pretty-version": "1.0.x-dev",
+            "alias-version": "1.0.9999999.9999999-dev"
+        },
+        {
+            "package": "wiakowe/breadcrumb-bundle",
+            "version": "dev-develop",
+            "source-reference": "1ab800cb0fefc0bea74681966cfc7306383e3c09",
+            "commit-date": "1347631640"
         }
     ],
     "packages-dev": null,

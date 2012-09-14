@@ -27,7 +27,7 @@ class CommentController extends Controller
 
         $comment = new Comment();
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
         $breadcrumb->addEntry('label_comment', 'wits_comment_create', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
