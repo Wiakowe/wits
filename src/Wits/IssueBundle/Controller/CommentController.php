@@ -8,6 +8,8 @@ use Wits\ProjectBundle\Entity\Project;
 use Wits\IssueBundle\Entity\Comment;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Wits\IssueBundle\Events\IssueCreateEvent;
+use Wits\IssueBundle\Events\IssueEvents;
 
 class CommentController extends Controller
 {
@@ -48,6 +50,12 @@ class CommentController extends Controller
 
                 $manager->persist($comment);
                 $manager->flush();
+
+                //dispatch the event
+                $event = new IssueCreateCommentEvent($comment, $issue);
+                $dispatcher = $this->get('event_dispatcher');
+                $dispatcher->dispatch(IssueEvents::ISSUE_COMMENT, $event);
+
 
                 $this->getRequest()->getSession()->getFlashBag()->add('success', 'label_comment_created');
 

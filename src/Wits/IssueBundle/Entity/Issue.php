@@ -60,7 +60,7 @@ class Issue
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=4096)
+     * @ORM\Column(type="string", length=4096, nullable=true)
      */
     protected $description;
 
@@ -94,7 +94,7 @@ class Issue
      *
      * @ORM\Column(type="integer")
      */
-    protected $priority;
+    protected $priority = self::PRIORITY_MEDIUM;
 
     /**
      * @var User
@@ -143,7 +143,8 @@ class Issue
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->status = self::STATUS_NEW;
+        $this->priority = self::PRIORITY_MEDIUM;
     }
 
     /**

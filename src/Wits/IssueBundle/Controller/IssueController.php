@@ -8,6 +8,8 @@ use Wits\ProjectBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Wits\IssueBundle\Events\IssueCreateEvent;
+use Wits\IssueBundle\Events\IssueEvents;
 
 class IssueController extends Controller
 {
@@ -22,6 +24,8 @@ class IssueController extends Controller
             }
 
         } else {
+            $issueOld = clone $issue;
+
             if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_EDIT')) {
                 throw new AccessDeniedException();
             }
@@ -38,19 +42,19 @@ class IssueController extends Controller
 
         ;
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_VERSION')) {
-            $formBuilder->add('version', null, array('required' => false, 'label' => 'label_issue_version'));
+            $formBuilder->add('version', null, array('label' => 'label_issue_version'));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_ASSIGN')) {
-            $formBuilder->add('assignee', null, array('required' => false, 'label' => 'label_issue_assignee'));
+            $formBuilder->add('assignee', null, array('label' => 'label_issue_assignee'));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_EDIT_STATUS')) {
-            $formBuilder->add('status', 'choice', array('choices' => Issue::$statusList, 'data' => $issue->getStatus(), 'required' => false, 'label' => 'label_issue_status'));
+            $formBuilder->add('status', 'choice', array('choices' => Issue::$statusList, 'label' => 'label_issue_status'));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_PRIORITY')) {
-            $formBuilder->add('priority', 'choice', array('choices' => Issue::$priorityList, 'data' => $issue->getPriority(), 'required' => false, 'label' => 'label_issue_priority'));
+            $formBuilder->add('priority', 'choice', array('choices' => Issue::$priorityList, 'label' => 'label_issue_priority'));
         }
 
         $breadcrumb = $this->get('wits.breadcrumb');
@@ -79,6 +83,15 @@ class IssueController extends Controller
 
                 $manager->persist($issue);
                 $manager->flush();
+
+                $dispatcher = $this->get('event_dispatcher');
+                if (!$isEdit) {
+                    $event = new IssueCreateEvent($issue);
+                    $dispatcher->dispatch(IssueEvents::ISSUE_CREATE, $event);
+                } else {
+                    $event = new IssueEditEvent($issue, $issueOld);
+                    $dispatcher->dispatch(IssueEvents::ISSUE_CREATE, $event);
+                }
 
                 $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'label_issue_edited' : 'label_issue_created');
 
