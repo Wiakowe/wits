@@ -25,6 +25,7 @@ class IssueCreateCommentEvent extends Event
     public function __construct(Comment $comment, Issue $issue)
     {
         $this->issue = $issue;
+        $this->comment = $comment;
     }
 
     /**

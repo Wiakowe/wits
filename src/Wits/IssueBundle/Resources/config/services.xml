@@ -12,6 +12,8 @@
             <argument>%notification_email%</argument>
 
             <tag name="kernel.event_listener" event="issue.create" method="onIssueCreation" />
+            <tag name="kernel.event_listener" event="issue.comment" method="onIssueCommentCreation" />
+            <tag name="kernel.event_listener" event="issue.edit" method="onIssueEdit" />
         </service>
     </services>
 </container>

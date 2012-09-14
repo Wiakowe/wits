@@ -4,11 +4,11 @@
 
 {% trans with {'%name%': issue.creator.fullName} %}label_email_issue_upper_text{% endtrans %}
 
-<p>{% trans with {'%issue_title%': issue.name} %}label_email_issue_created_upper_p_text{% endtrans %}</p>
+<p>{% trans with {'%issue_title%': issue.name} %}label_email_issue_comment_upper_p_text{% endtrans %}</p>
 
 <p>{% trans %}label_email_issue_lower_p_text{% endtrans %}</p>
 
-{% set url_path = url('wits_issue_show', {'project_id': issue.project.id, 'issue_id': issue.id}) %}
+{% set url_path = url('wits_issue_show', {'project_id': issue.project.id, 'issue_id': issue.id}) ~ "#comment_" ~ comment.id %}
 <a href="{{ url_path }}">{{ url_path }}</a>
 <br />
 {% trans %}label_email_issue_sign{% endtrans %}
