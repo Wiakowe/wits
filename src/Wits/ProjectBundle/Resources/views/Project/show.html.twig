@@ -1,9 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
+{% set title = project.name %}
 
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
 <h1>
-{{ project.name }}
+{{ title }}
 </h1>
 
 {% if is_granted('ROLE_ISSUE_CREATE') %}

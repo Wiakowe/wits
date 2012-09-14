@@ -1,6 +1,10 @@
 {% extends '::base_login.html.twig'%}
+
+{% set title = 'label_register'|trans %}
+{% block title %}{{ title }}{%  endblock %}
+
 {% block body %}
-<h1 class="">{% trans %}label_register{% endtrans %}</h1>
+<h1>{{ title }}</h1>
 
 <form class="form-horizontal" action="" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}

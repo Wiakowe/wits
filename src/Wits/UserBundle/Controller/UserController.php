@@ -97,7 +97,7 @@ class UserController extends Controller
     }
 
 
-    public function editAction(User $user = null, Project $project)
+    public function editAction(Project $project, User $user = null)
     {
         $isEdit = (boolean) $user;
 
@@ -172,8 +172,9 @@ class UserController extends Controller
 
         return $this->render('WitsUserBundle:User:edit.html.twig',
             array(
-                'user'  => $user,
-                'form'  => $form->createView()
+                'project'   => $project,
+                'user'      => $user,
+                'form'      => $form->createView()
             )
         );
     }
@@ -229,8 +230,9 @@ class UserController extends Controller
 
         return $this->render('WitsUserBundle:User:edit.html.twig',
             array(
-                'user'  => $user,
-                'form'  => $form->createView()
+                'project'   => $project,
+                'user'      => $user,
+                'form'      => $form->createView()
             )
         );
     }

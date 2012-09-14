@@ -1,8 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% set title = issue.name %}
+
+{% block title %}{{ title }} - {{ project.name }}{% endblock %}
+
 {% block body %}
 
-<h1>{{ issue.name }}</h1>
+<h1>{{ title }}</h1>
 
 <p>{{  issue.description }}</p>
 

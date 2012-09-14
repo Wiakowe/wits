@@ -63,7 +63,7 @@
                     <ul class="dropdown-menu">
                         {% if is_granted('ROLE_USER_SELF_EDIT') %}
                         <li>
-                            <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">{% trans %}label_user_edit{% endtrans %}</a>
+                            <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">{% trans %}label_edit_user{% endtrans %}</a>
                         </li>
                         {% endif %}
                         <li>

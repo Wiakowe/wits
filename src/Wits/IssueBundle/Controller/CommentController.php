@@ -65,8 +65,9 @@ class CommentController extends Controller
 
         return $this->render('WitsIssueBundle:Comment:edit.html.twig',
             array(
-                'issue' => $issue,
-                'form'  => $form->createView()
+                'issue'     => $issue,
+                'project'   => $project,
+                'form'      => $form->createView()
             )
         );
     }

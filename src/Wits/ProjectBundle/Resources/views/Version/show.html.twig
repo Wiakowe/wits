@@ -1,8 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% set title = version.name %}
+
+{% block title %}{{ title }} - {{ project.name }}{% endblock %}
+
 {% block body %}
 
-<h1>{{ version.name }}</h1>
+<h1>{{ title }}</h1>
 
 {% if is_granted('ROLE_VERSION_EDIT') %}
 <a class="btn" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>

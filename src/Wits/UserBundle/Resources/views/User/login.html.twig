@@ -1,6 +1,10 @@
 {% extends '::base_login.html.twig'%}
+
+{% set title = 'label_connect'|trans %}
+{%  block title %}{{ title }}{%  endblock %}
+
 {% block body %}
-<h1 class="">{% trans %}label_connect{% endtrans %}</h1>
+<h1>{{ title }}</h1>
 
 <form class="form-horizontal " action="{{ path('wits.user.security.login_check') }}" method="post">
     {% if error %}

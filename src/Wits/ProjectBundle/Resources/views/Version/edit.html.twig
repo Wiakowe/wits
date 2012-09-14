@@ -1,14 +1,21 @@
 {% extends '::base.html.twig' %}
 
+{% if version.id %}
+    {% set title = 'label_edit_version'|trans %}
+    {% set label = 'label_edit' %}
+{% else %}
+    {% set title = 'label_create_version'|trans %}
+    {% set label = 'label_create' %}
+{% endif %}
+
+{%  block title %}{{ title }} - {{ project.name }}{%  endblock %}
+
 {% block body %}
+
+<h1>{{ title }}</h1>
 
 <form action="" method="POST">
     {{ form_widget(form) }}
-    {%  if version.id %}
-        {%  set label = 'label_edit' %}
-    {%  else %}
-        {%  set label = 'label_create' %}
-    {%  endif  %}
     <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
 </form>
 {% endblock %}

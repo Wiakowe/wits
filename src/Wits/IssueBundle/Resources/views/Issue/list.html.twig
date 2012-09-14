@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% set title = 'label_issues'|trans %}
+
+{% block title %}{{ title }} - {{ project.name }}{% endblock %}
+
 {% block body %}
+
+<h1>{{ title }}</h1>
 
 {% if is_granted('ROLE_ISSUE_CREATE') %}
 <a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>

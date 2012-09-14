@@ -1,6 +1,18 @@
 {% extends '::base.html.twig' %}
 
+{% if user.id %}
+    {% set title = 'label_edit_user'|trans %}
+    {% set label = 'label_edit' %}
+{% else %}
+    {% set title = 'label_create_user'|trans %}
+    {% set label = 'label_create' %}
+{% endif %}
+
+{%  block title %}{{ title }} - {{ project.name }}{%  endblock %}
+
 {% block body %}
+
+<h1>{{ title }}</h1>
 
 <form action="" method="POST">
     {{ form_widget(form) }}

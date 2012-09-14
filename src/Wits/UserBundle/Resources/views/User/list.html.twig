@@ -1,6 +1,11 @@
 {% extends '::base.html.twig'%}
+
+{% set title = 'label_users'|trans %}
+{% block title %}{{ title }}{%  endblock %}
+
 {% block body %}
-<h1>{% trans %}label_users{% endtrans %}</h1>
+<h1>{{ title }}</h1>
+
 <a class="btn" href="{{ path('wits_users_new', {'project_id': project_id}) }}">{% trans %}label_create_user{% endtrans %}</a>
 {% if (users) %}
 <ul id="users">

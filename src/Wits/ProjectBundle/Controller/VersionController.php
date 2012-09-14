@@ -70,6 +70,7 @@ class VersionController extends Controller
 
         return $this->render('WitsProjectBundle:Version:edit.html.twig',
             array(
+                'project'   => $project,
                 'version'   => $version,
                 'form'      => $form->createView()
             )

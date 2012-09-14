@@ -2,7 +2,7 @@
 
 {% set title = issue.name ~ ' - ' ~ 'label_comment'|trans %}
 
-{%  block title %}{{ title }}{%  endblock %}
+{%  block title %}{{ title }} - {{ project.name }}{%  endblock %}
 {% block body %}
 
 <h1>{{ title }}</h1>

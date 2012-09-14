@@ -101,8 +101,9 @@ class IssueController extends Controller
 
         return $this->render('WitsIssueBundle:Issue:edit.html.twig',
             array(
-                'issue' => $issue,
-                'form'  => $form->createView()
+                'issue'     => $issue,
+                'project'   => $project,
+                'form'      => $form->createView()
             )
         );
     }
