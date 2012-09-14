@@ -72,3 +72,9 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
+# Fetch configuration
+wiakowe_fetch:
+    host:     %mail_fetch_host%
+    port:     %mail_fetch_port%
+    user:     %mail_fetch_user%
+    password: %mail_fetch_password%
