@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Wits\IssueBundle\Event\IssueCreateEvent;
+use Wits\IssueBundle\Event\IssueEditEvent;
 use Wits\IssueBundle\Event\IssueEvents;
 
 class IssueController extends Controller
@@ -90,7 +91,7 @@ class IssueController extends Controller
                     $dispatcher->dispatch(IssueEvents::ISSUE_CREATE, $event);
                 } else {
                     $event = new IssueEditEvent($issue, $issueOld);
-                    $dispatcher->dispatch(IssueEvents::ISSUE_CREATE, $event);
+                    $dispatcher->dispatch(IssueEvents::ISSUE_EDIT, $event);
                 }
 
                 $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'label_issue_edited' : 'label_issue_created');

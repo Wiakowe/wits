@@ -144,3 +144,5 @@ msgstr "Desarrolador"
 msgid "ROLE_REPORTER"
 msgstr "Usuario"
 
+msgid "label_mail_issue_created"
+msgstr "Ticket creado"
