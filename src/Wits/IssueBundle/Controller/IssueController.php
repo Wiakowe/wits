@@ -79,6 +79,10 @@ class IssueController extends Controller
 
                 $manager = $this->getDoctrine()->getManager();
 
+                if (!$issue->getAssignee()) {
+                    $issue->setAssignee($project->getLeader());
+                }
+
                 $issue->setProject($project);
                 $issue->setCreator($this->getUser());
 

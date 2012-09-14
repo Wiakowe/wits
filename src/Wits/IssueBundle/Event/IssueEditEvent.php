@@ -5,7 +5,7 @@ namespace Wits\IssueBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 use Wits\IssueBundle\Entity\Issue;
 
-class IssueEditEvent
+class IssueEditEvent extends Event
 {
     /**
      * @var \Wits\IssueBundle\Entity\Issue

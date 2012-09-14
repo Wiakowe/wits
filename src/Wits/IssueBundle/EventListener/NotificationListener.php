@@ -96,7 +96,30 @@ class NotificationListener
 
     public function onIssueEdit(IssueEditEvent $event)
     {
-         
+        $issue = $event->getIssue();
+        $issueOld = $event->getIssueOld();
+
+        $assignee = $this->getIssueAssignee($issue);
+
+        if (    $issue->getAssignee() != $issueOld->getAssignee() ||
+                $issue->getStatus() != $issueOld->getStatus()
+        ) {
+
+            $userTo = $issue->getCreator();
+            $userBcc = $assignee;
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('[#'.$issue->getProject()->getIdentifier().'-'.$issue->getId().'] '.$this->translator->trans('label_mail_issue_updated').': '.$issue->getName())
+                ->setFrom($this->notificationMail)
+                ->setReplyTo($this->notificationMail)
+                ->setTo($userTo->getEmail())
+                ->setBcc($userBcc->getEmail())
+                ->setBody($this->templating->render('WitsIssueBundle:Mail:issue_edit.html.twig', array('issue' => $issue, 'issueOld' => $issueOld)))
+                ->setContentType('text/html')
+            ;
+
+            $this->mailer->send($message);
+        }
     }
 
 }

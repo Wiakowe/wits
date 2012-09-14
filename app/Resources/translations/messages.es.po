@@ -147,8 +147,11 @@ msgstr "Usuario"
 msgid "label_mail_issue_created"
 msgstr "Ticket creado"
 
-msgid "label_mail_issue_created"
+msgid "label_mail_issue_commented"
 msgstr "Ticket comentado"
+
+msgid "label_mail_issue_updated"
+msgstr "Ticket actualizado"
 
 msgid "label_email_issue_upper_text"
 msgstr "Estimado %name%,"
@@ -160,9 +163,18 @@ msgid "label_email_issue_lower_p_text"
 msgstr "Para ver el progreso de este ticket, se puede seguir a traves de la web, o se pueden añadir comentarios, contestando a este mail."
 
 msgid "label_email_issue_created_upper_p_text"
-msgstr "Se ha creado en el sistema el ticket con el siguiente asunto: %issue_title%."
+msgstr "Se ha creado en el sistema el ticket con el siguiente asunto: <strong>%issue_title%.</strong>"
 
 msgid "label_email_issue_comment_upper_p_text"
-msgstr "Se ha hecho un comentario en el siguiente ticket: %issue_title%."
+msgstr "Se ha hecho un comentario en el siguiente ticket: <strong>%issue_title%.</strong>"
+
+msgid "label_email_issue_updated_upper_p_text"
+msgstr "Se ha hecho una actualización en el ticket: <strong>%issue_title%</strong>."
+
+msgid "label_email_issue_updated_assignee_upper_p_text"
+msgstr "El ticket se ha asignado a:<strong>%issue_assignee%</strong>."
+
+msgid "label_email_issue_updated_status_upper_p_text"
+msgstr "El ticket a actualizado su estado: <strong>%issue_status%.</strong>"
 
 
