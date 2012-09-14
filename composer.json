@@ -4,6 +4,12 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/Wiakowe/WiakoweBreadcrumbBundle"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.1.*",
@@ -19,7 +25,8 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "doctrine/doctrine-fixtures-bundle": "*",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "wiakowe/breadcrumb-bundle": "1.0.*"
     },
     "scripts": {
         "post-install-cmd": [
