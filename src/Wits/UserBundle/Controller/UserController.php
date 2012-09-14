@@ -84,7 +84,7 @@ class UserController extends Controller
             throw new AccessDeniedException();
         }
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_users', 'wits_users_list', array('project_id' => $project->getId()));
 
         $userRepository = $this->getDoctrine()->getRepository('WitsUserBundle:User');
@@ -101,7 +101,7 @@ class UserController extends Controller
     {
         $isEdit = (boolean) $user;
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_users', 'wits_users_list', array('project_id' => $project->getId()));
 
 
@@ -199,7 +199,7 @@ class UserController extends Controller
             ->getForm()
         ;
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_user_self_edit', 'wits_user_self_edit', array('project_id' => $project->getId()));
 
         if ($this->getRequest()->getMethod() == 'POST') {

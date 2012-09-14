@@ -16,7 +16,7 @@ class VersionController extends Controller
         $isEdit = (boolean) $version;
 
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
 
@@ -87,7 +87,7 @@ class VersionController extends Controller
 
         $versions = $versionRepository->findBy(array('project' => $project->getId()));
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
 
@@ -110,7 +110,7 @@ class VersionController extends Controller
             throw new ResourceNotFoundException();
         }
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wits\HelperBundle\Entity;
+namespace Wiakowe\BreadcrumbBundle\Entity;
 /**
  * Created by JetBrains PhpStorm.
  * User: patxi1980

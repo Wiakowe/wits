@@ -1,7 +1,7 @@
 <?php
-namespace Wits\HelperBundle\Model;
+namespace Wiakowe\BreadcrumbBundle\Model;
 
-use Wits\HelperBundle\Entity\BreadcrumbEntity;
+use Wiakowe\BreadcrumbBundle\Entity\BreadcrumbEntity;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * @author Aitor Suso

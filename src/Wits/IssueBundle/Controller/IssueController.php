@@ -57,7 +57,7 @@ class IssueController extends Controller
             $formBuilder->add('priority', 'choice', array('choices' => Issue::$priorityList, 'label' => 'label_issue_priority'));
         }
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         if ($isEdit) {
             $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
@@ -114,7 +114,7 @@ class IssueController extends Controller
             throw new AccessDeniedException();
         }
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
 
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
@@ -140,7 +140,7 @@ class IssueController extends Controller
             throw new ResourceNotFoundException();
         }
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
         $breadcrumb->addEntry('label_view', 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));

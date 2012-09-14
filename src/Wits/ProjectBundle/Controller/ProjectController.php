@@ -57,7 +57,7 @@ class ProjectController extends Controller
             ->getForm()
         ;
 
-        $breadcrumb = $this->get('wits.breadcrumb');
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
         if ($isEdit) {
             $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('project_id' => $project->getId()));
             $breadcrumb->addEntry('label_edit', 'wits_project_edit', array('project_id' => $project->getId()));
