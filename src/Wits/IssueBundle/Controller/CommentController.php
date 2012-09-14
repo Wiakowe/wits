@@ -8,7 +8,7 @@ use Wits\ProjectBundle\Entity\Project;
 use Wits\IssueBundle\Entity\Comment;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Wits\IssueBundle\Event\IssueCreateEvent;
+use Wits\IssueBundle\Event\IssueCreateCommentEvent;
 use Wits\IssueBundle\Event\IssueEvents;
 
 class CommentController extends Controller

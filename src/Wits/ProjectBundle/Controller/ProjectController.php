@@ -53,6 +53,7 @@ class ProjectController extends Controller
 
         $form = $this->createFormBuilder($project)
             ->add('name')
+            ->add('identifier')
             ->add('leader')
             ->getForm()
         ;

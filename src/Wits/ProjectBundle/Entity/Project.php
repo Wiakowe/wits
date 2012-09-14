@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Wits\IssueBundle\Entity\Issue;
-use Wits\IssueBundle\Entity\Version;
 use Wits\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -31,6 +30,14 @@ class Project
      * @ORM\Column(type="string", length=255, unique=true)
      */
     protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=3, unique=true)
+     * @Assert\Regex("/^[A-Z][A-Z0-9]{0,2}$/")
+     */
+    protected $identifier;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -134,4 +141,23 @@ class Project
     {
         return $this->getName();
     }
+
+    /**
+     * @param string $identifier
+     */
+    public function setIdentifier($identifier)
+    {
+        $this->identifier = $identifier;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
+
+
+
 }
