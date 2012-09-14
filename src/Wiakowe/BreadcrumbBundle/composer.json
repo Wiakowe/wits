@@ -1,0 +1,19 @@
+{
+    "name": "wiakowe/breadcrumb-bundle",
+    "description": "Breadcrumb bundle",
+    "autoload": {
+        "psr-0": { "Wiakowe\\BreadcrumbBundle": "" }
+    },
+    "target-dir": "Wiakowe/BreadcrumbBundle",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": ">=2.0.*,<2.1.*",
+        "symfony/twig-bridge": ">=2.0.*,<2.1.*"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
