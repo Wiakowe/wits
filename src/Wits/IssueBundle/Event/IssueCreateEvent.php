@@ -1,6 +1,6 @@
 <?php
 
-namespace Wits\IssueBundle\Events;
+namespace Wits\IssueBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Wits\IssueBundle\Entity\Issue;

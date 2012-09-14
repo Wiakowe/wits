@@ -8,8 +8,8 @@ use Wits\ProjectBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Wits\IssueBundle\Events\IssueCreateEvent;
-use Wits\IssueBundle\Events\IssueEvents;
+use Wits\IssueBundle\Event\IssueCreateEvent;
+use Wits\IssueBundle\Event\IssueEvents;
 
 class IssueController extends Controller
 {

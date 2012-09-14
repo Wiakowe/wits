@@ -1,6 +1,6 @@
 <?php
 
-namespace Wits\IssueBundle\Events;
+namespace Wits\IssueBundle\Event;
 
 final class IssueEvents
 {
