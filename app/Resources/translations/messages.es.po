@@ -28,8 +28,13 @@ msgstr "Crítica"
 msgid "label_home"
 msgstr "Inicio"
 
+
+
 msgid "label_connect"
 msgstr "Conectarse"
+
+msgid "label_user_self_edit"
+msgstr "Editar usuario"
 
 msgid "label_user_email"
 msgstr "Email"
@@ -111,6 +116,9 @@ msgstr "Crear"
 
 msgid "label_edit"
 msgstr "Editar"
+
+msgid "label_view"
+msgstr "Ver"
 
 msgid "label_comment"
 msgstr "Comentar"

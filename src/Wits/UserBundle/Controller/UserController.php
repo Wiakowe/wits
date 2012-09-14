@@ -229,6 +229,7 @@ class UserController extends Controller
 
         return $this->render('WitsUserBundle:User:edit.html.twig',
             array(
+                'user'  => $user,
                 'form'  => $form->createView()
             )
         );
