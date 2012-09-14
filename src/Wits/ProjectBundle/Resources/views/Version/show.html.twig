@@ -5,7 +5,7 @@
 <h1>{{ version.name }}</h1>
 
 {% if is_granted('ROLE_VERSION_EDIT') %}
-<a class="btn" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}Editar{% endtrans %}</a>
+<a class="btn" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
 {% endif %}
 
 {% if issues %}

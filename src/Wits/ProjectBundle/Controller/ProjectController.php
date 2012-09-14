@@ -60,9 +60,9 @@ class ProjectController extends Controller
         $breadcrumb = $this->get('wits.breadcrumb');
         if ($isEdit) {
             $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('project_id' => $project->getId()));
-            $breadcrumb->addEntry('Editar', 'wits_project_edit', array('project_id' => $project->getId()));
+            $breadcrumb->addEntry('label_edit', 'wits_project_edit', array('project_id' => $project->getId()));
         } else {
-            $breadcrumb->addEntry('Crear', 'wits_project_new');
+            $breadcrumb->addEntry('label_create', 'wits_project_new');
         }
 
         if ($this->getRequest()->getMethod() == 'POST') {
@@ -77,7 +77,7 @@ class ProjectController extends Controller
                 $manager->flush();
 
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'Your project has been edited' : 'Your project has been created');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'label_project_edited' : 'label_project_created');
 
                 return $this->redirect($this->get('router')->generate('wits_project_dashboard'));
             }

@@ -1,29 +1,29 @@
 {% extends '::base_login.html.twig'%}
 {% block body %}
-<h1 class="">{% trans %}Conectar{% endtrans %}</h1>
+<h1 class="">{% trans %}label_connect{% endtrans %}</h1>
 
 <form class="form-horizontal " action="{{ path('wits.user.security.login_check') }}" method="post">
     {% if error %}
     <div class="alert alert-error">{{ error.message|trans }}</div>
     {% endif %}
     <div>
-        <label for="username" >{% trans %}E-mail{% endtrans %}</label>
-        <input type="email" id="username" name="_username" value="{{ last_username }}" placeholder="Email" />
+        <label for="username" >{% trans %}label_user_email{% endtrans %}</label>
+        <input type="email" id="username" name="_username" value="{{ last_username }}" placeholder="{% trans %}label_user_email{% endtrans %}" />
     </div>
 
     <div>
-        <label for="password" >{% trans %}Contraseña{% endtrans %}</label>
-        <input type="password" id="password" name="_password" placeholder="Password"/>
-    </div>
-
-    <div>
-        <br />
-        <input type="submit" class="btn btn-primary" value="{% trans %}Entrar{% endtrans %}"/>
+        <label for="password" >{% trans %}label_user_password{% endtrans %}</label>
+        <input type="password" id="password" name="_password" placeholder="{% trans %}label_user_password{% endtrans %}"/>
     </div>
 
     <div>
         <br />
-        <a class="btn" href="{{ path('wits_user_register') }}">{% trans %}Registro{% endtrans %}</a>
+        <input type="submit" class="btn btn-primary" value="{% trans %}label_enter{% endtrans %}"/>
+    </div>
+
+    <div>
+        <br />
+        <a class="btn" href="{{ path('wits_user_register') }}">{% trans %}label_register{% endtrans %}</a>
     </div>
 
 </form>

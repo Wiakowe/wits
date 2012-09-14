@@ -18,7 +18,7 @@ class VersionController extends Controller
 
         $breadcrumb = $this->get('wits.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
-        $breadcrumb->addEntry('Versiones', 'wits_version_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
 
 
         if (!$isEdit)  {
@@ -27,7 +27,7 @@ class VersionController extends Controller
             }
             $version = new Version();
 
-            $breadcrumb->addEntry('Crear', 'wits_version_new', array('project_id' => $project->getId()));
+            $breadcrumb->addEntry('label_create', 'wits_version_new', array('project_id' => $project->getId()));
 
 
         } else {
@@ -40,12 +40,12 @@ class VersionController extends Controller
             }
 
             $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
-            $breadcrumb->addEntry('Editar', 'wits_version_edit', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
+            $breadcrumb->addEntry('label_edit', 'wits_version_edit', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
 
         }
 
         $form = $this->createFormBuilder($version)
-            ->add('name')
+            ->add('name', null, array('label' => 'label_version_name'))
             ->getForm()
         ;
 
@@ -62,7 +62,7 @@ class VersionController extends Controller
                 $manager->persist($version);
                 $manager->flush();
 
-                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'Your version has been edited' : 'Your version has been created');
+                $this->getRequest()->getSession()->getFlashBag()->add('success', ($isEdit) ? 'label_version_edited' : 'label_version_created');
 
                 return $this->redirect($this->get('router')->generate('wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId())));
             }
@@ -88,7 +88,7 @@ class VersionController extends Controller
 
         $breadcrumb = $this->get('wits.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
-        $breadcrumb->addEntry('Versiones', 'wits_version_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
 
         return $this->render('WitsProjectBundle:Version:list.html.twig',
             array(
@@ -111,7 +111,7 @@ class VersionController extends Controller
 
         $breadcrumb = $this->get('wits.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
-        $breadcrumb->addEntry('Versiones', 'wits_version_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
 
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
