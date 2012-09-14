@@ -2,5 +2,17 @@
 
 {% block body %}
 
+{% trans with {'%name%': issue.creator.fullName} %}label_email_issue_created_upper_text{% endtrans %}
 
+<p>{% trans with {'%issue_title%': issue.name} %}label_email_issue_created_upper_p_text{% endtrans %}</p>
+
+<p>{% trans %}label_email_issue_created_lower_p_text{% endtrans %}</p>
+
+{% set url_path = path('wits_issue_show', {'project_id': issue.project.id, 'issue_id': issue.id}, true) %}
+<a hef="{{ url_path }}">{{ url_path }}</a>
+<br />
+{% trans %}label_email_issue_created_sign{% endtrans %}
+<br />
+WITS
+<br />
 {% endblock %}

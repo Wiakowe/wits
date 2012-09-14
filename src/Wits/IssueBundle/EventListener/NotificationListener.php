@@ -44,13 +44,14 @@ class NotificationListener
         $issue = $event->getIssue();
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('[#'.$issue->getProject()->getIdentifier().'-'.$issue->getId().'] '.$this->trans->trans('label_mail_issue_created').': '.$issue->getName())
+            ->setSubject('[#'.$issue->getProject()->getIdentifier().'-'.$issue->getId().'] '.$this->translator->trans('label_mail_issue_created').': '.$issue->getName())
             ->setFrom($this->notificationMail)
             ->setReplyTo($this->notificationMail)
             ->setTo($issue->getCreator()->getEmail())
             ->setBcc($issue->getProject()->getLeader()->getEmail())
             //->setBody('Issue '.$issue->getId().' has been created')
-            ->setBody($this->templating->render('IssueBundle:Mail:issue_create.html.twig', array($issue)))
+            ->setBody($this->templating->render('WitsIssueBundle:Mail:issue_create.html.twig', array('issue' => $issue)))
+            ->setContentType('text/html')
         ;
 
         $this->mailer->send($message);

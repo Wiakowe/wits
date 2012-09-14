@@ -154,6 +154,10 @@ class User implements UserInterface
      */
     public function getUsername()
     {
+        if ($this->getFullName()) {
+            return $this->getFullName();
+        }
+
         return $this->getEmail();
     }
 
