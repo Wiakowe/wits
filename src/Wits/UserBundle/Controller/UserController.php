@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Wits\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Wits\ProjectBundle\Entity\Project;
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserController extends Controller
 {
@@ -235,6 +237,113 @@ class UserController extends Controller
                 'form'      => $form->createView()
             )
         );
+    }
+
+    public function requestPasswordResetAction()
+    {
+        $formBuilder = $this->createFormBuilder();
+
+        $formBuilder->add('email', 'email', array('required' => true));
+
+        $form = $formBuilder->getForm();
+
+        if ($this->getRequest()->getMethod() == 'POST') {
+            $form->bind($this->getRequest());
+
+            $user = $this->getDoctrine()->getRepository('WitsUserBundle:User')->findOneByEmail($form->getData()['email']);
+            /** @var $user User */
+
+            if ($user) {
+                $key = sha1(uniqid(mt_rand(), true));
+
+                $user->setPasswordResetCode($key);
+
+                //send email
+                $this->sendEmailResetPasswordAction($user);
+
+                $this->getDoctrine()->getManager()->persist($user);
+                $this->getDoctrine()->getManager()->flush($user);
+
+                return $this->render('WitsUserBundle:User:reset_password_action_mail_sent.html.twig');
+            } else {
+                //user not found
+            }
+
+        }
+
+        return $this->render('WitsUserBundle:User:reset_password_action_form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    protected function sendEmailResetPasswordAction(User $user)
+    {
+        $notificationMail = $this->container->getParameter('notification_email');
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($this->get('translator')->trans('label_password_reset_send'))
+            ->setFrom($notificationMail)
+            ->setReplyTo($notificationMail)
+            ->setTo($user->getEmail())
+            ->setBody($this->renderView('WitsUserBundle:Mail:user_password_reset.html.twig', array('user' => $user)))
+            ->setContentType('text/html')
+        ;
+
+        $this->get('mailer')->send($message);
+    }
+
+    public function passwordResetFinishAction()
+    {
+        if (!($key = $this->getRequest()->query->get('key'))) {
+            return $this->render('WitsUserBundle:reset_password_finish_error.html.twig');
+        }
+
+        $user = $this->getDoctrine()->getRepository('WitsUserBundle:User')->findOneByPasswordResetCode($key);
+
+        if (!$user) {
+            return $this->render('WitsUserBundle:reset_password_finish_error.html.twig');
+        }
+
+        $formBuilder = $this->createFormBuilder();
+
+        $formBuilder->add('password', 'repeated', array(
+            'first_name'  => 'password',
+            'second_name' => 'password_repeat',
+            'first_options' => array('label' => 'label_user_password'),
+            'second_options' => array('label' => 'label_user_password_repeat'),
+            'type'        => 'password'
+        ));
+
+        $form = $formBuilder->getForm();
+
+        $request = $this->getRequest();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            $manager = $this->getDoctrine()->getManager();
+
+            if ($form->isValid()) {
+
+                $securityManager = $this->get('wits.security_manager');
+
+                $securityManager->setUserPassword($user, $form->getData()['password']);
+                $user->setPasswordResetCode(null);
+
+                $this->get('security.context')->setToken(
+                    new UsernamePasswordToken($user, null, 'main', $user->getRoles())
+                );
+
+                $manager->persist($user);
+                $manager->flush($user);
+
+                return $this->redirect($this->generateUrl('wits_project_dashboard'));
+            }
+        }
+
+        return $this->render('WitsUserBundle:User:reset_password_finish_form.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
 }
