@@ -30,6 +30,11 @@
         <a class="btn" href="{{ path('wits_user_register') }}">{% trans %}label_register{% endtrans %}</a>
     </div>
 
+    <div>
+        <br />
+        <a href="{{ path('wits.user.request_password_reset')}}">{% trans %}label_user_forget_password{% endtrans %}</a>
+    </div>
+
 </form>
 
 {% endblock %}

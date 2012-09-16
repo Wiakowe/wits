@@ -40,5 +40,12 @@
         <requirement key="project_id">\d+</requirement>
     </route>
 
+    <route id="wits.user.request_password_reset" pattern="/password-reset">
+        <default key="_controller">WitsUserBundle:User:requestPasswordReset</default>
+    </route>
+
+    <route id="wits.user.password_reset_finish" pattern="/password-reset-finish">
+        <default key="_controller">WitsUserBundle:User:passwordResetFinish</default>
+    </route>
 
 </routes>
