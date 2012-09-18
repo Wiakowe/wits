@@ -8,6 +8,10 @@
         {
             "type": "vcs",
             "url": "http://github.com/Wiakowe/WiakoweBreadcrumbBundle"
+        },
+        {
+                "type": "vcs",
+                "url": "http://github.com/Wiakowe/Fetch"
         }
     ],
     "require": {
