@@ -1,28 +1,13 @@
 {% if comments %}
 
-<table id="comments" class="table">
-    <thead>
-        <tr>
-            <th>{{ 'label_comments'|trans }}</th>
-            <th >{{ 'label_comment_user'|trans }}</th>
-            <th>{{ 'label_comment_date'|trans }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for comment in comments %}
-        <tr>
+<h4>{{ 'label_comments'|trans }}</h4>
 
-            <td width="60%">
-            {{ comment.comment }}
-            <td width="25%">
-                <img src="{{ gravatar(comment.user.email, 30) }}" alt="{{ comment.user.fullname }}"/>
-                {{ comment.user }}
-            </td>
-            <td width="15%">
-            {{ comment.createdAt|date('d/m/y h:i:s') }}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<ul id="comments" class="list">
+    {% for comment in comments %}
+    <li>
+        <div class="table_text">{{ comment.comment }}</div>
+        <div class="table_text_small">Creador por {{ comment.user }} el {{ comment.createdAt|date('d/m/y h:i:s') }}</div>
+    </li>
+    {% endfor %}
+</ul>
 {% endif %}
