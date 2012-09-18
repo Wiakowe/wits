@@ -6,8 +6,8 @@ use Wiakowe\FetchBundle\Processor\MailProcessorInterface;
 use Doctrine\ORM\EntityManager;
 use Wits\UserBundle\Entity\User;
 use Wits\IssueBundle\Entity\Issue;
-use Wits\IssueBundle\Events\IssueCreateEvent;
-use Wits\IssueBundle\Events\IssueEvents;
+use Wits\IssueBundle\Event\IssueCreateEvent;
+use Wits\IssueBundle\Event\IssueEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
