@@ -15,12 +15,5 @@ interface MailProcessorInterface
      *
      * @return boolean
      */
-    public function isApplicable(Message $message);
-
-    /**
-     * Processes the given message.
-     *
-     * @param \Fetch\Message $message
-     */
-    public function process(Message $message);
+    public function apply(Message $message);
 }

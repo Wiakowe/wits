@@ -3,6 +3,7 @@ namespace Wiakowe\FetchBundle\Processor;
 
 use Fetch\Message;
 use Fetch\Server;
+use Wiakowe\FetchBundle\Filter\FilterInterface;
 
 /**
  * @author Roger Llopart Pla <lumbendil@gmail.com>
@@ -10,6 +11,7 @@ use Fetch\Server;
 class MailProcessingPlanner
 {
     protected $processors = array();
+    protected $filters    = array();
     protected $sorted     = true;
 
     protected $processedLabel;
@@ -30,6 +32,11 @@ class MailProcessingPlanner
         $this->sorted = false;
     }
 
+    public function addFilter(FilterInterface $filter)
+    {
+        $this->filters[] = $filter;
+    }
+
     public function processMails(Server $server)
     {
         $server->setMailBox('INBOX');
@@ -47,11 +54,17 @@ class MailProcessingPlanner
             krsort($this->processors);
         }
 
+        foreach ($this->filters as $filter) {
+            /** @var $filter FilterInterface */
+            if (!$filter->valid($message)) {
+                return false;
+            }
+        }
+
         foreach ($this->processors as $processorsArray) {
             foreach ($processorsArray as $processor) {
                 /** @var $processor MailProcessorInterface */
-                if ($processor->isApplicable($message)) {
-                    $processor->process($message);
+                if ($processor->apply($message)) {
                     return true;
                 }
             }
