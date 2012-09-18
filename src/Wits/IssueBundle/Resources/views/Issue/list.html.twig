@@ -8,15 +8,19 @@
 
 <h1>{{ title }}</h1>
 
-{% if is_granted('ROLE_ISSUE_CREATE') %}
-<a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
-{% endif %}
 {% if issues %}
     <ul id="issues">
         {% for issue in issues %}
         <li><a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id }) }}">{{ issue.name }}</a></li>
         {% endfor %}
     </ul>
+{% endif %}
+
+{% endblock %}
+
+{% block aside %}
+{% if is_granted('ROLE_ISSUE_CREATE') %}
+    <a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
 {% endif %}
 
 {% endblock %}

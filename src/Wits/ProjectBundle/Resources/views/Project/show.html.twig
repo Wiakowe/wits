@@ -9,9 +9,6 @@
 {{ title }}
 </h1>
 
-{% if is_granted('ROLE_ISSUE_CREATE') %}
-<a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
-{% endif %}
 {% if issues %}
 <ul id="issues">
     {% for issue in issues %}
@@ -19,22 +16,28 @@
     {% endfor %}
 </ul>
 {% endif %}
-<br />
-{% if is_granted('ROLE_VERSION_CREATE') %}
-<a class="btn" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
-{% endif %}
-{% if is_granted('ROLE_VERSION_LIST') %}
-{% if versions %}
-<ul id="versions">
-    {% for version in versions %}
-    {% if is_granted('ROLE_VERSION_EDIT') %}
-    {% set version_path = 'wits_version_edit' %}
-    {% else %}
-    {% set version_path = 'wits_version_show' %}
+
+{% endblock %}
+{% block aside %}
+    {% if is_granted('ROLE_ISSUE_CREATE') %}
+        <a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
     {% endif %}
-    <li><a href="{{ path(version_path, {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
-    {% endfor %}
-</ul>
-{% endif %}
-{% endif %}
+    <br />
+    {% if is_granted('ROLE_VERSION_CREATE') %}
+        <a class="btn" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
+    {% endif %}
+    {% if is_granted('ROLE_VERSION_LIST') %}
+        {% if versions %}
+            <ul id="versions">
+                {% for version in versions %}
+                    {% if is_granted('ROLE_VERSION_EDIT') %}
+                        {% set version_path = 'wits_version_edit' %}
+                    {% else %}
+                        {% set version_path = 'wits_version_show' %}
+                    {% endif %}
+                    <li><a href="{{ path(version_path, {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
 {% endblock %}

@@ -8,10 +8,6 @@
 
 <h1>{{ title }}</h1>
 
-{% if is_granted('ROLE_VERSION_EDIT') %}
-<a class="btn" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
-{% endif %}
-
 {% if issues %}
     <ul id="issues">
         {% for issue in issues %}
@@ -19,4 +15,10 @@
         {% endfor %}
     </ul>
 {% endif %}
+{% endblock %}
+
+{% block aside %}
+    {% if is_granted('ROLE_VERSION_EDIT') %}
+        <a class="btn" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
+    {% endif %}
 {% endblock %}

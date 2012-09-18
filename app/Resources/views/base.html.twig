@@ -15,13 +15,14 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    <div class="container-fluid">
+    <div class="container">
+        <header>
         {% include '::nav.html.twig'%}
-
+        </header>
 
     {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="alert alert-success">
-            {{ flashMessage }}
+            {{ flashMessage|trans }}
         </div>
     {% endfor %}
     {% block breadcrumb %}
@@ -29,7 +30,16 @@
             {% include 'WiakoweBreadcrumbBundle:Breadcrumb:show.html.twig' %}
         </div>
     {% endblock %}
-    {% block body %}{% endblock %}
+    {% block rowfluid %}
+        <div class="row-fluid">
+            <div class="span9">
+                {% block body %}{% endblock %}
+            </div>
+            <aside class="span3">
+                {% block aside %}{% endblock %}
+            </aside>
+        </div>
+    {% endblock %}
     </div>
     {% block javascripts %}
     {% javascripts

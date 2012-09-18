@@ -194,3 +194,28 @@ msgstr "Resetea el password"
 
 msgid "label_user_reset_passwork_link_invalid"
 msgstr "Link invalido"
+
+msgid "label_issue_edited"
+msgstr "Ticket editado correctamente."
+
+msgid "label_issue_created"
+msgstr "Ticket creado correctamente."
+
+msgid "label_project_created"
+msgstr "Proyecto creado correctamente"
+
+msgid "label_project_edited"
+msgstr "Proyecto editado correctamente"
+
+msgid "label_version_created"
+msgstr "Versión creada correctamente."
+
+msgid "label_version_edited"
+msgstr "Versión editada correctamente."
+
+msgid "label_user_edited"
+msgstr "Usuario editado correctamente."
+
+msgid "label_user_created"
+msgstr "Usuario creado correctamente."
+

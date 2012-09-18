@@ -8,9 +8,6 @@
 
 <h1>{{ title }}</h1>
 
-{% if is_granted('ROLE_VERSION_CREATE') %}
-<a class="btn" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
-{% endif %}
 {% if versions %}
     <ul id="versions">
         {% for version in versions %}
@@ -19,4 +16,10 @@
     </ul>
 {% endif %}
 
+{% endblock %}
+
+{% block aside %}
+    {% if is_granted('ROLE_VERSION_CREATE') %}
+        <a class="btn" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
+    {% endif %}
 {% endblock %}
