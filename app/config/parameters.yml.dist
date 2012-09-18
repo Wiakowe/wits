@@ -11,6 +11,11 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    mail_fetch_host:     imap.host.com
+    mail_fetch_port:     993
+    mail_fetch_user:     my_imap_user
+    mail_fetch_password: my_imap_password
+
     locale:            es
     secret:            ThisTokenIsNotSoSecretChangeIt
 
