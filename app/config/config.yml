@@ -78,3 +78,6 @@ wiakowe_fetch:
     port:     %mail_fetch_port%
     user:     %mail_fetch_user%
     password: %mail_fetch_password%
+
+wits_issue:
+    allowed_hosts: %mail_allowed_hosts%

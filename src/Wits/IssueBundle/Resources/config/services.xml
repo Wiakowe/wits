@@ -4,7 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="wits_issue.mail.allowed_hosts" type="collection" />
+    </parameters>
+
     <services>
+        <service id="wits_issue.mail.filter.allowed_host" class="Wiakowe\FetchBundle\Filter\AllowedHostsFilter">
+            <argument>%wits_issue.mail.allowed_hosts%</argument>
+            <tag name="wiakowe_fetch.filter" />
+        </service>
+
+        <service id="wits_issue.mail.processor.new_issue" class="Wits\IssueBundle\Mail\Processor\NewIssueProcessor">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="event_dispatcher" />
+
+            <tag name="wiakowe_fetch.processor" priority="0" />
+        </service>
+
         <service id="wits_issue.listener.notification" class="Wits\IssueBundle\EventListener\NotificationListener">
             <argument type="service" id="translator" />
             <argument type="service" id="mailer" />

@@ -21,3 +21,5 @@ parameters:
 
     yui_compressor_path: ~
     assetic.filter.compass.bin: ~
+
+    mail_allowed_hosts: [ example.com ]
