@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\Config\FileLocator;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -23,6 +24,9 @@ class WiakoweFetchExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $this->createClients($config, $container);
+
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('processor.xml');
     }
 
     protected function createClients(array $config, ContainerBuilder $container)
