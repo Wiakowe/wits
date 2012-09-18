@@ -10,24 +10,24 @@
 </h1>
 
 {% if issues %}
-<ul id="issues">
-    {% for issue in issues %}
-    <li><a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a></li>
-    {% endfor %}
-</ul>
+{% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' %}
+
+{% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
+
 {% endif %}
 
 {% endblock %}
 {% block aside %}
     {% if is_granted('ROLE_ISSUE_CREATE') %}
-        <a class="btn" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
+        <a class="btn btn-success" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
     {% endif %}
     <br />
     {% if is_granted('ROLE_VERSION_CREATE') %}
-        <a class="btn" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
+        <a class="btn btn-info" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
     {% endif %}
     {% if is_granted('ROLE_VERSION_LIST') %}
         {% if versions %}
+            <h4>{{ 'label_versions'|trans }}</h4>
             <ul id="versions">
                 {% for version in versions %}
                     {% if is_granted('ROLE_VERSION_EDIT') %}

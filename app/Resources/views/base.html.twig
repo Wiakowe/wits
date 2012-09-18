@@ -8,6 +8,8 @@
         {% stylesheets filter='?yui_css'
             '@WitsBootstrapBundle/Resources/bootstrap/css/bootstrap.css'
             '@WitsBootstrapBundle/Resources/bootstrap/css/bootstrap-responsive.css'
+            '../app/Resources/sass/default.sass'
+            '@WitsIssueBundle/Resources/sass/issue_show.sass'
         %}
         <link href="{{ asset_url }}" media="screen" type="text/css" rel="stylesheet" />
         {% endstylesheets %}
@@ -15,11 +17,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    <div class="container">
-        <header>
+    <header>
         {% include '::nav.html.twig'%}
-        </header>
+    </header>
 
+    <div class="container body_container">
+        <div id="push_nav" class="visible-desktop">&nbsp;</div>
     {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="alert alert-success">
             {{ flashMessage|trans }}
@@ -36,11 +39,19 @@
                 {% block body %}{% endblock %}
             </div>
             <aside class="span3">
+                <div id="aside_div">
                 {% block aside %}{% endblock %}
+                </div>
             </aside>
         </div>
     {% endblock %}
+
     </div>
+
+    <footer class="container">
+        {% include '::footer.html.twig' %}
+    </footer>
+
     {% block javascripts %}
     {% javascripts
             '@WitsBootstrapBundle/Resources/bootstrap/js/jquery-1.8.1.js'

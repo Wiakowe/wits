@@ -9,16 +9,12 @@
 <h1>{{ title }}</h1>
 
 {% if issues %}
-    <ul id="issues">
-        {% for issue in issues %}
-        <li><a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id }) }}">{{ issue.name }}</a></li>
-        {% endfor %}
-    </ul>
+    {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
 {% endif %}
 {% endblock %}
 
 {% block aside %}
     {% if is_granted('ROLE_VERSION_EDIT') %}
-        <a class="btn" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
+        <a class="btn btn-info" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
     {% endif %}
 {% endblock %}

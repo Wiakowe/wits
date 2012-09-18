@@ -26,7 +26,8 @@
         "jms/di-extra-bundle": "1.1.*",
         "doctrine/doctrine-fixtures-bundle": "*",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "wiakowe/breadcrumb-bundle": "1.0.*"
+        "wiakowe/breadcrumb-bundle": "1.0.*",
+        "ornicar/gravatar-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [

@@ -6,14 +6,9 @@
 {% block body %}
 <h1>{{ title }}</h1>
 
-{% if (users) %}
-<ul id="users">
-    {% for user in users %}
-    <li><a href="{{ path('wits_users_edit', {'user_id': user.id, 'project_id': project_id}) }}">{{ user.username }}</a></li>
-    {% endfor %}
-</ul>
 
-{% endif %}
+{% include 'WitsUserBundle:User/Partial:user_list.html.twig' %}
+
 
 {% endblock %}
 

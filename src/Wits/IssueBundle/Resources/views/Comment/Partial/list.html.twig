@@ -1,0 +1,28 @@
+{% if comments %}
+
+<table id="comments" class="table">
+    <thead>
+        <tr>
+            <th>{{ 'label_comments'|trans }}</th>
+            <th >{{ 'label_comment_user'|trans }}</th>
+            <th>{{ 'label_comment_date'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comment in comments %}
+        <tr>
+
+            <td width="60%">
+            {{ comment.comment }}
+            <td width="25%">
+                <img src="{{ gravatar(comment.user.email, 30) }}" alt="{{ comment.user.fullname }}"/>
+                {{ comment.user }}
+            </td>
+            <td width="15%">
+            {{ comment.createdAt|date('d/m/y h:i:s') }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}

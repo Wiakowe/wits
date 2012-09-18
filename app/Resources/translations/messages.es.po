@@ -111,6 +111,9 @@ msgstr "Versión"
 msgid "label_issue_assignee"
 msgstr "Asignado"
 
+msgid "label_issue_creator"
+msgstr "Creador"
+
 msgid "label_issue_status"
 msgstr "Estado"
 
@@ -128,6 +131,15 @@ msgstr "Ver"
 
 msgid "label_comment"
 msgstr "Comentar"
+
+msgid "label_comment_user"
+msgstr "Usuario"
+
+msgid "label_comment_date"
+msgstr "Fecha"
+
+msgid "label_comments"
+msgstr "Comentarios"
 
 msgid "label_version_name"
 msgstr "Versión"

@@ -1,0 +1,22 @@
+<table id="issues" class="table">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>{{ 'label_issues'|trans }}</th>
+            <th>{{ 'label_issue_priority'|trans }}</th>
+            <th>{{ 'label_issue_status'|trans }}</th>
+            <th>{{ 'label_issue_assignee'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for issue in issues %}
+        <tr>
+            <td width="10%">#{{ issue.id}}</td>
+            <td width="60%"><a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a></td>
+            <td width="10%">{{ issue.priorityName|trans }}</td>
+            <td width="10%">{{ issue.statusName|trans }}</td>
+            <td width="10%">{% if issue.assignee %}{{ issue.assignee.userName }}{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
