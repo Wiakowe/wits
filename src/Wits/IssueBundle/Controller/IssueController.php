@@ -43,7 +43,7 @@ class IssueController extends Controller
 
         ;
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_VERSION')) {
-            $formBuilder->add('version', null, array('label' => 'label_issue_version'));
+            $formBuilder->add('version', null, array('label' => 'label_issue_version', 'required' => false));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_ASSIGN')) {
