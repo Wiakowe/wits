@@ -88,4 +88,9 @@ class StringUtil
         return $string;
     }
 
+    public static function normalizeNewlines($string)
+    {
+        return $string;
+    }
+
 }

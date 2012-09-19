@@ -6,7 +6,7 @@
     </li>
     {% for comment in comments %}
     <li>
-        <div class="table_text">{{ comment.comment }}</div>
+        <div class="table_text">{{ comment.comment|nl2br }}</div>
         <div class="table_text_small">{% trans with{'%comment_creator%': comment.user, '%comment_date%': comment.createdAt|date('d/m/y h:i:s')} %}Creador por %comment_creator% el %comment_date%{% endtrans %}</div>
     </li>
     {% endfor %}

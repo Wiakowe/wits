@@ -26,14 +26,16 @@ class ProjectIdExtension extends \Twig_Extension
 
     public function getGlobals()
     {
-        $attributes = $this->container->get('request')->attributes;
+        $projectId = null;
 
-        if ($attributes->get('project_id')) {
-            $projectId = $attributes->get('project_id');
-        } elseif ($attributes->get('id')) {
-            $projectId = $attributes->get('id');
-        } else {
-            $projectId = null;
+        if ($this->container->isScopeActive('request') && $this->container->has('request')) {
+            $attributes = $this->container->get('request')->attributes;
+
+            if ($attributes->get('project_id')) {
+                $projectId = $attributes->get('project_id');
+            } elseif ($attributes->get('id')) {
+                $projectId = $attributes->get('id');
+            }
         }
 
         return array('project_id' => $projectId);

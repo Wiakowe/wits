@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Wits\BootstrapBundle\WitsBootstrapBundle(),
             new Wiakowe\BreadcrumbBundle\WiakoweBreadcrumbBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new Wiakowe\FetchBundle\WiakoweFetchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

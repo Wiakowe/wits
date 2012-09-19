@@ -1,6 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "wiakowe/wits",
+    "description": "Wiakowe Issue Tracking System",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -8,11 +8,15 @@
         {
             "type": "vcs",
             "url": "http://github.com/Wiakowe/WiakoweBreadcrumbBundle"
+        },
+        {
+                "type": "vcs",
+                "url": "http://github.com/Wiakowe/Fetch"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
+        "symfony/symfony": "2.1.1",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.0.*",
         "twig/extensions": "1.0.*",
@@ -27,8 +31,10 @@
         "doctrine/doctrine-fixtures-bundle": "*",
         "stof/doctrine-extensions-bundle": "dev-master",
         "wiakowe/breadcrumb-bundle": "1.0.*",
-        "ornicar/gravatar-bundle": "*"
+        "ornicar/gravatar-bundle": "*",
+        "tedivm/fetch": "*"
     },
+    "minimum-stability": "dev",
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -46,7 +52,6 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
