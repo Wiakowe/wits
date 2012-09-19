@@ -1,0 +1,51 @@
+@import "variables.sass"
+
+body
+  background-color: $bgColor
+
+ul, ol
+  list-style: none outside none
+  margin: 0
+
+#push_nav
+  height: 40px
+
+div.body_container
+  background-color: white
+  border: 10px solid white
+  border-bottom-width: 20px
+  +box-shadow(darken($bgColor, 50%) 0px 0px 1px)
+
+.navbar-inner
+  +border-radius(0px)
+  border-width: 0px
+
+#aside_div
+  a.btn
+    display: block
+
+form
+  input[type=submit]
+    float: left
+    margin-top: 15px
+
+footer
+  height: 30px
+  background-color: $linearEnd
+  border: 10px solid $linearEnd
+  border-bottom-width: 0px
+  +box-shadow(darken(black, 50%) 0px 0px 1px)
+  color: $linearText
+
+.list
+  li
+    margin: 5px
+    padding-top: 5px
+    border-top: 1px solid $bgColor
+    &:first-child
+      padding-top: 0px
+      border-top-width: 0px
+    .table_text
+      font-size: 1.1em
+    .table_text_small
+      font-size: 0.8em

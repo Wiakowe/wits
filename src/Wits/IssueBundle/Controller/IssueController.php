@@ -148,7 +148,6 @@ class IssueController extends Controller
         $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($issue->getName(), 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
-        $breadcrumb->addEntry('label_view', 'wits_issue_show', array('project_id' => $project->getId(), 'issue_id' => $issue->getId()));
 
         $commentRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Comment');
 

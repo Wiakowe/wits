@@ -111,11 +111,20 @@ msgstr "Versión"
 msgid "label_issue_assignee"
 msgstr "Asignado"
 
+msgid "label_issue_creator"
+msgstr "Creador"
+
 msgid "label_issue_status"
 msgstr "Estado"
 
 msgid "label_issue_priority"
 msgstr "Prioridad"
+
+msgid "label_issue_date_created"
+msgstr "Creado"
+
+msgid "label_issue_date_updated"
+msgstr "Actualizado"
 
 msgid "label_create"
 msgstr "Crear"
@@ -128,6 +137,15 @@ msgstr "Ver"
 
 msgid "label_comment"
 msgstr "Comentar"
+
+msgid "label_comment_user"
+msgstr "Usuario"
+
+msgid "label_comment_date"
+msgstr "Fecha"
+
+msgid "label_comments"
+msgstr "Comentarios"
 
 msgid "label_version_name"
 msgstr "Versión"
@@ -194,3 +212,28 @@ msgstr "Resetea el password"
 
 msgid "label_user_reset_passwork_link_invalid"
 msgstr "Link invalido"
+
+msgid "label_issue_edited"
+msgstr "Ticket editado correctamente."
+
+msgid "label_issue_created"
+msgstr "Ticket creado correctamente."
+
+msgid "label_project_created"
+msgstr "Proyecto creado correctamente"
+
+msgid "label_project_edited"
+msgstr "Proyecto editado correctamente"
+
+msgid "label_version_created"
+msgstr "Versión creada correctamente."
+
+msgid "label_version_edited"
+msgstr "Versión editada correctamente."
+
+msgid "label_user_edited"
+msgstr "Usuario editado correctamente."
+
+msgid "label_user_created"
+msgstr "Usuario creado correctamente."
+

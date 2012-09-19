@@ -24,17 +24,25 @@ class ProjectController extends Controller
 
     public function showAction(Project $project)
     {
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
         //get issues
-        $issues = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue')->findBy(array('project' => $project->getId()));
+        $issues = $issueRepository->findBy(array('project' => $project->getId()));
 
         //get versions
         $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
 
+        //group the issues of the project by type
+        $issuesByStatus = $issueRepository->getIssuesByType($project);
+        $issuesTotal = $issueRepository->getNumberOfIssuesByProject($project);
+
         return $this->render('WitsProjectBundle:Project:show.html.twig',
             array(
-                'project'   => $project,
-                'issues'    => $issues,
-                'versions'  => $versions
+                'project'           => $project,
+                'issues'            => $issues,
+                'versions'          => $versions,
+                'issuesByStatus'    => $issuesByStatus,
+                'issuesTotal'       => $issuesTotal,
             )
         );
     }

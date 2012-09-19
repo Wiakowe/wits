@@ -1,5 +1,5 @@
 {
-    "hash": "6684deee2a6534cac0e224d67f75f023",
+    "hash": "aeedc1668d11690c684baca0691b3e9a",
     "packages": [
         {
             "package": "doctrine/common",
@@ -102,6 +102,12 @@
             "version": "dev-master",
             "source-reference": "e5bf7ba5d1df622b68d004b3c0277bc94286e1b7",
             "commit-date": "1347105894"
+        },
+        {
+            "package": "ornicar/gravatar-bundle",
+            "version": "dev-master",
+            "source-reference": "994424a846f30f64e324e1b95a21c9f3b4ad237a",
+            "commit-date": "1347006002"
         },
         {
             "package": "sensio/distribution-bundle",

@@ -13,3 +13,6 @@ parameters:
 
     locale:            es
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    yui_compressor_path: ~
+    assetic.filter.compass.bin: ~

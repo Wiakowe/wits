@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends '::base_1column.html.twig' %}
 
 {% if issue.id %}
     {% set title = 'label_edit_issue'|trans %}
@@ -13,7 +13,7 @@
 {% block body %}
 
 <h1>{{ title }}</h1>
-<form action="" method="POST">
+<form class="form-horizontal" action="" method="POST">
     {{ form_widget(form) }}
     <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
 </form>

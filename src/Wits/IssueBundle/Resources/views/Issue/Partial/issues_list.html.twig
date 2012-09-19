@@ -1,0 +1,47 @@
+{% if issues %}
+<table id="issues" class="table">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>{{ 'label_issue_name'|trans }}</th>
+            <th>{{ 'label_issue_priority'|trans }}</th>
+            <th>{{ 'label_issue_status'|trans }}</th>
+            <th>{{ 'label_issue_assignee'|trans }}</th>
+            <th>{{ 'label_issue_creator'|trans }}</th>
+            <th>{{ 'label_issue_date_created'|trans }}</th>
+            <th>{{ 'label_issue_date_updated'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for issue in issues %}
+        <tr>
+            <td width="5%" class="table_id">
+                #{{ issue.id}}
+            </td>
+            <td width="60%" class="table_text">
+                <a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a>
+            </td>
+            <td width="10%">
+                {{ issue.priorityName|trans }}
+            </td>
+            <td width="10%">
+                {{ issue.statusName|trans }}
+            </td>
+            <td width="10%">
+                {% if issue.assignee %}{{ issue.assignee.userName }}{% endif %}
+            </td>
+            <td width="10%">
+                {{ issue.creator.userName }}
+            </td>
+            <td width="10%">
+                {{ issue.createdAt|date('d/m/y h:i:s') }}
+            </td>
+            <td width="10%">
+                {{ issue.updatedAt|date('d/m/y h:i:s') }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
