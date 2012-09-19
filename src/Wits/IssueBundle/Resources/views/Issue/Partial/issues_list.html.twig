@@ -1,47 +1,34 @@
 {% if issues %}
-<table id="issues" class="table">
-    <thead>
-        <tr>
-            <th>&nbsp;</th>
-            <th>{{ 'label_issue_name'|trans }}</th>
-            <th>{{ 'label_issue_priority'|trans }}</th>
-            <th>{{ 'label_issue_status'|trans }}</th>
-            <th>{{ 'label_issue_assignee'|trans }}</th>
-            <th>{{ 'label_issue_creator'|trans }}</th>
-            <th>{{ 'label_issue_date_created'|trans }}</th>
-            <th>{{ 'label_issue_date_updated'|trans }}</th>
-        </tr>
-    </thead>
+<table id="issues" class="table list">
     <tbody>
         {% for issue in issues %}
         <tr>
             <td width="5%" class="table_id">
-                #{{ issue.id}}
+                <a  href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">
+                    #{{ issue.id}}
+                </a>
             </td>
-            <td width="60%" class="table_text">
-                <a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a>
+            <td width="80%" class="table_text">
+                <div class="table_text">
+                    <a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a>
+                </div>
+                <div class="table_text_small">
+                    {% trans with{'%issue_creator%': issue.creator, '%issue_created%': issue.createdAt|date('d/m/y h:i:s')} %}Creado por %issue_creator% el %issue_created%{% endtrans %}
+
+                    {% if issue.assignee %}<br />{{ issue.assignee.userName }}{% endif %}
+                </div>
             </td>
-            <td width="10%">
-                {{ issue.priorityName|trans }}
-            </td>
-            <td width="10%">
-                {{ issue.statusName|trans }}
-            </td>
-            <td width="10%">
-                {% if issue.assignee %}{{ issue.assignee.userName }}{% endif %}
-            </td>
-            <td width="10%">
-                {{ issue.creator.userName }}
-            </td>
-            <td width="10%">
-                {{ issue.createdAt|date('d/m/y h:i:s') }}
-            </td>
-            <td width="10%">
-                {{ issue.updatedAt|date('d/m/y h:i:s') }}
+            <td width="15%">
+                {% if issue.priority %}
+                <div class="priority">{{ issue.priorityName|trans }}</div>
+                {% endif %}
+                <div class="priority">{{ issue.statusName|trans }}</div>
+                {% if issue.version %}
+                <div class="priority">{{ issue.version.name }}</div>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
 {% endif %}
