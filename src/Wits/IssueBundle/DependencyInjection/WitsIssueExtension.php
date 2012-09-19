@@ -24,5 +24,7 @@ class WitsIssueExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('wits_issue.mail.allowed_hosts', $config['allowed_hosts']);
     }
 }
