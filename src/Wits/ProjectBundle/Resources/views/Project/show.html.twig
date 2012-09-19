@@ -27,12 +27,7 @@
             <h4>{{ 'label_versions'|trans }}</h4>
             <ul id="versions">
                 {% for version in versions %}
-                    {% if is_granted('ROLE_VERSION_EDIT') %}
-                        {% set version_path = 'wits_version_edit' %}
-                    {% else %}
-                        {% set version_path = 'wits_version_show' %}
-                    {% endif %}
-                    <li><a href="{{ path(version_path, {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
+                    <li><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}

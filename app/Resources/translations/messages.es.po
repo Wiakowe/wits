@@ -242,3 +242,6 @@ msgstr "Proyecto"
 
 msgid "label_project_edit"
 msgstr "Editar proyecto"
+
+msgid "label_issues_nothing"
+msgstr "No hay tickets que mostrar"

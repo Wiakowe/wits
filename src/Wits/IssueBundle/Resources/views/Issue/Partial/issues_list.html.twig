@@ -20,15 +20,17 @@
             </td>
             <td width="15%">
                 {% if issue.priority %}
-                <div class="priority">{{ issue.priorityName|trans }}</div>
+                <div class="{{ issue.bootstrapButtonFromPriority }} priority">{{ issue.priorityName|trans }}</div>
                 {% endif %}
-                <div class="priority">{{ issue.statusName|trans }}</div>
-                {% if issue.version %}
-                <div class="priority">{{ issue.version.name }}</div>
+                <div class="{{ issue.bootstrapButtonFromStatus }} priority">{{ issue.statusName|trans }}</div>
+                {% if issue.version and not version is defined %}
+                <div class="btn-info priority">{{ issue.version.name }}</div>
                 {% endif %}
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+    <h4>{% trans %}label_issues_nothing{% endtrans %}</h4>
 {% endif %}

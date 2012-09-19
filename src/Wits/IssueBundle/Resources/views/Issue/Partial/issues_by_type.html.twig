@@ -4,16 +4,16 @@
         <div class="bar bar-info" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_NEW')] / issuesTotal.cnt * 100 }}%;"></div>
     {% endif %}
     {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED')] is defined %}
-        <div class="bar bar-danger" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED')] / issuesTotal.cnt * 100 }}%;"></div>
+        <div class="bar bar-warning" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED')] / issuesTotal.cnt * 100 }}%;"></div>
     {% endif %}
     {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING')] is defined %}
-        <div class="bar bar-warning" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING')] / issuesTotal.cnt * 100 }}%;"></div>
+        <div class="bar bar-danger" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING')] / issuesTotal.cnt * 100 }}%;"></div>
     {% endif %}
     {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_RESOLVED')] is defined %}
         <div class="bar bar-success" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_RESOLVED')] / issuesTotal.cnt * 100 }}%;"></div>
     {% endif %}
     {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED')] is defined %}
-        <div class="bar bar-success" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED')] / issuesTotal.cnt * 100 }}%;"></div>
+        <div class="bar bar-inverse" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED')] / issuesTotal.cnt * 100 }}%;"></div>
     {% endif %}
 </div>
 {% endif %}

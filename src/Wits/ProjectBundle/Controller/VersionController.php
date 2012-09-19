@@ -101,6 +101,8 @@ class VersionController extends Controller
 
     public function showAction(Project $project, Version $version)
     {
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
         if (false === $this->get('security.context')->isGranted('ROLE_VERSION_SHOW')) {
             throw new AccessDeniedException();
         }
@@ -110,20 +112,25 @@ class VersionController extends Controller
             throw new ResourceNotFoundException();
         }
 
+        $issues = $issueRepository->findBy(array('project' => $project, 'version' => $version));
+
+        //group the issues of the project by type
+        $issuesByStatus = $issueRepository->getIssuesByType($project, $version);
+        $issuesTotal = $issueRepository->getNumberOfIssuesByProject($project, $version);
+
         $breadcrumb = $this->get('wiakowe.breadcrumb');
         $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
 
-        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
-
-        $issues = $issueRepository->findAll(array('version' => $version));
 
         return $this->render('WitsProjectBundle:Version:show.html.twig',
             array(
-                'project'   => $project,
-                'version'   => $version,
-                'issues'    => $issues
+                'project'           => $project,
+                'version'           => $version,
+                'issues'            => $issues,
+                'issuesByStatus'    => $issuesByStatus,
+                'issuesTotal'       => $issuesTotal,
             )
         );
     }
