@@ -126,10 +126,14 @@ class IssueController extends Controller
 
         $issues = $issueRepository->findBy(array('project' => $project->getId()));
 
+        //get versions
+        $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
+
         return $this->render('WitsIssueBundle:Issue:list.html.twig',
             array(
                 'project'   => $project,
                 'issues'    => $issues,
+                'versions'  => $versions,
             )
         );
     }

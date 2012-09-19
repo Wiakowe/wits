@@ -27,7 +27,7 @@ class ProjectController extends Controller
         $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
 
         //get issues
-        $issues = $issueRepository->findBy(array('project' => $project->getId()));
+        $issues = $issueRepository->getLatestIssuesOpened($project);
 
         //get versions
         $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));

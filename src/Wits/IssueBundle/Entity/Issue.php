@@ -342,4 +342,52 @@ class Issue
         }
     }
 
+    public function getBootstrapButtonFromPriority()
+    {
+        switch ($this->getPriority()) {
+            case self::PRIORITY_LOW:
+                return 'btn-success';
+                break;
+            case self::PRIORITY_MEDIUM:
+                return 'btn-warning';
+                break;
+            case self::PRIORITY_HIGH:
+                return 'btn-danger';
+                break;
+            case self::PRIORITY_CRITICAL:
+                return 'btn-inverse';
+                break;
+        }
+        return '';
+    }
+
+    public function getBootstrapButtonFromStatus()
+    {
+        switch ($this->getStatus()) {
+            case self::STATUS_NEW:
+                return 'btn-info';
+                break;
+            case self::STATUS_ASSIGNED:
+                return 'btn-warning';
+                break;
+            case self::STATUS_WORKING:
+                return 'btn-danger';
+                break;
+            case self::STATUS_RESOLVED:
+                return 'btn-success';
+                break;
+            case self::STATUS_CLOSED:
+                return 'btn-inverse';
+                break;
+            /*
+            STATUS_NEW          = 1,
+            STATUS_ASSIGNED     = 2,
+            STATUS_WORKING      = 3,
+            STATUS_RESOLVED     = 4,
+            STATUS_CLOSED       = 5;
+            */
+        }
+        return '';
+    }
+
 }
