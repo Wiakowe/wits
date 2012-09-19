@@ -21,6 +21,13 @@
             <tag name="wiakowe_fetch.processor" priority="0" />
         </service>
 
+        <service id="wits_issue.mail.processor.new_comment" class="Wits\IssueBundle\Mail\Processor\NewCommentProcessor">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="event_dispatcher" />
+
+            <tag name="wiakowe_fetch.processor" priority="10" />
+        </service>
+
         <service id="wits_issue.listener.notification" class="Wits\IssueBundle\EventListener\NotificationListener">
             <argument type="service" id="translator" />
             <argument type="service" id="mailer" />
