@@ -20,6 +20,9 @@ class NewIssueProcessor implements MailProcessorInterface
      */
     protected $entityManager;
 
+    /**
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
     protected $eventDispatcher;
 
     public function __construct(EntityManager $entityManager, EventDispatcherInterface $eventDispatcher)
