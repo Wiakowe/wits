@@ -16,6 +16,10 @@ parameters:
     mail_fetch_user:     my_imap_user
     mail_fetch_password: my_imap_password
 
+    notification_email:  bugs@example.com
+
+    dev_delivery_address: delivery@example.com
+
     locale:            es
     secret:            ThisTokenIsNotSoSecretChangeIt
 
