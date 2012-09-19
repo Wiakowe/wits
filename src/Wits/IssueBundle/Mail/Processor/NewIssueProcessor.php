@@ -8,6 +8,8 @@ use Wits\UserBundle\Entity\User;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\IssueBundle\Event\IssueCreateEvent;
 use Wits\IssueBundle\Event\IssueEvents;
+use Wits\HelperBundle\Util\MailUtil;
+use Wits\HelperBundle\Util\StringUtil;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -55,9 +57,14 @@ class NewIssueProcessor implements MailProcessorInterface
             ->getRepository('WitsProjectBundle:Project')
             ->findOneBy(array());
 
+        $content = $message->getMessageBody();
+
+        $content = StringUtil::normalizeNewlines($content);
+        $content = MailUtil::removeSignature($content);
+
         $issue->setCreator($user);
         $issue->setName($message->getSubject());
-        $issue->setDescription($message->getMessageBody());
+        $issue->setDescription($content);
         $issue->setProject($project);
 
         $this->entityManager->persist($issue);
