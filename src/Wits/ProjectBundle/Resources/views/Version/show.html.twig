@@ -8,9 +8,7 @@
 
 <h1>{{ title }}</h1>
 
-{% if issues %}
-    {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
-{% endif %}
+{% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
 {% endblock %}
 
 {% block aside %}

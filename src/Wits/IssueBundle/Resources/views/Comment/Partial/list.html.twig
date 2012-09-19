@@ -1,8 +1,9 @@
 {% if comments %}
 
-<h4>{{ 'label_comments'|trans }}</h4>
 
 <ul id="comments" class="list">
+    <li><h4>{{ 'label_comments'|trans }}</h4>
+    </li>
     {% for comment in comments %}
     <li>
         <div class="table_text">{{ comment.comment }}</div>

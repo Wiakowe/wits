@@ -9,12 +9,9 @@
 {{ title }}
 </h1>
 
-{% if issues %}
 {% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' %}
 
 {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
-
-{% endif %}
 
 {% endblock %}
 {% block aside %}

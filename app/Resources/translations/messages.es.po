@@ -120,6 +120,12 @@ msgstr "Estado"
 msgid "label_issue_priority"
 msgstr "Prioridad"
 
+msgid "label_issue_date_created"
+msgstr "Creado"
+
+msgid "label_issue_date_updated"
+msgstr "Actualizado"
+
 msgid "label_create"
 msgstr "Crear"
 
