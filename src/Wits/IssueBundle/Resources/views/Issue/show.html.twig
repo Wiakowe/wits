@@ -30,12 +30,20 @@
     {% endif %}
     {% if issue.creator %}
         <h4>{% trans %}label_issue_creator{% endtrans %}</h4>
-        <img src="{{ gravatar(issue.creator.email, 30) }}" alt="{{ issue.creator.fullname }}"/>
+        <img src="{{ gravatar(issue.creator.email, 30) }}"/>
         <span>{{  issue.creator }}</span>
     {%  endif  %}
+    {% if issue.createdAt %}
+        <h4>{% trans %}label_created_at{% endtrans %}</h4>
+        <span>{{ issue.createdAt|date('d/m/y h:i:s') }}</span>
+    {% endif %}
+    {% if issue.updatedAt %}
+        <h4>{% trans %}label_updated_at{% endtrans %}</h4>
+        <span>{{ issue.updatedAt|date('d/m/y h:i:s') }}</span>
+    {% endif %}
     {% if issue.assignee %}
         <h4>{% trans %}label_issue_assignee{% endtrans %}</h4>
-        <img src="{{ gravatar(issue.assignee.email, 30) }}" alt="{{ issue.assignee.fullname }}"/>
+        <img src="{{ gravatar(issue.assignee.email, 30) }}"/>
         <span>{{  issue.assignee }}</span>
     {%  endif  %}
     <h4>{%  trans %}label_issue_status{%  endtrans  %}</h4>

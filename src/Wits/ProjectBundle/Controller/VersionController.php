@@ -17,7 +17,6 @@ class VersionController extends Controller
 
 
         $breadcrumb = $this->get('wiakowe.breadcrumb');
-        $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
 
 
@@ -88,7 +87,6 @@ class VersionController extends Controller
         $versions = $versionRepository->findBy(array('project' => $project->getId()));
 
         $breadcrumb = $this->get('wiakowe.breadcrumb');
-        $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
 
         return $this->render('WitsProjectBundle:Version:list.html.twig',
@@ -119,7 +117,6 @@ class VersionController extends Controller
         $issuesTotal = $issueRepository->getNumberOfIssuesByProject($project, $version);
 
         $breadcrumb = $this->get('wiakowe.breadcrumb');
-        $breadcrumb->addEntry($project->getName(), 'wits_project_show', array('id' => $project->getId()));
         $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
         $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
 

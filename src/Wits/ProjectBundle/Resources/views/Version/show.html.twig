@@ -17,4 +17,6 @@
     {% if is_granted('ROLE_VERSION_EDIT') %}
         <a class="btn btn-info" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
     {% endif %}
+    <br />
+    <a class="btn btn-success" href="{{ path('wits_issue_new', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
 {% endblock %}

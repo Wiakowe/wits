@@ -245,3 +245,9 @@ msgstr "Editar proyecto"
 
 msgid "label_issues_nothing"
 msgstr "No hay tickets que mostrar"
+
+msgid "label_created_at"
+msgstr "Creado"
+
+msgid "label_updated_at"
+msgstr "Actualizado"

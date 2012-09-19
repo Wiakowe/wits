@@ -1,5 +1,5 @@
 {% if issues %}
-<table id="issues" class="table list">
+<table id="issues" class="table list" xmlns="http://www.w3.org/1999/html">
     <tbody>
         {% for issue in issues %}
         <tr>
@@ -24,7 +24,11 @@
                 {% endif %}
                 <div class="{{ issue.bootstrapButtonFromStatus }} priority">{{ issue.statusName|trans }}</div>
                 {% if issue.version and not version is defined %}
-                <div class="btn-info priority">{{ issue.version.name }}</div>
+                <div class="btn-info priority">
+                    <a href="{{ path('wits_version_show', {'project_id': issue.project.id, 'version_id': issue.version.id }) }}">
+                    {{ issue.version.name }}
+                    </a>
+                </div>
                 {% endif %}
             </td>
         </tr>
