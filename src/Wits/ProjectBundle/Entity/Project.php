@@ -69,6 +69,29 @@ class Project
     protected $leader;
 
     /**
+     * @param string $logo
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    protected $logo;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")

@@ -43,5 +43,10 @@
         <requirement key="version_id">\d+</requirement>
     </route>
 
+    <route id="wits_project_edit" pattern="/project/{project_id}/edit">
+        <default key="_controller">WitsProjectBundle:Project:edit</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
 
 </routes>

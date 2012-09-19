@@ -237,3 +237,8 @@ msgstr "Usuario editado correctamente."
 msgid "label_user_created"
 msgstr "Usuario creado correctamente."
 
+msgid "label_project"
+msgstr "Proyecto"
+
+msgid "label_project_edit"
+msgstr "Editar proyecto"

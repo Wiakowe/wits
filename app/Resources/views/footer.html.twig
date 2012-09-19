@@ -1,5 +1,9 @@
 <ul class="footer">
     <li>
-        <span class="brand">WITS</span>
+        {% if project.logo is defined %}
+            <img class="brand_mini" height="10px" src="{{ project.logo }}" alt="{{ project.name }}" />
+        {% else %}
+            <span class="brand">{{ project.name|upper }}</span>
+        {% endif %}
     </li>
 </ul>

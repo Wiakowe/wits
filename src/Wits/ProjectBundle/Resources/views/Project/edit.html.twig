@@ -1,6 +1,14 @@
 {% extends '::base_1column.html.twig' %}
 
+{% set title = 'label_project_edit'|trans ~ ' - ' ~ project.name %}
+
+{% block title %}{{ title }}{% endblock %}
+
 {% block body %}
+    <h1>
+        {{ title }}
+    </h1>
+
 
 <form action="" method="POST">
     {{ form_widget(form) }}
@@ -9,6 +17,13 @@
     {%  else %}
         {%  set label = 'label_create' %}
     {%  endif  %}
-    <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+    {% if project.logo is defined %}
+    <div class="block">
+        <img class="footer_div brand_mini" src="{{ project.logo }}" />
+    </div>
+    {% endif %}
+
+        <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+
 </form>
 {% endblock %}
