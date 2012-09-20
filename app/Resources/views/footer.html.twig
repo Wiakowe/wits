@@ -1,9 +1,14 @@
 <ul class="footer">
     <li>
+        <a href="{{ path('wits_project_dashboard')}}">
         {% if project.logo is defined %}
             <img class="brand_mini" height="10px" src="{{ project.logo }}" alt="{{ project.name }}" />
         {% else %}
             <span class="brand">{{ project.name|upper }}</span>
         {% endif %}
+        </a>
+    </li>
+    <li class="list_right">
+        <span>{{ 'label_powered_by_wits'|trans }}</span>
     </li>
 </ul>

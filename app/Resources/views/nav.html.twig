@@ -23,6 +23,14 @@
                                 <li>
                                     <a href="{{ path('wits_issue_list', {'project_id': project_id} )}}">{% trans %}label_view_issues{% endtrans %}</a>
                                 </li>
+                                <li>
+                                    <a href="{{ path('wits_issue_list_created', {'project_id': project_id} )}}">{% trans %}label_view_issues_created{% endtrans %}</a>
+                                </li>
+                                {% if is_granted('ROLE_ISSUE_EDIT_STATUS')%}
+                                    <li>
+                                        <a href="{{ path('wits_issue_list_assigned', {'project_id': project_id}) }}">{% trans %}label_view_issues_assigned{% endtrans %}</a>
+                                    </li>
+                                {% endif %}
                                 {% if is_granted('ROLE_ISSUE_CREATE')%}
                                 <li>
                                     <a href="{{ path('wits_issue_new', {'project_id': project_id}) }}">{% trans %}label_create_issue{% endtrans %}</a>

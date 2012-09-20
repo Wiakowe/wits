@@ -20,6 +20,16 @@
         <requirement key="project_id">\d+</requirement>
     </route>
 
+    <route id="wits_issue_list_created" pattern="/project/{project_id}/issue/created">
+        <default key="_controller">WitsIssueBundle:Issue:createdList</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits_issue_list_assigned" pattern="/project/{project_id}/issue/assigned">
+        <default key="_controller">WitsIssueBundle:Issue:assignedList</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
     <route id="wits_issue_show" pattern="/project/{project_id}/issue/{issue_id}">
         <default key="_controller">WitsIssueBundle:Issue:show</default>
         <requirement key="project_id">\d+</requirement>

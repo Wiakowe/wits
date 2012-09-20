@@ -2,6 +2,13 @@
 
 {% set title = 'label_issues'|trans %}
 
+{% if created is defined and created %}
+    {% set title = title ~ ' - ' ~ 'created by %username%'|trans({'%username%': app.user.username}) %}
+{% endif %}
+{% if assigned is defined and assigned %}
+    {% set title = title ~ ' - ' ~ 'assigned to %username%'|trans({'%username%': app.user.username}) %}
+{% endif %}
+
 {% block title %}{{ title }} - {{ project.name }}{% endblock %}
 
 {% block body %}

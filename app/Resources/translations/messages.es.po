@@ -251,3 +251,18 @@ msgstr "Creado"
 
 msgid "label_updated_at"
 msgstr "Actualizado"
+
+msgid "label_view_issues_created"
+msgstr "Tickets creados"
+
+msgid "label_view_issues_assigned"
+msgstr "Tickets asignados"
+
+msgid "created by %username%"
+msgstr "creado por %username%"
+
+msgid "assigned to %username%"
+msgstr "asignado a %username%"
+
+msgid "label_powered_by_wits"
+msgstr "Powered by WITS"

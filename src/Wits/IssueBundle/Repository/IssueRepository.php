@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Wits\IssueBundle\Entity\Issue;
 use Wits\ProjectBundle\Entity\Project;
 use Wits\ProjectBundle\Entity\Version;
+use Wits\UserBundle\Entity\User;
 use Wits\HelperBundle\Util\ArrayUtil;
 
 class IssueRepository extends EntityRepository
@@ -80,5 +81,49 @@ class IssueRepository extends EntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function getCreatedIssues(Project $project, User $user, Version $version = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('i')
+            ->andWhere('i.project = :project')
+            ->setParameter('project', $project->getId())
+            ->andWhere('i.creator = :creator')
+            ->setParameter(':creator', $user->getId())
+            ;
+
+        if ($version) {
+            $queryBuilder
+                ->andWhere('i.version = :version')
+                ->setParameter(':version', $version->getId())
+            ;
+        }
+
+        return
+            $queryBuilder
+                ->getQuery()
+                ->getResult();
+    }
+
+    public function getAssignedIssues(Project $project, User $user, Version $version = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('i')
+            ->andWhere('i.project = :project')
+            ->setParameter('project', $project->getId())
+            ->andWhere('i.assignee = :assignee')
+            ->setParameter(':assignee', $user->getId())
+        ;
+
+        if ($version) {
+            $queryBuilder
+                ->andWhere('i.version = :version')
+                ->setParameter(':version', $version->getId())
+            ;
+        }
+
+        return
+            $queryBuilder
+                ->getQuery()
+                ->getResult();
     }
 }

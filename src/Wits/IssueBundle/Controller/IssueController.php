@@ -138,6 +138,58 @@ class IssueController extends Controller
         );
     }
 
+    public function createdListAction(Project $project)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
+
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
+        $issues = $issueRepository->getCreatedIssues($project, $this->getUser());
+
+        //get versions
+        $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
+
+        return $this->render('WitsIssueBundle:Issue:list.html.twig',
+            array(
+                'project'   => $project,
+                'issues'    => $issues,
+                'versions'  => $versions,
+                'created'   => true,
+            )
+        );
+    }
+
+    public function assignedListAction(Project $project)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
+
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
+        $issues = $issueRepository->getAssignedIssues($project, $this->getUser());
+
+        //get versions
+        $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
+
+        return $this->render('WitsIssueBundle:Issue:list.html.twig',
+            array(
+                'project'   => $project,
+                'issues'    => $issues,
+                'versions'  => $versions,
+                'assigned'  => true,
+            )
+        );
+    }
+
     public function showAction(Project $project, Issue $issue)
     {
         if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_SHOW')) {
