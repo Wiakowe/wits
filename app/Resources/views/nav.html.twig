@@ -25,7 +25,7 @@
                                 </li>
                                 <li>
                                     <a href="{{ path('wits_issue_list_created', {'project_id': project_id} )}}">{% trans %}label_view_issues_created{% endtrans %}</a>
-                                </li>
+                            </li>
                                 {% if is_granted('ROLE_ISSUE_EDIT_STATUS')%}
                                     <li>
                                         <a href="{{ path('wits_issue_list_assigned', {'project_id': project_id}) }}">{% trans %}label_view_issues_assigned{% endtrans %}</a>
@@ -82,6 +82,8 @@
                             </ul>
                         </li>
                     {% endif %}
+                </ul>
+                <ul class="nav pull-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ app.user.username }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
