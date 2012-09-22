@@ -45,6 +45,9 @@ class VersionController extends Controller
 
         $form = $this->createFormBuilder($version)
             ->add('name', null, array('label' => 'label_version_name'))
+            ->add('dateStart', 'date', array('label' => 'label_version_date_start', 'required' => false))
+            ->add('dateEnd', 'date', array('label' => 'label_version_date_end', 'required' => false))
+            ->add('status', 'choice', array('choices' => Version::$statusList, 'label' => 'label_issue_status'))
             ->getForm()
         ;
 

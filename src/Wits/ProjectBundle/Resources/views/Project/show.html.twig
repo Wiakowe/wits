@@ -25,11 +25,18 @@
     {% if is_granted('ROLE_VERSION_LIST') %}
         {% if versions %}
             <h4>{{ 'label_versions'|trans }}</h4>
-            <ul id="versions">
+            <table id="versions" class="table">
+                <tbody>
                 {% for version in versions %}
-                    <li><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
+                    <tr>
+                        <td><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></td>
+                        <td>{{ version.dateStart|date('Y-m-d') }}</td>
+                        <td>{{ version.dateEnd|date('Y-m-d') }}</td>
+                        <td>{{ version.statusName|trans }}</td>
+                    </tr>
                 {% endfor %}
-            </ul>
+                </tbody>
+            </table>
         {% endif %}
     {% endif %}
 {% endblock %}
