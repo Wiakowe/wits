@@ -13,6 +13,9 @@ msgstr "Resuelto"
 msgid "label_issue_status_closed"
 msgstr "Cerrado"
 
+msgid "label_issue_status_released"
+msgstr "Realizado"
+
 msgid "label_issue_priority_low"
 msgstr "Baja"
 
@@ -27,8 +30,6 @@ msgstr "Crítica"
 
 msgid "label_home"
 msgstr "Inicio"
-
-
 
 msgid "label_connect"
 msgstr "Conectarse"
@@ -266,3 +267,19 @@ msgstr "asignado a %username%"
 
 msgid "label_powered_by_wits"
 msgstr "Powered by WITS"
+
+msgid "label_date_not_set"
+msgstr "Sin fecha"
+
+msgid "label_version_date_start"
+msgstr "Fecha inicio"
+
+msgid "label_version_date_end"
+msgstr "Fecha finalización"
+
+msgid "label_version_date_start_list"
+msgstr "Fecha de inicio: %date_start%."
+
+msgid "label_version_date_end_list"
+msgstr "Fecha de finalización: %date_end%."
+

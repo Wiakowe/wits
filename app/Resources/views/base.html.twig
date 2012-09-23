@@ -8,6 +8,7 @@
         {% stylesheets filter='?yui_css'
             '@WitsBootstrapBundle/Resources/bootstrap/css/bootstrap.css'
             '@WitsBootstrapBundle/Resources/bootstrap/css/bootstrap-responsive.css'
+            '@WitsBootstrapBundle/Resources/bootstrap/css/jquery-ui-1.8.23.custom.css'
             '../app/Resources/sass/default.sass'
             '@WitsIssueBundle/Resources/sass/issue_show.sass'
         %}
@@ -56,6 +57,8 @@
     {% javascripts
             '@WitsBootstrapBundle/Resources/bootstrap/js/jquery-1.8.1.js'
             '@WitsBootstrapBundle/Resources/bootstrap/js/bootstrap.js'
+            '@WitsBootstrapBundle/Resources/bootstrap/js/jquery-ui-1.8.23.custom.min.js'
+            '../app/Resources/public/js/default.js'
             filter='?yui_js'
         %}
     <script type="text/javascript" src="{{ asset_url }}" ></script>

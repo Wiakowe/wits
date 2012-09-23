@@ -5,6 +5,7 @@ namespace Wits\ProjectBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wits\ProjectBundle\Entity\Project;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -13,6 +14,16 @@ use Wits\ProjectBundle\Entity\Project;
  */
 class Version
 {
+    const   STATUS_NEW          = 1,
+            STATUS_WORKING      = 2,
+            STATUS_RELEASED     = 3;
+
+    public static $statusList = array(
+        self::STATUS_NEW        => 'label_issue_status_new',
+        self::STATUS_WORKING    => 'label_issue_status_working',
+        self::STATUS_RELEASED   => 'label_issue_status_released',
+    );
+
     /**
      * @var integer
      *
@@ -28,6 +39,27 @@ class Version
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $dateStart;
+
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $dateEnd;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $status = self::STATUS_NEW;
 
     /**
      * @var Project
@@ -48,6 +80,11 @@ class Version
      */
     private $issues;
 
+    public function __construct()
+    {
+        $this->issues = new ArrayCollection();
+        $this->status = self::STATUS_NEW;
+    }
 
     /**
      * @param Project $project
@@ -104,4 +141,87 @@ class Version
     {
         return $this->getName();
     }
+
+    /**
+     * @param \DateTime $dateEnd
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
+    }
+
+    /**
+     * @param \DateTime $dateStart
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->dateStart = $dateStart;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateStart()
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        if ($this->status == self::STATUS_WORKING) {
+            if (!$this->getDateStart()) {
+                $this->setDateStart(new \DateTime());
+            }
+        }
+        if ($this->status == self::STATUS_RELEASED) {
+            if (!$this->getDateEnd()) {
+                $this->setDateEnd(new \DateTime());
+            }
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function getStatusName()
+    {
+        if (array_key_exists($this->getStatus(), self::$statusList)) {
+            return self::$statusList[$this->getStatus()];
+        }
+    }
+
+    public function getBootstrapButtonFromStatus()
+    {
+        switch ($this->getStatus()) {
+            case self::STATUS_NEW:
+                return 'btn-warning';
+                break;
+            case self::STATUS_WORKING:
+                return 'btn-danger';
+                break;
+            case self::STATUS_RELEASED:
+                return 'btn-success';
+                break;
+        }
+        return '';
+    }
+
 }
