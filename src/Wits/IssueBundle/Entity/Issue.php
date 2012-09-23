@@ -379,13 +379,6 @@ class Issue
             case self::STATUS_CLOSED:
                 return 'btn-inverse';
                 break;
-            /*
-            STATUS_NEW          = 1,
-            STATUS_ASSIGNED     = 2,
-            STATUS_WORKING      = 3,
-            STATUS_RESOLVED     = 4,
-            STATUS_CLOSED       = 5;
-            */
         }
         return '';
     }

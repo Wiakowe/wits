@@ -30,9 +30,8 @@
                 {% for version in versions %}
                     <tr>
                         <td><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></td>
-                        <td>{{ version.dateStart|date('Y-m-d') }}</td>
-                        <td>{{ version.dateEnd|date('Y-m-d') }}</td>
-                        <td>{{ version.statusName|trans }}</td>
+                        <td>{% if version.dateEnd %}{{ version.dateEnd|date('Y-m-d') }}{% else %}{% trans %}label_date_not_set{% endtrans %}{% endif %}</td>
+                        <td><div class="{{ version.bootstrapButtonFromStatus }} priority">{{ version.statusName|trans }}</div></td>
                     </tr>
                 {% endfor %}
                 </tbody>

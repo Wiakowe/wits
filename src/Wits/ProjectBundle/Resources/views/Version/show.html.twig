@@ -19,4 +19,15 @@
     {% endif %}
     <br />
     <a class="btn btn-success" href="{{ path('wits_issue_new', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
+    <br />
+    {% if version.dateStart %}
+        <h4>{% trans %}label_version_date_start{% endtrans %}</h4>
+        <div class="">{{ version.dateStart|date('Y-m-d') }}</div>
+    {% endif %}
+    {% if version.dateEnd %}
+        <h4>{% trans %}label_version_date_end{% endtrans %}</h4>
+        <div class="">{{ version.dateEnd|date('Y-m-d') }}</div>
+    {% endif %}
+    <h4>{% trans %}label_issue_status{% endtrans %}</h4>
+    <div class="{{ version.bootstrapButtonFromStatus }} priority">{{ version.statusName|trans }}</div>
 {% endblock %}

@@ -31,8 +31,6 @@ msgstr "Crítica"
 msgid "label_home"
 msgstr "Inicio"
 
-
-
 msgid "label_connect"
 msgstr "Conectarse"
 
@@ -269,3 +267,12 @@ msgstr "asignado a %username%"
 
 msgid "label_powered_by_wits"
 msgstr "Powered by WITS"
+
+msgid "label_date_not_set"
+msgstr "Sin fecha"
+
+msgid "label_version_date_start"
+msgstr "Fecha inicio"
+
+msgid "label_version_date_end"
+msgstr "Fecha finalización"

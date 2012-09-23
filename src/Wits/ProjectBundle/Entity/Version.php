@@ -5,6 +5,7 @@ namespace Wits\ProjectBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Wits\ProjectBundle\Entity\Project;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -40,16 +41,16 @@ class Version
     protected $name;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(type="timestamp", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $dateStart;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(type="timestamp", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $dateEnd;
 
@@ -179,6 +180,17 @@ class Version
     public function setStatus($status)
     {
         $this->status = $status;
+
+        if ($this->status == self::STATUS_WORKING) {
+            if (!$this->getDateStart()) {
+                $this->setDateStart(new \DateTime());
+            }
+        }
+        if ($this->status == self::STATUS_RELEASED) {
+            if (!$this->getDateEnd()) {
+                $this->setDateEnd(new \DateTime());
+            }
+        }
     }
 
     /**
@@ -195,4 +207,21 @@ class Version
             return self::$statusList[$this->getStatus()];
         }
     }
+
+    public function getBootstrapButtonFromStatus()
+    {
+        switch ($this->getStatus()) {
+            case self::STATUS_NEW:
+                return 'btn-warning';
+                break;
+            case self::STATUS_WORKING:
+                return 'btn-danger';
+                break;
+            case self::STATUS_RELEASED:
+                return 'btn-success';
+                break;
+        }
+        return '';
+    }
+
 }
