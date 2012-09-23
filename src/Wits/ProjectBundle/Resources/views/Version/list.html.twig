@@ -9,11 +9,31 @@
 <h1>{{ title }}</h1>
 
 {% if versions %}
-    <ul id="versions">
+    <table class="table list" id="versions">
+        <tbody>
         {% for version in versions %}
-        <li><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id }) }}">{{ version.name }}</a></li>
+        <tr>
+            <td width="95%">
+                <div class="table_text">
+                    <a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id }) }}">{{ version.name }}</a>
+                </div>
+                <div class="table_text_small">
+                    {% if version.dateStart %}
+                        {% trans with {'%date_start%': version.dateStart|date('Y-m-d')} %}label_version_date_start_list{% endtrans %}
+                        {% if version.dateEnd %}
+                            &nbsp;
+                            {% trans with {'%date_end%': version.dateEnd|date('Y-m-d')} %}label_version_date_end_list{% endtrans %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </td>
+            <td width="5%">
+                <div class="{{ version.bootstrapButtonFromStatus }} priority">{{ version.statusName|trans }}</div>
+            </td>
+        </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 {% endif %}
 
 {% endblock %}

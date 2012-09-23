@@ -276,3 +276,10 @@ msgstr "Fecha inicio"
 
 msgid "label_version_date_end"
 msgstr "Fecha finalización"
+
+msgid "label_version_date_start_list"
+msgstr "Fecha de inicio: %date_start%."
+
+msgid "label_version_date_end_list"
+msgstr "Fecha de finalización: %date_end%."
+
