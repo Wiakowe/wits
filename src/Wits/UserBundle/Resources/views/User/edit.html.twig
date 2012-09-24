@@ -14,13 +14,17 @@
 
 <h1>{{ title }}</h1>
 
-<form action="" method="POST">
+<form class="form-horizontal" action="" method="POST">
     {{ form_widget(form) }}
     {%  if user.id %}
     {%  set label = 'label_edit' %}
     {%  else %}
     {%  set label = 'label_create' %}
     {%  endif  %}
-    <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+    <div class="control-group">
+        <div class="controls">
+            <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+        </div>
+    </div>
 </form>
 {% endblock %}

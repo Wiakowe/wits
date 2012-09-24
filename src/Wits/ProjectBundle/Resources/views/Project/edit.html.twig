@@ -10,7 +10,7 @@
     </h1>
 
 
-<form action="" method="POST">
+<form class="form-horizontal" action="" method="POST">
     {{ form_widget(form) }}
     {%  if project.id %}
         {%  set label = 'label_edit' %}
@@ -18,12 +18,17 @@
         {%  set label = 'label_create' %}
     {%  endif  %}
     {% if project.logo is defined %}
-    <div class="block">
-        <img class="footer_div brand_mini" src="{{ project.logo }}" />
+    <div class="control-group">
+        <div class="controls">
+            <img class="footer_div brand_mini" src="{{ project.logo }}" />
+        </div>
     </div>
     {% endif %}
-
-        <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+    <div class="control-group">
+        <div class="controls">
+            <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+        </div>
+    </div>
 
 </form>
 {% endblock %}

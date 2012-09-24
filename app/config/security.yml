@@ -28,6 +28,7 @@ security:
         ROLE_DEVELOPER:
           - ROLE_REPORTER
           - ROLE_ISSUE_EDIT_STATUS
+          - ROLE_ISSUE_EDIT_HOURS
           - ROLE_VERSION_SHOW
           - ROLE_VERSION_LIST
         ROLE_REPORTER:

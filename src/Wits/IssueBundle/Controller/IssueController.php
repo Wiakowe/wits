@@ -34,28 +34,34 @@ class IssueController extends Controller
             $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
             if (!$issueRepository->checkIssueFromProject($issue, $project)) {
                 throw new ResourceNotFoundException();
+                throw new ResourceNotFoundException();
             }
         }
 
         $formBuilder = $this->createFormBuilder($issue)
-            ->add('name', null, array('label' => 'label_issue_name'))
-            ->add('description', 'textarea', array('label' => 'label_issue_description'))
+            ->add('name', null, array('label' => 'label_issue_name', 'attr' => array('class' => 'input-xxlarge')))
+            ->add('description', 'textarea', array('label' => 'label_issue_description', 'attr' => array('rows' => 3, 'class' => 'input-xxlarge')))
 
         ;
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_VERSION')) {
-            $formBuilder->add('version', null, array('label' => 'label_issue_version', 'required' => false));
+            $formBuilder->add('version', null, array('label' => 'label_issue_version', 'required' => false, 'attr' => array('class' => 'input-large')));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_ASSIGN')) {
-            $formBuilder->add('assignee', null, array('label' => 'label_issue_assignee'));
+            $formBuilder->add('assignee', null, array('label' => 'label_issue_assignee', 'attr' => array('class' => 'input-large')));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_EDIT_STATUS')) {
-            $formBuilder->add('status', 'choice', array('choices' => Issue::$statusList, 'label' => 'label_issue_status'));
+            $formBuilder->add('status', 'choice', array('choices' => Issue::$statusList, 'label' => 'label_issue_status', 'attr' => array('class' => 'input-large')));
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_SET_PRIORITY')) {
-            $formBuilder->add('priority', 'choice', array('choices' => Issue::$priorityList, 'label' => 'label_issue_priority'));
+            $formBuilder->add('priority', 'choice', array('choices' => Issue::$priorityList, 'label' => 'label_issue_priority', 'attr' => array('class' => 'input-large')));
+        }
+
+        if ($this->get('security.context')->isGranted('ROLE_ISSUE_EDIT_HOURS')) {
+            $formBuilder->add('estimatedHours', 'integer', array('label' => 'label_issue_hours_estimated', 'attr' => array('class' => 'input-mini')));
+            $formBuilder->add('releasedHours', 'integer', array('label' => 'label_issue_hours_released', 'attr' => array('class' => 'input-mini')));
         }
 
         $breadcrumb = $this->get('wiakowe.breadcrumb');
