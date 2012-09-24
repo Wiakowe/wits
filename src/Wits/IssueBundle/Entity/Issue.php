@@ -140,6 +140,23 @@ class Issue
      */
     protected $updatedAt;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     * @Assert\Range(min = "0")
+     */
+    protected $estimatedHours;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     * @Assert\Range(min = "0")
+     */
+    protected $spentHours;
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -381,6 +398,38 @@ class Issue
                 break;
         }
         return '';
+    }
+
+    /**
+     * @param int $estimatedHours
+     */
+    public function setEstimatedHours($estimatedHours)
+    {
+        $this->estimatedHours = $estimatedHours;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEstimatedHours()
+    {
+        return $this->estimatedHours;
+    }
+
+    /**
+     * @param int $spentHours
+     */
+    public function setSpentHours($spentHours)
+    {
+        $this->spentHours = $spentHours;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSpentHours()
+    {
+        return $this->spentHours;
     }
 
 }

@@ -15,6 +15,10 @@
 <h1>{{ title }}</h1>
 <form class="form-horizontal" action="" method="POST">
     {{ form_widget(form) }}
-    <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+    <div class="control-group">
+        <div class="controls">
+            <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+        </div>
+    </div>
 </form>
 {% endblock %}

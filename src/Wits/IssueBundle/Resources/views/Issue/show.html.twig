@@ -48,5 +48,13 @@
     {%  endif  %}
     <h4>{%  trans %}label_issue_status{%  endtrans  %}</h4>
     <div class="{{ issue.bootstrapButtonFromStatus }} priority">{{  issue.statusName|trans }}</div>
+    {% if issue.estimatedHours %}
+        <h4>{% trans %}label_issue_hours_estimated{% endtrans %}</h4>
+        <span>{{ issue.estimatedHours }}</span>
+    {%  endif  %}
+    {% if issue.spentHours %}
+        <h4>{% trans %}label_issue_hours_spent{% endtrans %}</h4>
+        <span>{{ issue.spentHours }}</span>
+    {%  endif  %}
     <br />    
 {% endblock %}

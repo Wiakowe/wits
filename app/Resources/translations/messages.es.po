@@ -121,6 +121,12 @@ msgstr "Estado"
 msgid "label_issue_priority"
 msgstr "Prioridad"
 
+msgid "label_issue_hours_estimated"
+msgstr "Horas estimadas"
+
+msgid "label_issue_hours_spent"
+msgstr "Horas realizadas"
+
 msgid "label_issue_date_created"
 msgstr "Creado"
 
