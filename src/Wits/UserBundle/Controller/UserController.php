@@ -94,7 +94,8 @@ class UserController extends Controller
         $users = $userRepository->findAll();
 
         return $this->render('WitsUserBundle:User:list.html.twig', array(
-            'users'     => $users
+            'users'     => $users,
+            'project'   => $project
         ));
     }
 
