@@ -144,6 +144,7 @@ class Issue
      * @var integer
      *
      * @ORM\Column(type="integer")
+     * @Assert\Range(min = "0")
      */
     protected $estimatedHours;
 
@@ -151,8 +152,9 @@ class Issue
      * @var integer
      *
      * @ORM\Column(type="integer")
+     * @Assert\Range(min = "0")
      */
-    protected $releasedHours;
+    protected $spentHours;
 
 
     public function __construct()
@@ -415,19 +417,19 @@ class Issue
     }
 
     /**
-     * @param int $releasedHours
+     * @param int $spentHours
      */
-    public function setReleasedHours($releasedHours)
+    public function setSpentHours($spentHours)
     {
-        $this->releasedHours = $releasedHours;
+        $this->spentHours = $spentHours;
     }
 
     /**
      * @return int
      */
-    public function getReleasedHours()
+    public function getSpentHours()
     {
-        return $this->releasedHours;
+        return $this->spentHours;
     }
 
 }
