@@ -40,6 +40,7 @@ class IssueController extends Controller
 
         $formBuilder = $this->createFormBuilder($issue)
             ->add('name', null, array('label' => 'label_issue_name', 'attr' => array('class' => 'input-xxlarge')))
+            ->add('type', 'choice', array('choices' => Issue::$typeList, 'label' => 'label_issue_type', 'attr' => array('class' => 'input-large')))
             ->add('description', 'textarea', array('label' => 'label_issue_description', 'attr' => array('rows' => 3, 'class' => 'input-xxlarge')))
 
         ;

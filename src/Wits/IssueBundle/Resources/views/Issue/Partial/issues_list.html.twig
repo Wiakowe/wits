@@ -1,5 +1,5 @@
 {% if issues %}
-<table id="issues" class="table list" xmlns="http://www.w3.org/1999/html">
+<table id="issues" class="table list table-striped" xmlns="http://www.w3.org/1999/html">
     <tbody>
         {% for issue in issues %}
         <tr>
@@ -8,20 +8,26 @@
                     #{{ issue.id}}
                 </a>
             </td>
-            <td width="80%" class="table_text">
+            <td width="65%" class="table_text">
                 <div class="table_text">
                     <a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a>
                 </div>
                 <div class="table_text_small">
+
                     {% trans with{'%issue_creator%': issue.creator, '%issue_created%': issue.createdAt|date('d/m/y h:i:s')} %}Creado por %issue_creator% el %issue_created%{% endtrans %}
 
                     {% if issue.assignee %}<br />{{ issue.assignee.userName }}{% endif %}
                 </div>
             </td>
             <td width="15%">
+                {% if issue.status %}
+                <div class="{{ issue.bootstrapButtonFromType }} priority">{{ issue.typeName|trans }}</div>
+                {% endif %}
                 {% if issue.priority %}
                 <div class="{{ issue.bootstrapButtonFromPriority }} priority">{{ issue.priorityName|trans }}</div>
                 {% endif %}
+            </td>
+            <td width="15%">
                 <div class="{{ issue.bootstrapButtonFromStatus }} priority">{{ issue.statusName|trans }}</div>
                 {% if issue.version and not version is defined %}
                 <div class="btn-info priority">

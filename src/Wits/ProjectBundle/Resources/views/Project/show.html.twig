@@ -23,19 +23,6 @@
         <a class="btn btn-info" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
     {% endif %}
     {% if is_granted('ROLE_VERSION_LIST') %}
-        {% if versions %}
-            <h4>{{ 'label_versions'|trans }}</h4>
-            <table id="versions" class="table">
-                <tbody>
-                {% for version in versions %}
-                    <tr>
-                        <td><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></td>
-                        <td>{% if version.dateEnd %}{{ version.dateEnd|date('Y-m-d') }}{% else %}{% trans %}label_date_not_set{% endtrans %}{% endif %}</td>
-                        <td><div class="{{ version.bootstrapButtonFromStatus }} priority">{{ version.statusName|trans }}</div></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+        {% include 'WitsProjectBundle:Version/Partial:list.html.twig' %}
     {% endif %}
 {% endblock %}

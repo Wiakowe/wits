@@ -41,6 +41,18 @@ class Issue
         self::PRIORITY_CRITICAL   => 'label_issue_priority_critical',
     );
 
+    const   TYPE_BUG            = 1,
+            TYPE_IMPROVEMENT    = 2,
+            TYPE_TASK           = 3,
+            TYPE_FEATURE        = 4;
+
+    public static $typeList = array(
+        self::TYPE_BUG          => 'label_issue_type_bug',
+        self::TYPE_IMPROVEMENT  => 'label_issue_type_improvement',
+        self::TYPE_TASK         => 'label_issue_type_task',
+        self::TYPE_FEATURE      => 'label_issue_type_feature',
+    );
+
     /**
      * @var integer
      *
@@ -95,6 +107,13 @@ class Issue
      * @ORM\Column(type="integer")
      */
     protected $priority = self::PRIORITY_MEDIUM;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $type = self::TYPE_BUG;
 
     /**
      * @var User
@@ -334,6 +353,7 @@ class Issue
         if (array_key_exists($this->getStatus(), self::$statusList)) {
             return self::$statusList[$this->getStatus()];
         }
+        return '';
     }
 
     /**
@@ -357,7 +377,33 @@ class Issue
         if (array_key_exists($this->getPriority(), self::$priorityList)) {
             return self::$priorityList[$this->getPriority()];
         }
+        return '';
     }
+
+    /**
+     * @param int $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function getTypeName()
+    {
+        if (array_key_exists($this->getType(), self::$typeList)) {
+            return self::$typeList[$this->getType()];
+        }
+        return '';
+    }
+
 
     public function getBootstrapButtonFromPriority()
     {
@@ -395,6 +441,25 @@ class Issue
                 break;
             case self::STATUS_CLOSED:
                 return 'btn-inverse';
+                break;
+        }
+        return '';
+    }
+
+    public function getBootstrapButtonFromType()
+    {
+        switch ($this->getType()) {
+            case self::TYPE_BUG:
+                return 'btn-danger';
+                break;
+            case self::TYPE_FEATURE:
+                return 'btn-success';
+                break;
+            case self::TYPE_IMPROVEMENT:
+                return 'btn-info';
+                break;
+            case self::TYPE_TASK:
+                return 'btn-info';
                 break;
         }
         return '';

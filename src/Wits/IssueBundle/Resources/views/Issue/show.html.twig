@@ -24,6 +24,10 @@
     {% if is_granted('ROLE_ISSUE_COMMENT') %}
         <a class="btn btn-primary" href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">{% trans %}label_comment{% endtrans %}</a>
     {% endif %}
+    {% if issue.type %}
+        <h4>{% trans %}label_issue_type{% endtrans %}</h4>
+        <div class="{{ issue.bootstrapButtonFromType }} priority">{{  issue.typeName|trans }}</div>
+    {%  endif  %}
     {% if issue.version %}
         <h4>{% trans %}label_issue_version{% endtrans %}</h4>
         <div class="btn-info priority">{{ issue.version.name }}</div>

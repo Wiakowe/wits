@@ -24,14 +24,7 @@
     <a class="btn btn-success" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
 {% endif %}
 {% if is_granted('ROLE_VERSION_LIST') %}
-    {% if versions %}
-        <h4>{{ 'label_versions'|trans }}</h4>
-        <ul id="versions">
-            {% for version in versions %}
-                <li><a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id}) }}">{{ version.name}}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    {% include 'WitsProjectBundle:Version/Partial:list.html.twig' %}
 {% endif %}
 
 {% endblock %}

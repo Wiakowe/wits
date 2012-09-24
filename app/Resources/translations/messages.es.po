@@ -28,6 +28,18 @@ msgstr "Alta"
 msgid "label_issue_priority_critical"
 msgstr "Crítica"
 
+msgid "label_issue_type_bug"
+msgstr "Error"
+
+msgid "label_issue_type_improvement"
+msgstr "Mejora"
+
+msgid "label_issue_type_task"
+msgstr "Tarea"
+
+msgid "label_issue_type_feature"
+msgstr "Característica"
+
 msgid "label_home"
 msgstr "Inicio"
 
@@ -120,6 +132,9 @@ msgstr "Estado"
 
 msgid "label_issue_priority"
 msgstr "Prioridad"
+
+msgid "label_issue_type"
+msgstr "Tipo"
 
 msgid "label_issue_hours_estimated"
 msgstr "Horas estimadas"
