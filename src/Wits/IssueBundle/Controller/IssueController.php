@@ -133,6 +133,10 @@ class IssueController extends Controller
 
         $issues = $issueRepository->findBy(array('project' => $project->getId()));
 
+        //group the issues of the project by type
+        $issuesByStatus = $issueRepository->getIssuesByType($project);
+        $issuesTotal = $issueRepository->getNumberOfIssuesByProject($project);
+
         //get versions
         $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
 
@@ -141,6 +145,8 @@ class IssueController extends Controller
                 'project'   => $project,
                 'issues'    => $issues,
                 'versions'  => $versions,
+                'issuesByStatus'    => $issuesByStatus,
+                'issuesTotal'       => $issuesTotal,
             )
         );
     }
