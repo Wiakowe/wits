@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Wiakowe\FetchBundle\WiakoweFetchBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Wiakowe\DoctrineTablePrefixBundle\WiakoweDoctrineTablePrefixBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

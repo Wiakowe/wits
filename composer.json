@@ -67,7 +67,8 @@
         "tedivm/fetch": "*",
         "mopa/bootstrap-bundle": "dev-master",
         "twitter/bootstrap": "master",
-        "thomas-mcdonald/bootstrap-sass": "dev-master"
+        "thomas-mcdonald/bootstrap-sass": "dev-master",
+        "wiakowe/doctrine-table-prefix-bundle": "1.0.0"
     },
     "minimum-stability": "dev",
     "scripts": {

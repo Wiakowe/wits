@@ -84,3 +84,6 @@ wiakowe_fetch:
 
 wits_issue:
     allowed_hosts: %mail_allowed_hosts%
+
+wiakowe_doctrine_table_prefix:
+    prefix:   %table_prefix%
