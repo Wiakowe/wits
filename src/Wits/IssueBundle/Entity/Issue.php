@@ -229,6 +229,10 @@ class Issue
     public function setProject($project)
     {
         $this->project = $project;
+
+        if ($this->getAssignee() === null) {
+            $this->setAssignee($this->project->getLeader());
+        }
     }
 
     /**
