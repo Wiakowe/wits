@@ -33,6 +33,7 @@ assetic:
     bundles:        [ ]
     #java: /usr/bin/java
     filters:
+      cssrewrite: ~
       compass:
           apply_to:
               - "\.scss$"

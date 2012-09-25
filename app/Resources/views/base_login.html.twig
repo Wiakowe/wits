@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block stylesheets %}
     {% stylesheets filter='?yui_css'
-            '@WitsBootstrapBundle/Resources/bootstrap/css/bootstrap.css'
-            '@WitsBootstrapBundle/Resources/bootstrap/css/bootstrap-responsive.css'
-        %}
+        '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
+        '@MopaBootstrapBundle/Resources/bootstrap-sass/vendor/assets/stylesheets/_bootstrap-responsive.scss'
+    %}
     <link href="{{ asset_url }}" media="screen" type="text/css" rel="stylesheet" />
     {% endstylesheets %}
     {% endblock %}
@@ -25,13 +25,5 @@
     {% block body %}{% endblock %}
     </div>
 </div>
-{% block javascripts %}
-{% javascripts
-            '@WitsBootstrapBundle/Resources/bootstrap/js/bootstrap.js'
-            filter='?yui_js'
-        %}
-<script type="text/javascript" src="{{ asset_url }}" ></script>
-{% endjavascripts %}
-{% endblock %}
 </body>
 </html>

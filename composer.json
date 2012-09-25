@@ -12,12 +12,44 @@
         {
                 "type": "vcs",
                 "url": "http://github.com/Wiakowe/Fetch"
+        },
+        {
+            "type": "package",
+            "package": {
+                "version": "master",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "dist": {
+                    "url": "https://github.com/twitter/bootstrap/zipball/master",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"thomas-mcdonald/bootstrap-sass",
+                "source": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass.git",
+                    "type":"git",
+                    "reference":"master"
+                },
+                "dist": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass/zipball/master",
+                    "type":"zip"
+                }
+            }
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.1.1",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "symfony/symfony": "2.1.2",
+        "doctrine/orm": ">=2.3.0,<2.4-dev",
         "doctrine/doctrine-bundle": "1.0.*",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.1.*",
@@ -32,7 +64,10 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "wiakowe/breadcrumb-bundle": "1.0.*",
         "ornicar/gravatar-bundle": "*",
-        "tedivm/fetch": "*"
+        "tedivm/fetch": "*",
+        "mopa/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "master",
+        "thomas-mcdonald/bootstrap-sass": "dev-master"
     },
     "minimum-stability": "dev",
     "scripts": {
@@ -40,13 +75,17 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
         ]
     },
     "config": {
