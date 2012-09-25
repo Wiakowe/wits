@@ -469,6 +469,66 @@ class Issue
         return '';
     }
 
+    public function getBootstrapLabelFromPriority()
+    {
+        switch ($this->getPriority()) {
+            case self::PRIORITY_LOW:
+                return 'label-success';
+                break;
+            case self::PRIORITY_MEDIUM:
+                return 'label-warning';
+                break;
+            case self::PRIORITY_HIGH:
+                return 'label-danger';
+                break;
+            case self::PRIORITY_CRITICAL:
+                return 'label-inverse';
+                break;
+        }
+        return '';
+    }
+
+    public function getBootstrapLabelFromStatus()
+    {
+        switch ($this->getStatus()) {
+            case self::STATUS_NEW:
+                return 'label-info';
+                break;
+            case self::STATUS_ASSIGNED:
+                return 'label-warning';
+                break;
+            case self::STATUS_WORKING:
+                return 'label-danger';
+                break;
+            case self::STATUS_RESOLVED:
+                return 'label-success';
+                break;
+            case self::STATUS_CLOSED:
+                return 'label-inverse';
+                break;
+        }
+        return '';
+    }
+
+    public function getBootstrapLabelFromType()
+    {
+        switch ($this->getType()) {
+            case self::TYPE_BUG:
+                return 'label-danger';
+                break;
+            case self::TYPE_FEATURE:
+                return 'label-success';
+                break;
+            case self::TYPE_IMPROVEMENT:
+                return 'label-info';
+                break;
+            case self::TYPE_TASK:
+                return 'label-info';
+                break;
+        }
+        return '';
+    }
+
     /**
      * @param int $estimatedHours
      */

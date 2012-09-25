@@ -7,12 +7,19 @@
 {% block body %}
 
     <div id="issue">
+
         <h1>{{ title }}</h1>
+        <div>
+            <span class="{{ issue.bootstrapLabelFromStatus }} label">{{  issue.statusName|trans }}</span>
+            {% if issue.priority %}
+                <span class="{{ issue.bootstrapLabelFromPriority }} label">{{ issue.priorityName|trans }}</span>
+            {% endif %}
+        </div>
+        <br />
 
         <div id="issue_description" class="markdown-text">
             {{  issue.description|markdown }}
         </div>
-
 
         {% include 'WitsIssueBundle:Comment/Partial:list.html.twig' %}
     </div>
@@ -26,41 +33,75 @@
     {% if is_granted('ROLE_ISSUE_COMMENT') %}
         <a class="btn btn-primary" href="{{ path('wits_comment_create', {'project_id': project.id, 'issue_id': issue.id }) }}">{% trans %}label_comment{% endtrans %}</a>
     {% endif %}
-    {% if issue.type %}
-        <h4>{% trans %}label_issue_type{% endtrans %}</h4>
-        <div class="{{ issue.bootstrapButtonFromType }} priority">{{  issue.typeName|trans }}</div>
-    {%  endif  %}
-    {% if issue.version %}
-        <h4>{% trans %}label_issue_version{% endtrans %}</h4>
-        <div class="btn-info priority">{{ issue.version.name }}</div>
-    {% endif %}
-    {% if issue.creator %}
-        <h4>{% trans %}label_issue_creator{% endtrans %}</h4>
-        <img src="{{ gravatar(issue.creator.email, 30) }}"/>
-        <span>{{  issue.creator }}</span>
-    {%  endif  %}
-    {% if issue.createdAt %}
-        <h4>{% trans %}label_created_at{% endtrans %}</h4>
-        <span>{{ issue.createdAt|date('d/m/y h:i:s') }}</span>
-    {% endif %}
-    {% if issue.updatedAt %}
-        <h4>{% trans %}label_updated_at{% endtrans %}</h4>
-        <span>{{ issue.updatedAt|date('d/m/y h:i:s') }}</span>
-    {% endif %}
-    {% if issue.assignee %}
-        <h4>{% trans %}label_issue_assignee{% endtrans %}</h4>
-        <img src="{{ gravatar(issue.assignee.email, 30) }}"/>
-        <span>{{  issue.assignee }}</span>
-    {%  endif  %}
-    <h4>{%  trans %}label_issue_status{%  endtrans  %}</h4>
-    <div class="{{ issue.bootstrapButtonFromStatus }} priority">{{  issue.statusName|trans }}</div>
-    {% if issue.estimatedHours %}
-        <h4>{% trans %}label_issue_hours_estimated{% endtrans %}</h4>
-        <span>{{ issue.estimatedHours }}</span>
-    {%  endif  %}
-    {% if issue.spentHours %}
-        <h4>{% trans %}label_issue_hours_spent{% endtrans %}</h4>
-        <span>{{ issue.spentHours }}</span>
-    {%  endif  %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <td width="50%">
+                {% if issue.type %}
+                    <h4>{% trans %}label_issue_type{% endtrans %}</h4>
+                    <div class="{{ issue.bootstrapButtonFromType }} priority">{{  issue.typeName|trans }}</div>
+                {% else %}
+                    &nbsp;
+                {%  endif  %}
+                </td>
+                <td width="50%">
+                {% if issue.version %}
+                    <h4>{% trans %}label_issue_version{% endtrans %}</h4>
+                    <div class="btn-info priority">{{ issue.version.name }}</div>
+                {% else %}
+                    &nbsp;
+                {%  endif  %}
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                {% if issue.creator %}
+                    <h4>{% trans %}label_issue_creator{% endtrans %}</h4>
+                    <img src="{{ gravatar(issue.creator.email, 30) }}" alt="{{  issue.creator }}" title="{{  issue.creator }}"/>
+                {% else %}
+                    &nbsp;
+                {%  endif  %}
+                </td>
+                <td width="50%">
+                {% if issue.assignee %}
+                    <h4>{% trans %}label_issue_assignee{% endtrans %}</h4>
+                    <img src="{{ gravatar(issue.assignee.email, 30) }}" alt="{{  issue.assignee }}" title="{{  issue.assignee }}"/>
+                {% else %}
+                    &nbsp;
+                {%  endif  %}
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                {% if issue.createdAt %}
+                    <h4>{% trans %}label_created_at{% endtrans %}</h4>
+                    <span>{{ issue.createdAt|date('d/m/y h:i:s') }}</span>
+                {% else %}
+                    &nbsp;
+                {%  endif  %}
+                </td>
+                <td width="50%">
+                {% if issue.updatedAt %}
+                    <h4>{% trans %}label_updated_at{% endtrans %}</h4>
+                    <span>{{ issue.updatedAt|date('d/m/y h:i:s') }}</span>
+                {% else %}
+                    &nbsp;
+                {%  endif  %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                {% if issue.estimatedHours %}
+                    <h4>{% trans %}label_issue_hours_estimated{% endtrans %}</h4>
+                    <span>{{ issue.estimatedHours }}</span>
+                {%  endif  %}
+                {% if issue.spentHours %}
+                    <h4>{% trans %}label_issue_hours_spent{% endtrans %}</h4>
+                    <span>{{ issue.spentHours }}</span>
+                {%  endif  %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <br />    
 {% endblock %}
