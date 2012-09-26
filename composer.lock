@@ -1713,12 +1713,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/Wiakowe/WiakoweBreadcrumbBundle",
-                "reference": "71725befe917c85c28927c494ac0f865eb684156"
+                "reference": "11f6a47a1f43519a0f4eb2369bc696333b41601c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Wiakowe/WiakoweBreadcrumbBundle/zipball/71725befe917c85c28927c494ac0f865eb684156",
-                "reference": "71725befe917c85c28927c494ac0f865eb684156",
+                "url": "https://github.com/Wiakowe/WiakoweBreadcrumbBundle/zipball/11f6a47a1f43519a0f4eb2369bc696333b41601c",
+                "reference": "11f6a47a1f43519a0f4eb2369bc696333b41601c",
                 "shasum": ""
             },
             "require": {
@@ -1726,7 +1726,7 @@
                 "symfony/framework-bundle": ">=2.0.0,<=2.2-dev",
                 "symfony/twig-bridge": ">=2.0.0,<=2.2-dev"
             },
-            "time": "1347633670",
+            "time": "1348657226",
             "type": "library",
             "extra": {
                 "branch-alias": {
