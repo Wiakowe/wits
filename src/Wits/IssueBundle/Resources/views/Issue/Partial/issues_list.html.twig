@@ -28,13 +28,7 @@
             </td>
             <td width="15%">
                 {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_status.html.twig' %}
-                {% if issue.version and not version is defined %}
-                <div class="btn-info priority">
-                    <a href="{{ path('wits_version_show', {'project_id': issue.project.id, 'version_id': issue.version.id }) }}">
-                    {{ issue.version.name }}
-                    </a>
-                </div>
-                {% endif %}
+                {% include 'WitsProjectBundle:Version/Partial/Bootstrap:version_name.html.twig' %}
             </td>
         </tr>
         {% endfor %}

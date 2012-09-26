@@ -1,4 +1,5 @@
-{% if version is defined and version.status is defined %}
+{% if issue.version and not version is defined %}
+    {% set version = issue.version %}
     {% set version_status = 'info' %}
     {% if version.status == constant('Wits\\ProjectBundle\\Entity\\Version::STATUS_NEW') %}
         {% set version_status = 'info' %}
@@ -9,5 +10,9 @@
     {% elseif version.status == constant('Wits\\ProjectBundle\\Entity\\Version::STATUS_RELEASED') %}
         {% set version_status = 'success' %}
     {% endif %}
-    <div class="btn-{{ version_status }} priority">{{  version.statusName|trans }}</div>
+<div class="btn-{{ version_status }} priority">
+    <a href="{{ path('wits_version_show', {'project_id': issue.project.id, 'version_id': issue.version.id }) }}">
+        {{ issue.version.name }}
+    </a>
+</div>
 {% endif %}

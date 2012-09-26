@@ -15,11 +15,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Version
 {
     const   STATUS_NEW          = 1,
-            STATUS_WORKING      = 2,
-            STATUS_RELEASED     = 3;
+            STATUS_NEXT         = 2,
+            STATUS_WORKING      = 3,
+            STATUS_RELEASED     = 4;
 
     public static $statusList = array(
         self::STATUS_NEW        => 'label_issue_status_new',
+        self::STATUS_NEXT       => 'label_issue_status_next',
         self::STATUS_WORKING    => 'label_issue_status_working',
         self::STATUS_RELEASED   => 'label_issue_status_released',
     );
