@@ -207,21 +207,4 @@ class Version
             return self::$statusList[$this->getStatus()];
         }
     }
-
-    public function getBootstrapButtonFromStatus()
-    {
-        switch ($this->getStatus()) {
-            case self::STATUS_NEW:
-                return 'btn-warning';
-                break;
-            case self::STATUS_WORKING:
-                return 'btn-danger';
-                break;
-            case self::STATUS_RELEASED:
-                return 'btn-success';
-                break;
-        }
-        return '';
-    }
-
 }

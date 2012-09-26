@@ -1,0 +1,11 @@
+{% if version is defined and version.status is defined %}
+    {% set version_status = 'warning' %}
+    {% if version.status == constant('Wits\\ProjectBundle\\Entity\\Version::STATUS_NEW') %}
+        {% set version_status = 'warning' %}
+    {% elseif version.status == constant('Wits\\ProjectBundle\\Entity\\Version::STATUS_WORKING') %}
+        {% set version_status = 'danger' %}
+    {% elseif version.status == constant('Wits\\ProjectBundle\\Entity\\Version::STATUS_RELEASED') %}
+        {% set version_status = 'success' %}
+    {% endif %}
+    <div class="btn-{{ version_status }} priority">{{  version.statusName|trans }}</div>
+{% endif %}

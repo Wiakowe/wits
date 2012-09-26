@@ -1,0 +1,13 @@
+{% if issue is defined and issue.priority is defined %}
+    {% set issue_priority = 'info' %}
+    {% if issue.priority == constant('Wits\\IssueBundle\\Entity\\Issue::PRIORITY_LOW') %}
+        {% set issue_priority = 'success' %}
+    {% elseif issue.priority == constant('Wits\\IssueBundle\\Entity\\Issue::PRIORITY_MEDIUM') %}
+        {% set issue_priority = 'warning' %}
+    {% elseif issue.priority == constant('Wits\\IssueBundle\\Entity\\Issue::PRIORITY_HIGH') %}
+        {% set issue_priority = 'important' %}
+    {% elseif issue.priority == constant('Wits\\IssueBundle\\Entity\\Issue::PRIORITY_CRITICAL') %}
+        {% set issue_priority = 'inverse' %}
+    {% endif %}
+    <span class="label-{{ issue_priority }} label">{{  issue.priorityName|trans }}</span>
+{% endif %}

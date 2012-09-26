@@ -14,12 +14,8 @@
                         <a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a>
                     </div>
                     <div class="badges">
-                    {% if issue.status %}
-                        <span class="{{ issue.bootstrapButtonFromType }} label">{{ issue.typeName|trans }}</span>
-                    {% endif %}
-                    {% if issue.priority %}
-                        <span class="{{ issue.bootstrapButtonFromPriority }} label">{{ issue.priorityName|trans }}</span>
-                    {% endif %}
+                        {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_type.html.twig' %}
+                        {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_priority.html.twig' %}
                     </div>
                 </div>
                 <div class="table_text_small">
@@ -31,7 +27,7 @@
                 </div>
             </td>
             <td width="15%">
-                <div class="{{ issue.bootstrapButtonFromStatus }} priority">{{ issue.statusName|trans }}</div>
+                {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_status.html.twig' %}
                 {% if issue.version and not version is defined %}
                 <div class="btn-info priority">
                     <a href="{{ path('wits_version_show', {'project_id': issue.project.id, 'version_id': issue.version.id }) }}">

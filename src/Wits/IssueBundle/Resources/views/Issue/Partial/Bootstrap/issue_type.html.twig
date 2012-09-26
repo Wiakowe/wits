@@ -1,0 +1,13 @@
+{% if issue is defined and issue.type is defined %}
+    {% set issue_type = 'info' %}
+    {% if issue.type == constant('Wits\\IssueBundle\\Entity\\Issue::TYPE_BUG') %}
+        {% set issue_type = 'important' %}
+    {% elseif issue.type == constant('Wits\\IssueBundle\\Entity\\Issue::TYPE_FEATURE') %}
+        {% set issue_type = 'success' %}
+    {% elseif issue.type == constant('Wits\\IssueBundle\\Entity\\Issue::TYPE_IMPROVEMENT') %}
+        {% set issue_type = 'warning' %}
+    {% elseif issue.type == constant('Wits\\IssueBundle\\Entity\\Issue::TYPE_TASK') %}
+        {% set issue_type = 'info' %}
+    {% endif %}
+    <span class="label-{{ issue_type }} label">{{  issue.typeName|trans }}</span>
+{% endif %}

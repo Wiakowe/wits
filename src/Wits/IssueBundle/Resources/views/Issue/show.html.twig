@@ -10,10 +10,9 @@
 
         <h1>{{ title }}</h1>
         <div>
-            <span class="{{ issue.bootstrapLabelFromStatus }} label">{{  issue.statusName|trans }}</span>
-            {% if issue.priority %}
-                <span class="{{ issue.bootstrapLabelFromPriority }} label">{{ issue.priorityName|trans }}</span>
-            {% endif %}
+            {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_type.html.twig' %}
+
+            {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_priority.html.twig' %}
         </div>
         <br />
 
@@ -37,9 +36,10 @@
         <tbody>
             <tr>
                 <td width="50%">
-                {% if issue.type %}
-                    <h4>{% trans %}label_issue_type{% endtrans %}</h4>
-                    <div class="{{ issue.bootstrapButtonFromType }} priority">{{  issue.typeName|trans }}</div>
+
+                {% if issue.status %}
+                    <h4>{% trans %}label_issue_status{% endtrans %}</h4>
+                    {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_status.html.twig' %}
                 {% else %}
                     &nbsp;
                 {%  endif  %}
