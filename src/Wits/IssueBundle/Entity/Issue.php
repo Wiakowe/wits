@@ -162,7 +162,7 @@ class Issue
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min = "0")
      */
     protected $estimatedHours;
@@ -170,7 +170,7 @@ class Issue
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min = "0")
      */
     protected $spentHours;

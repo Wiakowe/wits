@@ -61,8 +61,8 @@ class IssueController extends Controller
         }
 
         if ($this->get('security.context')->isGranted('ROLE_ISSUE_EDIT_HOURS')) {
-            $formBuilder->add('estimatedHours', 'integer', array('label' => 'label_issue_hours_estimated', 'attr' => array('class' => 'input-mini', 'min' => 0)));
-            $formBuilder->add('spentHours', 'integer', array('label' => 'label_issue_hours_spent', 'attr' => array('class' => 'input-mini', 'min' => 0)));
+            $formBuilder->add('estimatedHours', 'integer', array('label' => 'label_issue_hours_estimated', 'required' => false, 'attr' => array('class' => 'input-mini', 'min' => 0, )));
+            $formBuilder->add('spentHours', 'integer', array('label' => 'label_issue_hours_spent', 'required' => false, 'attr' => array('class' => 'input-mini', 'min' => 0)));
         }
 
         $breadcrumb = $this->get('wiakowe.breadcrumb');
