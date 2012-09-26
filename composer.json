@@ -68,7 +68,8 @@
         "mopa/bootstrap-bundle": "dev-master",
         "twitter/bootstrap": "master",
         "thomas-mcdonald/bootstrap-sass": "dev-master",
-        "wiakowe/doctrine-table-prefix-bundle": "1.0.0"
+        "wiakowe/doctrine-table-prefix-bundle": "1.0.0",
+        "knplabs/knp-markdown-bundle": "dev-master"
     },
     "minimum-stability": "dev",
     "scripts": {

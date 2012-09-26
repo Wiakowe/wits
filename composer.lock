@@ -1,5 +1,5 @@
 {
-    "hash": "921563fd00d347ace7e8fa77e21709c9",
+    "hash": "bb18431ea33b3a4fc9bc8afd251dddc3",
     "packages": [
         {
             "name": "doctrine/common",
@@ -675,6 +675,58 @@
                 "security",
                 "secure",
                 "expression"
+            ]
+        },
+        {
+            "name": "knplabs/knp-markdown-bundle",
+            "version": "dev-master",
+            "target-dir": "Knp/Bundle/MarkdownBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/KnpMarkdownBundle",
+                "reference": "d3eb9dceaf65ebefdda0fe1d5a5e8ca3ebd8612b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/KnpLabs/KnpMarkdownBundle/zipball/d3eb9dceaf65ebefdda0fe1d5a5e8ca3ebd8612b",
+                "reference": "d3eb9dceaf65ebefdda0fe1d5a5e8ca3ebd8612b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0,<2.2-dev"
+            },
+            "suggest": {
+                "symfony/twig-bundle": "to use the Twig markdown filter"
+            },
+            "time": "1347520405",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Bundle\\MarkdownBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/KnpMarkdownBundle/contributors"
+                }
+            ],
+            "description": "Knplabs markdown bundle transforms markdown into html",
+            "homepage": "http://github.com/KnpLabs/KnpMarkdownBundle",
+            "keywords": [
+                "markdown",
+                "knp",
+                "knplabs",
+                "bundle"
             ]
         },
         {
@@ -1751,6 +1803,7 @@
     "stability-flags": {
         "stof/doctrine-extensions-bundle": 20,
         "mopa/bootstrap-bundle": 20,
-        "thomas-mcdonald/bootstrap-sass": 20
+        "thomas-mcdonald/bootstrap-sass": 20,
+        "knplabs/knp-markdown-bundle": 20
     }
 }

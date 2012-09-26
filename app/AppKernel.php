@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Wiakowe\FetchBundle\WiakoweFetchBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Wiakowe\DoctrineTablePrefixBundle\WiakoweDoctrineTablePrefixBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

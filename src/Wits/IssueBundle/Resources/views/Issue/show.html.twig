@@ -9,7 +9,9 @@
     <div id="issue">
         <h1>{{ title }}</h1>
 
-        <p class="breadcrumb">{{  issue.description|nl2br }}</p>
+        <div id="issue_description" class="markdown-text">
+            {{  issue.description|markdown }}
+        </div>
 
 
         {% include 'WitsIssueBundle:Comment/Partial:list.html.twig' %}
