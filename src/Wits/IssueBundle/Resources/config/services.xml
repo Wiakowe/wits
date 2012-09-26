@@ -6,6 +6,8 @@
 
     <parameters>
         <parameter key="wits_issue.mail.allowed_hosts" type="collection" />
+        <parameter key="wits_issue.mail.links_host" />
+        <parameter key="wits_issue.mail.debug" />
     </parameters>
 
     <services>
@@ -37,6 +39,14 @@
             <tag name="kernel.event_listener" event="issue.create" method="onIssueCreation" />
             <tag name="kernel.event_listener" event="issue.comment" method="onIssueCommentCreation" />
             <tag name="kernel.event_listener" event="issue.edit" method="onIssueEdit" />
+        </service>
+
+        <service id="wits_issue.listener.fetch_mail_request_context" class="Wits\IssueBundle\EventListener\FetchMailRequestContextListener">
+            <argument type="service" id="router" />
+            <argument>%wits_issue.mail.links_host%</argument>
+            <argument>%wits_issue.mail.debug%</argument>
+
+            <tag name="kernel.event_listener" event="fetch.mail.start" method="onFetchMailStart" />
         </service>
     </services>
 </container>
