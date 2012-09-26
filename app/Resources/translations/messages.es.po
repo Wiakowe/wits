@@ -16,6 +16,9 @@ msgstr "Cerrado"
 msgid "label_issue_status_released"
 msgstr "Realizado"
 
+msgid "label_issue_status_next"
+msgstr "Siguiente"
+
 msgid "label_issue_priority_low"
 msgstr "Baja"
 

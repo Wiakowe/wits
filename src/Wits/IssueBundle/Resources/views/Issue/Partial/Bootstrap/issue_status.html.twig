@@ -1,0 +1,15 @@
+{% if issue is defined and issue.status is defined %}
+    {% set issue_status = 'info' %}
+    {% if issue.status == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_NEW') %}
+        {% set issue_status = 'info' %}
+    {% elseif issue.status == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED') %}
+        {% set issue_status = 'warning' %}
+    {% elseif issue.status == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING') %}
+        {% set issue_status = 'danger' %}
+    {% elseif issue.status == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_RESOLVED') %}
+        {% set issue_status = 'success' %}
+    {% elseif issue.status == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED') %}
+        {% set issue_status = 'inverse' %}
+    {% endif %}
+    <div class="btn-{{ issue_status }} priority">{{  issue.statusName|trans }}</div>
+{% endif %}

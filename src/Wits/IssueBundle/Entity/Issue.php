@@ -408,67 +408,6 @@ class Issue
         return '';
     }
 
-
-    public function getBootstrapButtonFromPriority()
-    {
-        switch ($this->getPriority()) {
-            case self::PRIORITY_LOW:
-                return 'btn-success';
-                break;
-            case self::PRIORITY_MEDIUM:
-                return 'btn-warning';
-                break;
-            case self::PRIORITY_HIGH:
-                return 'btn-danger';
-                break;
-            case self::PRIORITY_CRITICAL:
-                return 'btn-inverse';
-                break;
-        }
-        return '';
-    }
-
-    public function getBootstrapButtonFromStatus()
-    {
-        switch ($this->getStatus()) {
-            case self::STATUS_NEW:
-                return 'btn-info';
-                break;
-            case self::STATUS_ASSIGNED:
-                return 'btn-warning';
-                break;
-            case self::STATUS_WORKING:
-                return 'btn-danger';
-                break;
-            case self::STATUS_RESOLVED:
-                return 'btn-success';
-                break;
-            case self::STATUS_CLOSED:
-                return 'btn-inverse';
-                break;
-        }
-        return '';
-    }
-
-    public function getBootstrapButtonFromType()
-    {
-        switch ($this->getType()) {
-            case self::TYPE_BUG:
-                return 'btn-danger';
-                break;
-            case self::TYPE_FEATURE:
-                return 'btn-success';
-                break;
-            case self::TYPE_IMPROVEMENT:
-                return 'btn-info';
-                break;
-            case self::TYPE_TASK:
-                return 'btn-info';
-                break;
-        }
-        return '';
-    }
-
     /**
      * @param int $estimatedHours
      */

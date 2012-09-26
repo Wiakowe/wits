@@ -28,7 +28,7 @@
                 </div>
             </td>
             <td width="5%">
-                <div class="{{ version.bootstrapButtonFromStatus }} priority">{{ version.statusName|trans }}</div>
+                {% include 'WitsProjectBundle:Version/Partial/Bootstrap:version_status.html.twig' %}
             </td>
         </tr>
         {% endfor %}
