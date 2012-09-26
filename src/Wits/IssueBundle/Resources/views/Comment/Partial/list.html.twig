@@ -1,14 +1,23 @@
 {% if comments %}
-
-
-<ul id="comments" class="list">
-    <li><h4>{{ 'label_comments'|trans }}</h4>
-    </li>
+<table id="comments" class="table list table-striped" >
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th><h4>{{ 'label_comments'|trans }}</h4></th>
+        </tr>
+    </thead>
+    <tbody>
     {% for comment in comments %}
-    <li id="{{ comment.id }}">
-        <div class="table_text markdown-text">#{{ comment.id }} - {{ comment.comment|markdown }}</div>
-        <div class="table_text_small">{% trans with{'%comment_creator%': comment.user, '%comment_date%': comment.createdAt|date('d/m/y h:i:s')} %}Creador por %comment_creator% el %comment_date%{% endtrans %}</div>
-    </li>
+        <tr>
+            <td width="5%" class="table_id" id="{{ comment.id }}">
+                <span>#{{ comment.id}}</span>
+            </td>
+            <td width="95%" class="table_text">
+                <div class="table_text markdown-text">{{ comment.comment|markdown }}</div>
+                <div class="table_text_small">{% trans with{'%comment_creator%': comment.user, '%comment_date%': comment.createdAt|date('d/m/y h:i:s')} %}Creador por %comment_creator% el %comment_date%{% endtrans %}</div>
+            </td>
+        </tr>
     {% endfor %}
-</ul>
+    </tbody>
+</table>
 {% endif %}
