@@ -26,14 +26,12 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('allowed_hosts')
                     ->requiresAtLeastOneElement()
                     ->isRequired()
-                    ->prototype('scalar')
+                    ->prototype('scalar')->end()
                 ->end()
+                ->scalarNode('mailing_host')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('mailing_link_debug')->defaultValue('%kernel.debug%')->end()
             ->end()
         ;
-
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
 
         return $treeBuilder;
     }

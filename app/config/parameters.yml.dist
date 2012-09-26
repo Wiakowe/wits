@@ -27,5 +27,6 @@ parameters:
     assetic.filter.compass.bin: ~
 
     mail_allowed_hosts: [ example.com ]
+    mail_link_host:     example.com
 
     table_prefix:       ~

@@ -26,5 +26,7 @@ class WitsIssueExtension extends Extension
         $loader->load('services.xml');
 
         $container->setParameter('wits_issue.mail.allowed_hosts', $config['allowed_hosts']);
+        $container->setParameter('wits_issue.mail.links_host', $config['mailing_host']);
+        $container->setParameter('wits_issue.mail.debug', $config['mailing_link_debug']);
     }
 }
