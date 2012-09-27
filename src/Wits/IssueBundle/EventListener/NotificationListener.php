@@ -73,52 +73,66 @@ class NotificationListener
 
         $assignee = $this->getIssueAssignee($issue);
 
-        if ($comment->getUser()->getEmail() == $assignee->getEmail()) {
-            $userTo = $issue->getCreator();
-            $userBcc = $assignee;
-        } else {
-            $userTo = $assignee;
-            $userBcc = $issue->getCreator();
+        $emailTo = array();
+
+        if ($comment->getUser()->getEmail() != $assignee->getEmail()) {
+            $emailTo[] = $assignee->getEmail();
         }
+
+        if ($comment->getUser()->getEmail() != $issue->getCreator()->getEmail()) {
+            $emailTo[] = $issue->getCreator()->getEmail();
+        }
+
+        $emailTo = array_unique($emailTo);
 
         $message = \Swift_Message::newInstance()
             ->setSubject('[#'.$issue->getProject()->getIdentifier().'-'.$issue->getId().'] '.$this->translator->trans('label_mail_issue_commented').': '.$issue->getName())
             ->setFrom($this->notificationMail)
             ->setReplyTo($this->notificationMail)
-            ->setTo($userTo->getEmail())
-            ->setBcc($userBcc->getEmail())
             ->setBody($this->templating->render('WitsIssueBundle:Mail:issue_comment.html.twig', array('issue' => $issue, 'comment' => $comment)))
             ->setContentType('text/html')
         ;
 
-        $this->mailer->send($message);
+        $this->sendMessages($message, $emailTo);
     }
 
     public function onIssueEdit(IssueEditEvent $event)
     {
         $issue = $event->getIssue();
         $issueOld = $event->getIssueOld();
+        $editor = $event->getUser();
 
         $assignee = $this->getIssueAssignee($issue);
 
-        if (    $issue->getAssignee() != $issueOld->getAssignee() ||
-                $issue->getStatus() != $issueOld->getStatus()
-        ) {
+        $emailTo = array();
 
-            $userTo = $issue->getCreator();
-            $userBcc = $assignee;
+        if ($editor->getEmail() != $assignee->getEmail()) {
+            $emailTo[] = $assignee->getEmail();
+        }
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('[#'.$issue->getProject()->getIdentifier().'-'.$issue->getId().'] '.$this->translator->trans('label_mail_issue_updated').': '.$issue->getName())
-                ->setFrom($this->notificationMail)
-                ->setReplyTo($this->notificationMail)
-                ->setTo($userTo->getEmail())
-                ->setBcc($userBcc->getEmail())
-                ->setBody($this->templating->render('WitsIssueBundle:Mail:issue_edit.html.twig', array('issue' => $issue, 'issueOld' => $issueOld)))
-                ->setContentType('text/html')
-            ;
+        if ($editor->getEmail() != $issue->getCreator()->getEmail()) {
+            $emailTo[] = $issue->getCreator()->getEmail();
+        }
 
-            $this->mailer->send($message);
+        $emailTo = array_unique($emailTo);
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('[#'.$issue->getProject()->getIdentifier().'-'.$issue->getId().'] '.$this->translator->trans('label_mail_issue_updated').': '.$issue->getName())
+            ->setFrom($this->notificationMail)
+            ->setReplyTo($this->notificationMail)
+            ->setBody($this->templating->render('WitsIssueBundle:Mail:issue_edit.html.twig', array('issue' => $issue, 'issueOld' => $issueOld)))
+            ->setContentType('text/html');
+
+        $this->sendMessages($message, $emailTo);
+
+    }
+
+    protected function sendMessages($message, $emails)
+    {
+        foreach ($emails as $email) {
+            $sendMessage = clone $message;
+            $sendMessage->setTo($email);
+            $this->mailer->send($sendMessage);
         }
     }
 

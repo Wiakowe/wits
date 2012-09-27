@@ -91,7 +91,9 @@ class IssueController extends Controller
                 }
 
                 $issue->setProject($project);
-                $issue->setCreator($this->getUser());
+                if (!$isEdit) {
+                    $issue->setCreator($this->getUser());
+                }
 
                 $manager->persist($issue);
                 $manager->flush();
@@ -101,7 +103,7 @@ class IssueController extends Controller
                     $event = new IssueCreateEvent($issue);
                     $dispatcher->dispatch(IssueEvents::ISSUE_CREATE, $event);
                 } else {
-                    $event = new IssueEditEvent($issue, $issueOld);
+                    $event = new IssueEditEvent($issue, $issueOld, $this->getUser());
                     $dispatcher->dispatch(IssueEvents::ISSUE_EDIT, $event);
                 }
 
