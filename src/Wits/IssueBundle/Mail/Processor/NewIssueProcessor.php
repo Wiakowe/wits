@@ -35,7 +35,8 @@ class NewIssueProcessor implements MailProcessorInterface
 
     public function apply(Message $message)
     {
-        $senderAddress = $message->getAddresses('from')['address'];
+        $senderAddressFrom = $message->getAddresses('from');
+        $senderAddress     = $senderAddressFrom['address'];
 
         $user = $this->entityManager
             ->getRepository('WitsUserBundle:User')

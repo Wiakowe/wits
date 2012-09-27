@@ -49,7 +49,7 @@ class DoctrineParamConverter extends BaseParamConverter
         }
         $attribute = $name;
 
-        $possibleKeys = ['id', $attribute, $attribute . '_id', $attribute . 'Id'];
+        $possibleKeys = array('id', $attribute, $attribute . '_id', $attribute . 'Id');
 
         foreach ($possibleKeys as $possibleKey) {
             if ($request->attributes->has($possibleKey)) {

@@ -58,8 +58,8 @@ class NewCommentProcessor implements MailProcessorInterface
             return false;
         }
 
-
-        $senderAddress = $message->getAddresses('from')['address'];
+        $senderAddressFrom = $message->getAddresses('from');
+        $senderAddress     = $senderAddressFrom['address'];
 
         $user = $this->entityManager
             ->getRepository('WitsUserBundle:User')

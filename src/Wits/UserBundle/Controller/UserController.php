@@ -251,7 +251,8 @@ class UserController extends Controller
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bind($this->getRequest());
 
-            $user = $this->getDoctrine()->getRepository('WitsUserBundle:User')->findOneByEmail($form->getData()['email']);
+            $formData = $form->getData();
+            $user = $this->getDoctrine()->getRepository('WitsUserBundle:User')->findOneByEmail($formData['email']);
             /** @var $user User */
 
             if ($user) {
@@ -328,7 +329,8 @@ class UserController extends Controller
 
                 $securityManager = $this->get('wits.security_manager');
 
-                $securityManager->setUserPassword($user, $form->getData()['password']);
+                $formData = $form->getData();
+                $securityManager->setUserPassword($user, $formData['password']);
                 $user->setPasswordResetCode(null);
 
                 $this->get('security.context')->setToken(
