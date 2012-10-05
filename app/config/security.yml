@@ -15,6 +15,7 @@ security:
           - ROLE_LEADER
         ROLE_LEADER:
           - ROLE_DEVELOPER
+          - ROLE_USER
           - ROLE_PROJECT_EDIT
           - ROLE_ISSUE_ASSIGN
           - ROLE_ISSUE_SET_VERSION
@@ -27,6 +28,7 @@ security:
           - ROLE_PROJECT_EDIT
         ROLE_DEVELOPER:
           - ROLE_REPORTER
+          - ROLE_USER
           - ROLE_ISSUE_EDIT_STATUS
           - ROLE_ISSUE_EDIT_HOURS
           - ROLE_VERSION_SHOW
