@@ -74,8 +74,11 @@ class IssueRepository extends EntityRepository
     public function getLatestIssuesOpened(Project $project, $size = 10)
     {
         return $this->createQueryBuilder('i')
-            ->where('i.status = :status')
+            ->andWhere('i.status = :status')
             ->setParameter(':status', Issue::STATUS_NEW)
+            ->andWhere('i.version IS null')
+            ->andWhere('i.project = :project')
+            ->setParameter('project', $project->getId())
             ->setMaxResults($size)
             ->orderBy('i.createdAt', 'DESC')
             ->getQuery()
