@@ -24,7 +24,7 @@ class IssueRepository extends EntityRepository
         return $query->getOneOrNullResult();
     }
 
-    public function getIssuesByType(Project $project, Version $version = null)
+    public function getIssuesByType(Project $project, Version $version = null, $status_id = null)
     {
         $queryBuilder =
             $this->createQueryBuilder('i')
@@ -42,6 +42,13 @@ class IssueRepository extends EntityRepository
             ;
         }
 
+        if ($status_id) {
+            $queryBuilder
+                ->andWhere('i.status = :status')
+                ->setParameter(':status', $status_id)
+            ;
+        }
+
         $results = $queryBuilder
             ->getQuery()
             ->getArrayResult();
@@ -49,7 +56,7 @@ class IssueRepository extends EntityRepository
         return ArrayUtil::setElementAsKeyValue($results, 'status', 'cnt');
     }
 
-    public function getNumberOfIssuesByProject(Project $project, Version $version = null)
+    public function getNumberOfIssuesByProject(Project $project, Version $version = null, $status_id = null)
     {
         $queryBuilder =
             $this->createQueryBuilder('i')
@@ -62,6 +69,13 @@ class IssueRepository extends EntityRepository
             $queryBuilder
                 ->andWhere('i.version = :version')
                 ->setParameter(':version', $version->getId())
+            ;
+        }
+
+        if ($status_id) {
+            $queryBuilder
+                ->andWhere('i.status = :status')
+                ->setParameter('status', $status_id)
             ;
         }
 

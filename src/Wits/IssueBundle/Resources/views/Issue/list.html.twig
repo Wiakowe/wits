@@ -9,10 +9,27 @@
     {% set title = title ~ ' - ' ~ 'assigned to %username%'|trans({'%username%': app.user.username}) %}
 {% endif %}
 
+{% if status_id is defined and status_id %}
+    {% set issue_status = 'label_issue_status_new' %}
+    {% if status_id == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED') %}
+        {% set issue_status = 'label_issue_status_assigned' %}
+    {% elseif status_id == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING') %}
+        {% set issue_status = 'label_issue_status_working' %}
+    {% elseif status_id == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_RESOLVED') %}
+        {% set issue_status = 'label_issue_status_resolved' %}
+    {% elseif status_id == constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED') %}
+        {% set issue_status = 'label_issue_status_closed' %}
+    {% endif %}
+    {% set issue_status = issue_status|trans %}
+
+    {% set title = title ~ ' - ' ~ 'Status %issue_status%'|trans({'%issue_status%': issue_status}) %}
+{% endif %}
+
+
+
 {% block title %}{{ title }} - {{ project.name }}{% endblock %}
 
 {% block body %}
-
 <h1>{{ title }}</h1>
 
 {% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' %}

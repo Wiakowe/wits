@@ -232,4 +232,34 @@ class IssueController extends Controller
             )
         );
     }
+
+    public function statusListAction(Project $project, $status_id)
+    {
+        if (false === $this->get('security.context')->isGranted('ROLE_ISSUE_LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
+        $breadcrumb->addEntry('label_issues', 'wits_issue_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry(Issue::$statusList[$status_id], 'wits_issue_status_list', array('project_id' => $project->getId(), 'status_id' => $status_id));
+
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
+        $issues = $issueRepository->findBy(array('project' => $project->getId(), 'status' => $status_id));
+
+        $issuesTotal = $issueRepository->getNumberOfIssuesByProject($project, null, $status_id);
+
+        //get versions
+        $versions = $this->getDoctrine()->getRepository('WitsProjectBundle:Version')->findBy(array('project' => $project->getId()));
+
+        return $this->render('WitsIssueBundle:Issue:list.html.twig',
+            array(
+                'status_id' => $status_id,
+                'project'   => $project,
+                'issues'    => $issues,
+                'versions'  => $versions,
+                'issuesTotal'       => $issuesTotal,
+            )
+        );
+    }
 }

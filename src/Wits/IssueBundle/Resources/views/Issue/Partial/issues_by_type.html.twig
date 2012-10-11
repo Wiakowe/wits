@@ -1,19 +1,37 @@
-{% if issuesByStatus %}
+{% if issuesTotal is defined %}
+<h4>{% trans with {'%total%': issuesTotal.cnt}%}label_total_issues{% endtrans %}</h4>
+{% endif %}
+{% if issuesByStatus is defined %}
 <div class="progress">
-    {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_NEW')] is defined %}
-        <div class="bar bar-info" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_NEW')] / issuesTotal.cnt * 100 }}%;"></div>
+
+    {% set link_path = 'wits_issue_status_list' %}
+    {% if version %}
+        {% set link_path = 'wits_version_status_list' %}
     {% endif %}
-    {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED')] is defined %}
-        <div class="bar bar-warning" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_ASSIGNED')] / issuesTotal.cnt * 100 }}%;"></div>
-    {% endif %}
-    {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING')] is defined %}
-        <div class="bar bar-danger" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_WORKING')] / issuesTotal.cnt * 100 }}%;"></div>
-    {% endif %}
-    {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_RESOLVED')] is defined %}
-        <div class="bar bar-success" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_RESOLVED')] / issuesTotal.cnt * 100 }}%;"></div>
-    {% endif %}
-    {% if issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED')] is defined %}
-        <div class="bar bar-inverse" style="width: {{ issuesByStatus[constant('Wits\\IssueBundle\\Entity\\Issue::STATUS_CLOSED')] / issuesTotal.cnt * 100 }}%;"></div>
-    {% endif %}
+
+    {% for status in 1..5 %}
+
+        {% set link_params = {'project_id': project_id, 'status_id':status } %}
+        {% if version %}
+            {% set link_params = {'project_id': project_id, 'status_id':status, 'version_id': version } %}
+        {% endif %}
+
+        {% set bar_status = "bar-info" %}
+        {% if status == 2 %}
+            {% set bar_status = "bar-warning" %}
+        {% elseif status == 3 %}
+            {% set bar_status = "bar-danger" %}
+        {% elseif status == 4 %}
+            {% set bar_status = "bar-success" %}
+        {% elseif status == 5 %}
+            {% set bar_status = "bar-inverse" %}
+        {% endif %}
+
+        {% if issuesByStatus[status] is defined %}
+            <a href="{{ path(link_path, link_params) }}">
+                <div class="bar {{ bar_status }}" style="width: {{ issuesByStatus[status] / issuesTotal.cnt * 100 }}%;"></div>
+            </a>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endif %}

@@ -8,3 +8,5 @@ bin
 composer.phar
 .idea
 app/config/parameters.yml
+web/css
+web/js

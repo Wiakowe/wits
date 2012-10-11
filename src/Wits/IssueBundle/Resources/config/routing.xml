@@ -42,4 +42,9 @@
         <requirement key="issue_id">\d+</requirement>
     </route>
 
+    <route id="wits_issue_status_list" pattern="/project/{project_id}/issue/status/{status_id}">
+        <default key="_controller">WitsIssueBundle:Issue:statusList</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="status_id">\d+</requirement>
+    </route>
 </routes>

@@ -134,4 +134,39 @@ class VersionController extends Controller
             )
         );
     }
+
+    public function statusListAction(Project $project, Version $version, $status_id)
+    {
+        $issueRepository = $this->getDoctrine()->getRepository('WitsIssueBundle:Issue');
+
+        if (false === $this->get('security.context')->isGranted('ROLE_VERSION_SHOW')) {
+            throw new AccessDeniedException();
+        }
+
+        $versionRepository = $this->getDoctrine()->getRepository('WitsProjectBundle:Version');
+        if (!$versionRepository->checkVersionFromProject($version, $project)) {
+            throw new ResourceNotFoundException();
+        }
+
+        $issues = $issueRepository->findBy(array('project' => $project, 'version' => $version, 'status' => $status_id));
+
+        //group the issues of the project by type
+        $issuesByStatus = $issueRepository->getIssuesByType($project, $version, $status_id);
+        $issuesTotal = $issueRepository->getNumberOfIssuesByProject($project, $version, $status_id);
+
+        $breadcrumb = $this->get('wiakowe.breadcrumb');
+        $breadcrumb->addEntry('label_versions', 'wits_version_list', array('project_id' => $project->getId()));
+        $breadcrumb->addEntry($version->getName(), 'wits_version_show', array('project_id' => $project->getId(), 'version_id' => $version->getId()));
+
+
+        return $this->render('WitsProjectBundle:Version:show.html.twig',
+            array(
+                'project'           => $project,
+                'version'           => $version,
+                'issues'            => $issues,
+                'issuesByStatus'    => $issuesByStatus,
+                'issuesTotal'       => $issuesTotal,
+            )
+        );
+    }
 }

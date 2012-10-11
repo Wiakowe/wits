@@ -307,3 +307,5 @@ msgstr "Fecha de inicio: %date_start%."
 msgid "label_version_date_end_list"
 msgstr "Fecha de finalización: %date_end%."
 
+msgid "label_total_issues"
+msgstr "Total de tickets: %total%"
