@@ -1,0 +1,100 @@
+{
+    "name": "wiakowe/wits",
+    "description": "Wiakowe Issue Tracking System",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/Wiakowe/WiakoweBreadcrumbBundle"
+        },
+        {
+                "type": "vcs",
+                "url": "http://github.com/Wiakowe/Fetch"
+        },
+        {
+            "type": "package",
+            "package": {
+                "version": "master",
+                "name": "twitter/bootstrap",
+                "source": {
+                    "url": "https://github.com/twitter/bootstrap.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "dist": {
+                    "url": "https://github.com/twitter/bootstrap/zipball/master",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"thomas-mcdonald/bootstrap-sass",
+                "source": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass.git",
+                    "type":"git",
+                    "reference":"master"
+                },
+                "dist": {
+                    "url":"https://github.com/thomas-mcdonald/bootstrap-sass/zipball/master",
+                    "type":"zip"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.1.2",
+        "doctrine/orm": ">=2.3.0,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.0.*",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+        "sensio/distribution-bundle": "2.1.*",
+        "sensio/framework-extra-bundle": "2.1.*",
+        "sensio/generator-bundle": "2.1.*",
+        "jms/security-extra-bundle": "1.2.*",
+        "jms/di-extra-bundle": "1.1.*",
+        "doctrine/doctrine-fixtures-bundle": "*",
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "wiakowe/breadcrumb-bundle": "1.0.*",
+        "ornicar/gravatar-bundle": "*",
+        "tedivm/fetch": "*",
+        "mopa/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "master",
+        "thomas-mcdonald/bootstrap-sass": "dev-master",
+        "wiakowe/doctrine-table-prefix-bundle": "1.0.0",
+        "knplabs/knp-markdown-bundle": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
+    }
+}

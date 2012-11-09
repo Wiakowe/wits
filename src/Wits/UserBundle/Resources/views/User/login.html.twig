@@ -1,0 +1,40 @@
+{% extends '::base_login.html.twig'%}
+
+{% set title = 'label_connect'|trans %}
+{%  block title %}{{ title }}{%  endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+
+<form class="form-horizontal " action="{{ path('wits.user.security.login_check') }}" method="post">
+    {% if error %}
+    <div class="alert alert-error">{{ error.message|trans }}</div>
+    {% endif %}
+    <div>
+        <label for="username" >{% trans %}label_user_email{% endtrans %}</label>
+        <input type="email" id="username" name="_username" value="{{ last_username }}" placeholder="{% trans %}label_user_email{% endtrans %}" />
+    </div>
+
+    <div>
+        <label for="password" >{% trans %}label_user_password{% endtrans %}</label>
+        <input type="password" id="password" name="_password" placeholder="{% trans %}label_user_password{% endtrans %}"/>
+    </div>
+
+    <div>
+        <br />
+        <input type="submit" class="btn btn-primary" value="{% trans %}label_enter{% endtrans %}"/>
+    </div>
+
+    <div>
+        <br />
+        <a class="btn" href="{{ path('wits_user_register') }}">{% trans %}label_register{% endtrans %}</a>
+    </div>
+
+    <div>
+        <br />
+        <a href="{{ path('wits.user.request_password_reset')}}">{% trans %}label_user_forget_password{% endtrans %}</a>
+    </div>
+
+</form>
+
+{% endblock %}

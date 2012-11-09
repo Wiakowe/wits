@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% set title = 'label_versions'|trans %}
+
+{% block title %}{{ title }} - {{ project.name }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+{% if versions %}
+    <table class="table list" id="versions">
+        <tbody>
+        {% for version in versions %}
+        <tr>
+            <td width="95%">
+                <div class="table_text">
+                    <a href="{{ path('wits_version_show', {'project_id': project.id, 'version_id': version.id }) }}">{{ version.name }}</a>
+                </div>
+                <div class="table_text_small">
+                    {% if version.dateStart %}
+                        {% trans with {'%date_start%': version.dateStart|date('Y-m-d')} %}label_version_date_start_list{% endtrans %}
+                        {% if version.dateEnd %}
+                            &nbsp;
+                            {% trans with {'%date_end%': version.dateEnd|date('Y-m-d')} %}label_version_date_end_list{% endtrans %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </td>
+            <td width="5%">
+                {% include 'WitsProjectBundle:Version/Partial/Bootstrap:version_status.html.twig' %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}
+
+{% block aside %}
+    {% if is_granted('ROLE_VERSION_CREATE') %}
+        <a class="btn btn-info" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
+    {% endif %}
+{% endblock %}

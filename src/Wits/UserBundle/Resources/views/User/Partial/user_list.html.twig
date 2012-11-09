@@ -1,0 +1,24 @@
+{% if (users) %}
+    <table class="table" id="users">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>{{ 'label_user_email'|trans }}</th>
+                <th>{{ 'label_user_name'|trans }}</th>
+                <th>{{ 'label_user_surname'|trans }}</th>
+                <th>{{ 'label_user_roles'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td width="5%"><img src="{{ gravatar(user.email, 50) }}" alt="{{ user.fullname }}"/></td>
+                <td width="35%"><a href="{{ path('wits_users_edit', {'user_id': user.id, 'project_id': project_id}) }}">{{ user.username }}</a></td>
+                <td width="20%">{{ user.name }}</td>
+                <td width="20%">{{ user.surname }}</td>
+                <td width="20%">{{ user.roles[0] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

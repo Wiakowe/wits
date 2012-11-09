@@ -1,0 +1,105 @@
+<div class="navbar navbar-inverse  navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="{{ path('wits_project_dashboard')}}">
+            {% if project.logo is defined %}
+                <img class="brand" height="10px" src="{{ project.logo }}" alt="{{ project.name }}" />
+            {% else %}
+            <span class="brand">{{ project.name|upper }}</span>
+            {% endif %}
+            </a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    {% if project_id is defined %}
+                        {% if is_granted('ROLE_ISSUE_LIST') %}
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_issues{% endtrans %}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ path('wits_issue_list', {'project_id': project_id} )}}">{% trans %}label_view_issues{% endtrans %}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('wits_issue_list_created', {'project_id': project_id} )}}">{% trans %}label_view_issues_created{% endtrans %}</a>
+                            </li>
+                                {% if is_granted('ROLE_ISSUE_EDIT_STATUS')%}
+                                    <li>
+                                        <a href="{{ path('wits_issue_list_assigned', {'project_id': project_id}) }}">{% trans %}label_view_issues_assigned{% endtrans %}</a>
+                                    </li>
+                                {% endif %}
+                                {% if is_granted('ROLE_ISSUE_CREATE')%}
+                                <li>
+                                    <a href="{{ path('wits_issue_new', {'project_id': project_id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_VERSION_LIST') %}
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_versions{% endtrans %}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ path('wits_version_list', {'project_id': project_id }) }}">{% trans %}label_view_versions{% endtrans %}</a>
+                                </li>
+                                {% if is_granted('ROLE_VERSION_CREATE')%}
+                                <li>
+                                    <a href="{{ path('wits_version_new', {'project_id': project_id}) }}">{% trans %}label_create_version{% endtrans %}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                    {% if is_granted('ROLE_USERS_LIST') %}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_users{% endtrans %}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('wits_users_list', {'project_id': project_id}) }}">{% trans %}label_view_users{% endtrans %}</a>
+                            </li>
+                            {% if is_granted('ROLE_USERS_CREATE')%}
+                            <li>
+                                <a href="{{ path('wits_users_new', {'project_id': project_id}) }}">{% trans %}label_create_user{% endtrans %}</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_PROJECT_EDIT') %}
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{% trans %}label_project{% endtrans %}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% if is_granted('ROLE_PROJECT_EDIT') %}
+                                    <li>
+                                        <a href="{{ path('wits_project_edit', {'project_id': project_id}) }}">{% trans %}label_project_edit{% endtrans %}</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ app.user.username }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {% if is_granted('ROLE_USER_SELF_EDIT') %}
+                            <li>
+                                <a href="{{ path('wits_user_self_edit', {'project_id': project_id}) }}">{% trans %}label_edit_user{% endtrans %}</a>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <a href="{{ path('wits.user.security.logout') }}">{% trans %}label_logout{% endtrans %}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

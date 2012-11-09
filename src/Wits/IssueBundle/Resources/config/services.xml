@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="wits_issue.mail.allowed_hosts" type="collection" />
+        <parameter key="wits_issue.mail.links_host" />
+        <parameter key="wits_issue.mail.debug" />
+    </parameters>
+
+    <services>
+        <service id="wits_issue.mail.filter.allowed_host" class="Wiakowe\FetchBundle\Filter\AllowedHostsFilter">
+            <argument>%wits_issue.mail.allowed_hosts%</argument>
+            <tag name="wiakowe_fetch.filter" />
+        </service>
+
+        <service id="wits_issue.mail.processor.new_issue" class="Wits\IssueBundle\Mail\Processor\NewIssueProcessor">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="event_dispatcher" />
+
+            <tag name="wiakowe_fetch.processor" priority="0" />
+        </service>
+
+        <service id="wits_issue.mail.processor.new_comment" class="Wits\IssueBundle\Mail\Processor\NewCommentProcessor">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="event_dispatcher" />
+
+            <tag name="wiakowe_fetch.processor" priority="10" />
+        </service>
+
+        <service id="wits_issue.listener.notification" class="Wits\IssueBundle\EventListener\NotificationListener">
+            <argument type="service" id="translator" />
+            <argument type="service" id="mailer" />
+            <argument type="service" id="templating" />
+            <argument>%notification_email%</argument>
+
+            <tag name="kernel.event_listener" event="issue.create" method="onIssueCreation" />
+            <tag name="kernel.event_listener" event="issue.comment" method="onIssueCommentCreation" />
+            <tag name="kernel.event_listener" event="issue.edit" method="onIssueEdit" />
+        </service>
+
+        <service id="wits_issue.listener.fetch_mail_request_context" class="Wits\IssueBundle\EventListener\FetchMailRequestContextListener">
+            <argument type="service" id="router" />
+            <argument>%wits_issue.mail.links_host%</argument>
+            <argument>%wits_issue.mail.debug%</argument>
+
+            <tag name="kernel.event_listener" event="fetch.mail.start" method="onFetchMailStart" />
+        </service>
+    </services>
+</container>

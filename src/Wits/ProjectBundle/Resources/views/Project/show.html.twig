@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% set title = project.name %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<h1>
+{{ title }}
+</h1>
+
+    {% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' %}
+    {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
+{% endblock %}
+{% block aside %}
+    {% if is_granted('ROLE_ISSUE_CREATE') %}
+        <a class="btn btn-success" href="{{ path('wits_issue_new', {'project_id': project.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
+    {% endif %}
+    <br />
+    {% if is_granted('ROLE_VERSION_CREATE') %}
+        <a class="btn btn-info" href="{{ path('wits_version_new', {'project_id': project.id}) }}">{% trans %}label_create_version{% endtrans %}</a>
+    {% endif %}
+    {% if is_granted('ROLE_VERSION_LIST') %}
+        {% include 'WitsProjectBundle:Version/Partial:list.html.twig' %}
+    {% endif %}
+{% endblock %}

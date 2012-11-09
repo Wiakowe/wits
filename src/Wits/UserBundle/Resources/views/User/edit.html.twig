@@ -1,0 +1,30 @@
+{% extends '::base_1column.html.twig' %}
+
+{% if user.id %}
+    {% set title = 'label_edit_user'|trans %}
+    {% set label = 'label_edit' %}
+{% else %}
+    {% set title = 'label_create_user'|trans %}
+    {% set label = 'label_create' %}
+{% endif %}
+
+{%  block title %}{{ title }} - {{ project.name }}{%  endblock %}
+
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+<form class="form-horizontal" action="" method="POST">
+    {{ form_widget(form) }}
+    {%  if user.id %}
+    {%  set label = 'label_edit' %}
+    {%  else %}
+    {%  set label = 'label_create' %}
+    {%  endif  %}
+    <div class="control-group">
+        <div class="controls">
+            <input class="btn btn-primary" type="submit" value="{{ label|trans }}"/>
+        </div>
+    </div>
+</form>
+{% endblock %}

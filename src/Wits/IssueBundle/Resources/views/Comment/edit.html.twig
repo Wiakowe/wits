@@ -1,0 +1,18 @@
+{% extends '::base_1column.html.twig' %}
+
+{% set title = issue.name ~ ' - ' ~ 'label_comment'|trans %}
+
+{%  block title %}{{ title }} - {{ project.name }}{%  endblock %}
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+<form class="form-horizontal" action="" method="POST">
+    {{ form_widget(form) }}
+    <div class="control-group">
+        <div class="controls">
+            <input class="btn btn-primary" type="submit" value="{% trans %}label_comment{% endtrans %}"/>
+        </div>
+    </div>
+</form>
+{% endblock %}

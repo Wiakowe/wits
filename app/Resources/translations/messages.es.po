@@ -1,0 +1,311 @@
+msgid "label_issue_status_new"
+msgstr "Nuevo"
+
+msgid "label_issue_status_assigned"
+msgstr "Asignado"
+
+msgid "label_issue_status_working"
+msgstr "Trabajando"
+
+msgid "label_issue_status_resolved"
+msgstr "Resuelto"
+
+msgid "label_issue_status_closed"
+msgstr "Cerrado"
+
+msgid "label_issue_status_released"
+msgstr "Realizado"
+
+msgid "label_issue_status_next"
+msgstr "Siguiente"
+
+msgid "label_issue_priority_low"
+msgstr "Baja"
+
+msgid "label_issue_priority_medium"
+msgstr "Media"
+
+msgid "label_issue_priority_high"
+msgstr "Alta"
+
+msgid "label_issue_priority_critical"
+msgstr "Crítica"
+
+msgid "label_issue_type_bug"
+msgstr "Error"
+
+msgid "label_issue_type_improvement"
+msgstr "Mejora"
+
+msgid "label_issue_type_task"
+msgstr "Tarea"
+
+msgid "label_issue_type_feature"
+msgstr "Característica"
+
+msgid "label_home"
+msgstr "Inicio"
+
+msgid "label_connect"
+msgstr "Conectarse"
+
+msgid "label_user_self_edit"
+msgstr "Editar usuario"
+
+msgid "label_user_email"
+msgstr "Email"
+
+msgid "label_user_name"
+msgstr "Nombre"
+
+msgid "label_user_surname"
+msgstr "Apellidos"
+
+msgid "label_user_password"
+msgstr "Contraseña"
+
+msgid "label_user_password_repeat"
+msgstr "Repetir contraseña"
+
+msgid "label_user_roles"
+msgstr "Roles"
+
+msgid "label_enter"
+msgstr "Entrar"
+
+msgid "label_register"
+msgstr "Registrarse"
+
+msgid "label_issues"
+msgstr "Tickets"
+
+msgid "label_view_issues"
+msgstr "Ver tickets"
+
+msgid "label_create_issue"
+msgstr "Crear ticket"
+
+msgid "label_edit_issue"
+msgstr "Editar ticket"
+
+msgid "label_versions"
+msgstr "Versiones"
+
+msgid "label_view_versions"
+msgstr "Ver versiones"
+
+msgid "label_create_version"
+msgstr "Crear versión"
+
+msgid "label_edit_version"
+msgstr "Editar versión"
+
+msgid "label_users"
+msgstr "Usuarios"
+
+msgid "label_view_users"
+msgstr "Ver usuarios"
+
+msgid "label_create_user"
+msgstr "Crear usuario"
+
+msgid "label_edit_user"
+msgstr "Editar usuario"
+
+msgid "label_logout"
+msgstr "Salir"
+
+msgid "label_issue_name"
+msgstr "Nombre"
+
+msgid "label_issue_description"
+msgstr "Descripción"
+
+msgid "label_issue_version"
+msgstr "Versión"
+
+msgid "label_issue_assignee"
+msgstr "Asignado"
+
+msgid "label_issue_creator"
+msgstr "Creador"
+
+msgid "label_issue_status"
+msgstr "Estado"
+
+msgid "label_issue_priority"
+msgstr "Prioridad"
+
+msgid "label_issue_type"
+msgstr "Tipo"
+
+msgid "label_issue_hours_estimated"
+msgstr "Horas estimadas"
+
+msgid "label_issue_hours_spent"
+msgstr "Horas realizadas"
+
+msgid "label_issue_date_created"
+msgstr "Creado"
+
+msgid "label_issue_date_updated"
+msgstr "Actualizado"
+
+msgid "label_create"
+msgstr "Crear"
+
+msgid "label_edit"
+msgstr "Editar"
+
+msgid "label_view"
+msgstr "Ver"
+
+msgid "label_comment"
+msgstr "Comentar"
+
+msgid "label_comment_user"
+msgstr "Usuario"
+
+msgid "label_comment_date"
+msgstr "Fecha"
+
+msgid "label_comments"
+msgstr "Comentarios"
+
+msgid "label_version_name"
+msgstr "Versión"
+
+msgid "ROLE_SUPER_ADMIN"
+msgstr "Super administrador"
+
+msgid "ROLE_PROJECT_LEADER"
+msgstr "Lider del proyecto"
+
+msgid "ROLE_DEVELOPER"
+msgstr "Desarrolador"
+
+msgid "ROLE_REPORTER"
+msgstr "Usuario"
+
+msgid "label_mail_issue_created"
+msgstr "Ticket creado"
+
+msgid "label_mail_issue_commented"
+msgstr "Ticket comentado"
+
+msgid "label_mail_issue_updated"
+msgstr "Ticket actualizado"
+
+msgid "label_email_issue_upper_text"
+msgstr "Estimado %name%,"
+
+msgid "label_email_issue_sign"
+msgstr "Atentamente, "
+
+msgid "label_email_issue_lower_p_text"
+msgstr "Para ver el progreso de este ticket, se puede seguir a traves de la web, o se pueden añadir comentarios, contestando a este mail."
+
+msgid "label_email_issue_created_upper_p_text"
+msgstr "Se ha creado en el sistema el ticket con el siguiente asunto: <strong>%issue_title%.</strong>"
+
+msgid "label_email_issue_comment_upper_p_text"
+msgstr "Se ha hecho un comentario en el siguiente ticket: <strong>%issue_title%.</strong>"
+
+msgid "label_email_issue_updated_upper_p_text"
+msgstr "Se ha hecho una actualización en el ticket: <strong>%issue_title%</strong>."
+
+msgid "label_email_issue_updated_assignee_upper_p_text"
+msgstr "El ticket se ha asignado a:<strong>%issue_assignee%</strong>."
+
+msgid "label_email_issue_updated_status_upper_p_text"
+msgstr "El ticket a actualizado su estado: <strong>%issue_status%.</strong>"
+
+msgid "label_password_reset_send"
+msgstr "Reset de password"
+
+msgid "label_user_send_reset_password"
+msgstr "Reset de password enviado"
+
+msgid "label_user_forget_password"
+msgstr "¿Has olvidado el password?"
+
+msgid "label_send"
+msgstr "Enviar"
+
+msgid "label_user_reset_password"
+msgstr "Resetea el password"
+
+msgid "label_user_reset_passwork_link_invalid"
+msgstr "Link invalido"
+
+msgid "label_issue_edited"
+msgstr "Ticket editado correctamente."
+
+msgid "label_issue_created"
+msgstr "Ticket creado correctamente."
+
+msgid "label_project_created"
+msgstr "Proyecto creado correctamente"
+
+msgid "label_project_edited"
+msgstr "Proyecto editado correctamente"
+
+msgid "label_version_created"
+msgstr "Versión creada correctamente."
+
+msgid "label_version_edited"
+msgstr "Versión editada correctamente."
+
+msgid "label_user_edited"
+msgstr "Usuario editado correctamente."
+
+msgid "label_user_created"
+msgstr "Usuario creado correctamente."
+
+msgid "label_project"
+msgstr "Proyecto"
+
+msgid "label_project_edit"
+msgstr "Editar proyecto"
+
+msgid "label_issues_nothing"
+msgstr "No hay tickets que mostrar"
+
+msgid "label_created_at"
+msgstr "Creado"
+
+msgid "label_updated_at"
+msgstr "Actualizado"
+
+msgid "label_view_issues_created"
+msgstr "Tickets creados"
+
+msgid "label_view_issues_assigned"
+msgstr "Tickets asignados"
+
+msgid "created by %username%"
+msgstr "creado por %username%"
+
+msgid "assigned to %username%"
+msgstr "asignado a %username%"
+
+msgid "label_powered_by_wits"
+msgstr "Powered by WITS"
+
+msgid "label_date_not_set"
+msgstr "Sin fecha"
+
+msgid "label_version_date_start"
+msgstr "Fecha inicio"
+
+msgid "label_version_date_end"
+msgstr "Fecha finalización"
+
+msgid "label_version_date_start_list"
+msgstr "Fecha de inicio: %date_start%."
+
+msgid "label_version_date_end_list"
+msgstr "Fecha de finalización: %date_end%."
+
+msgid "label_total_issues"
+msgstr "Total de tickets: %total%"

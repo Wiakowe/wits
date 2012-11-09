@@ -1,0 +1,17 @@
+{% extends '::base.html.twig'%}
+
+{% set title = 'label_users'|trans %}
+{% block title %}{{ title }}{%  endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+
+
+{% include 'WitsUserBundle:User/Partial:user_list.html.twig' %}
+
+
+{% endblock %}
+
+{% block aside %}
+<a class="btn" href="{{ path('wits_users_new', {'project_id': project_id}) }}">{% trans %}label_create_user{% endtrans %}</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% if issues %}
+<table id="issues" class="table list table-striped">
+    <tbody>
+        {% for issue in issues %}
+        <tr>
+            <td width="5%" class="table_id">
+                <a  href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">
+                    #{{ issue.id}}
+                </a>
+            </td>
+            <td width="80%" class="table_text">
+                <div class="table_text left_complete">
+                    <div class="left">
+                        <a href="{{ path('wits_issue_show', {'project_id': project.id, 'issue_id': issue.id}) }}">{{ issue.name}}</a>
+                    </div>
+                    <div class="badges">
+                        {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_type.html.twig' %}
+                        {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_priority.html.twig' %}
+                    </div>
+                </div>
+                <div class="table_text_small">
+
+                    {% trans with{'%issue_creator%': issue.creator, '%issue_created%': issue.createdAt|date('d/m/y h:i:s')} %}Creado por %issue_creator% el %issue_created%{% endtrans %}
+
+                    {% if issue.assignee %}<br />{{ issue.assignee.userName }}{% endif %}
+                    <br />
+                </div>
+            </td>
+            <td width="15%">
+                {% include 'WitsIssueBundle:Issue/Partial/Bootstrap:issue_status.html.twig' %}
+                {% include 'WitsProjectBundle:Version/Partial/Bootstrap:version_name.html.twig' %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <h4>{% trans %}label_issues_nothing{% endtrans %}</h4>
+{% endif %}

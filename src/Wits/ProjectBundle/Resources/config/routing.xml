@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="wits_project_dashboard" pattern="/">
+        <default key="_controller">WitsProjectBundle:Project:dashboard</default>
+    </route>
+
+    <route id="wits_project_new" pattern="/project/new">
+        <default key="_controller">WitsProjectBundle:Project:edit</default>
+    </route>
+
+    <route id="wits_project_edit" pattern="/project/{id}/edit">
+        <default key="_controller">WitsProjectBundle:Project:edit</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+
+    <route id="wits_project_show" pattern="/project/{id}">
+        <default key="_controller">WitsProjectBundle:Project:show</default>
+        <requirement key="id">\d+</requirement>
+    </route>
+
+    <route id="wits_version_new" pattern="/project/{project_id}/version/new">
+        <default key="_controller">WitsProjectBundle:Version:edit</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits_version_list" pattern="/project/{project_id}/version/list">
+        <default key="_controller">WitsProjectBundle:Version:list</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits_version_edit" pattern="/project/{project_id}/version/{version_id}/edit">
+        <default key="_controller">WitsProjectBundle:Version:edit</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="version_id">\d+</requirement>
+    </route>
+    <route id="wits_version_show" pattern="/project/{project_id}/version/{version_id}">
+        <default key="_controller">WitsProjectBundle:Version:show</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="version_id">\d+</requirement>
+    </route>
+
+    <route id="wits_version_status_list" pattern="/project/{project_id}/version/{version_id}/status/{status_id}">
+        <default key="_controller">WitsProjectBundle:Version:statusList</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="version_id">\d+</requirement>
+        <requirement key="status_id">\d+</requirement>
+    </route>
+
+
+    <route id="wits_project_edit" pattern="/project/{project_id}/edit">
+        <default key="_controller">WitsProjectBundle:Project:edit</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+
+</routes>

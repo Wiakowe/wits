@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% set title = version.name %}
+
+{% block title %}{{ title }} - {{ project.name }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+    {% if version is defined %}
+    {% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' with {'version': version.id }%}
+
+    {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
+{% endblock %}
+
+{% block aside %}
+    {% if is_granted('ROLE_VERSION_EDIT') %}
+        <a class="btn btn-info" href="{{ path('wits_version_edit', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_edit{% endtrans %}</a>
+    {% endif %}
+    <br />
+    <a class="btn btn-success" href="{{ path('wits_issue_new', {'project_id': project.id, 'version_id': version.id}) }}">{% trans %}label_create_issue{% endtrans %}</a>
+    <br />
+    {% if version.dateStart %}
+        <h4>{% trans %}label_version_date_start{% endtrans %}</h4>
+        <div class="">{{ version.dateStart|date('Y-m-d') }}</div>
+    {% endif %}
+    {% if version.dateEnd %}
+        <h4>{% trans %}label_version_date_end{% endtrans %}</h4>
+        <div class="">{{ version.dateEnd|date('Y-m-d') }}</div>
+    {% endif %}
+    <h4>{% trans %}label_issue_status{% endtrans %}</h4>
+    {% include 'WitsProjectBundle:Version/Partial/Bootstrap:version_status.html.twig' %}
+{% endblock %}

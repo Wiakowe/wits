@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="wits_user_homepage" pattern="/">
+        <default key="_controller">WitsUserBundle:User:index</default>
+    </route>
+
+    <route id="wits_user_login" pattern="/login">
+        <default key="_controller">WitsUserBundle:User:login</default>
+    </route>
+
+    <route id="wits_user_register" pattern="/register">
+        <default key="_controller">WitsUserBundle:User:register</default>
+    </route>
+
+    <route id="wits.user.security.login_check" pattern="/login_check" />
+    <route id="wits.user.security.logout" pattern="/logout" />
+
+    <route id="wits_users_list" pattern="/project/{project_id}/users">
+        <default key="_controller">WitsUserBundle:User:list</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits_users_new" pattern="/project/{project_id}/users/new">
+        <default key="_controller">WitsUserBundle:User:edit</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits_users_edit" pattern="/project/{project_id}/users/{user_id}/edit">
+        <default key="_controller">WitsUserBundle:User:edit</default>
+        <requirement key="project_id">\d+</requirement>
+        <requirement key="user_id">\d+</requirement>
+    </route>
+
+    <route id="wits_user_self_edit" pattern="/project/{project_id}/user/edit">
+        <default key="_controller">WitsUserBundle:User:editSelf</default>
+        <requirement key="project_id">\d+</requirement>
+    </route>
+
+    <route id="wits.user.request_password_reset" pattern="/password-reset">
+        <default key="_controller">WitsUserBundle:User:requestPasswordReset</default>
+    </route>
+
+    <route id="wits.user.password_reset_finish" pattern="/password-reset-finish">
+        <default key="_controller">WitsUserBundle:User:passwordResetFinish</default>
+    </route>
+
+</routes>

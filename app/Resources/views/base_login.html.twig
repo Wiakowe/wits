@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block stylesheets %}
+    {% stylesheets filter='?yui_css'
+        '@MopaBootstrapBundle/Resources/public/sass/mopabootstrapbundle.scss'
+        '@MopaBootstrapBundle/Resources/bootstrap-sass/vendor/assets/stylesheets/_bootstrap-responsive.scss'
+    %}
+    <link href="{{ asset_url }}" media="screen" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="container">
+    <div class="span4 offset4">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success span12">
+        {{ flashMessage }}
+    </div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

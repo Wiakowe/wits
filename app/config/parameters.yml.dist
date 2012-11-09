@@ -1,0 +1,32 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     wits
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_user:       ~
+    mailer_password:   ~
+
+    mail_fetch_host:     imap.host.com
+    mail_fetch_port:     993
+    mail_fetch_user:     my_imap_user
+    mail_fetch_password: my_imap_password
+
+    notification_email:  bugs@example.com
+
+    dev_delivery_address: delivery@example.com
+
+    locale:            es
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    yui_compressor_path: ~
+    assetic.filter.compass.bin: ~
+
+    mail_allowed_hosts: [ example.com ]
+    mail_link_host:     example.com
+
+    table_prefix:       ~

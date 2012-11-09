@@ -1,0 +1,75 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+        Wits\UserBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN:
+          - ROLE_WITS_ADMIN
+          - ROLE_USER
+          - ROLE_ALLOWED_TO_SWITCH
+          - ROLE_PROJECT_CREATE
+          - ROLE_LEADER
+        ROLE_LEADER:
+          - ROLE_DEVELOPER
+          - ROLE_USER
+          - ROLE_PROJECT_EDIT
+          - ROLE_ISSUE_ASSIGN
+          - ROLE_ISSUE_SET_VERSION
+          - ROLE_VERSION_CREATE
+          - ROLE_VERSION_EDIT
+          - ROLE_USERS_LIST
+          - ROLE_USERS_CREATE
+          - ROLE_USERS_EDIT
+          - ROLE_ISSUE_SET_PRIORITY
+          - ROLE_PROJECT_EDIT
+        ROLE_DEVELOPER:
+          - ROLE_REPORTER
+          - ROLE_USER
+          - ROLE_ISSUE_EDIT_STATUS
+          - ROLE_ISSUE_EDIT_HOURS
+          - ROLE_VERSION_SHOW
+          - ROLE_VERSION_LIST
+        ROLE_REPORTER:
+          - ROLE_USER
+          - ROLE_ISSUE_SHOW
+          - ROLE_ISSUE_CREATE
+          - ROLE_ISSUE_EDIT
+          - ROLE_ISSUE_LIST
+          - ROLE_ISSUE_COMMENT
+          - ROLE_USER_SELF_EDIT
+
+    providers:
+            user:
+                entity: { class: WitsUserBundle:User, property: email }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            context:            user
+            provider:           user
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                default_target_path:   /
+                always_use_default_target_path: true
+            logout:
+                path:   /logout
+                target: /login
+            anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/password-reset, role: IS_AUTHENTICATED_ANONYMOUSLY}
+         - { path: ^/login_check$, role: ROLE_USER}
+         - { path: ^/, role: ROLE_USER }

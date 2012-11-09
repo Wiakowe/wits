@@ -1,0 +1,90 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    default_locale:  %locale%
+    trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    session:         ~
+
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    form:
+      resources:
+        - 'WitsBootstrapBundle:Form:fields.html.twig'
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+      cssrewrite: ~
+      compass:
+          apply_to:
+              - "\.scss$"
+              - "\.sass$"
+      yui_js:
+          jar: %yui_compressor_path%
+      yui_css:
+          jar: %yui_compressor_path%
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        types:
+            timestamp: Wits\HelperBundle\DBAL\Type\TimestampType
+        mapping_types:
+            enum: string
+
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+
+# Fetch configuration
+wiakowe_fetch:
+    host:     %mail_fetch_host%
+    port:     %mail_fetch_port%
+    user:     %mail_fetch_user%
+    password: %mail_fetch_password%
+
+wits_issue:
+    allowed_hosts: %mail_allowed_hosts%
+    mailing_host:  %mail_link_host%
+
+wiakowe_doctrine_table_prefix:
+    prefix:   %table_prefix%
