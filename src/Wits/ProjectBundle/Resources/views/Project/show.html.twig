@@ -9,10 +9,8 @@
 {{ title }}
 </h1>
 
-{% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' %}
-
-{% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
-
+    {% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' %}
+    {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
 {% endblock %}
 {% block aside %}
     {% if is_granted('ROLE_ISSUE_CREATE') %}

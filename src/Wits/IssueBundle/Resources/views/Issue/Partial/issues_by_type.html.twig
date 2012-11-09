@@ -5,14 +5,14 @@
 <div class="progress">
 
     {% set link_path = 'wits_issue_status_list' %}
-    {% if version %}
+    {% if version is defined %}
         {% set link_path = 'wits_version_status_list' %}
     {% endif %}
 
     {% for status in 1..5 %}
 
         {% set link_params = {'project_id': project_id, 'status_id':status } %}
-        {% if version %}
+        {% if version is defined %}
             {% set link_params = {'project_id': project_id, 'status_id':status, 'version_id': version } %}
         {% endif %}
 

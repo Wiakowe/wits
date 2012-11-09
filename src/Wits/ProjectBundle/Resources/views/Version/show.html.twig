@@ -8,6 +8,7 @@
 
 <h1>{{ title }}</h1>
 
+    {% if version is defined %}
     {% include 'WitsIssueBundle:Issue/Partial:issues_by_type.html.twig' with {'version': version.id }%}
 
     {% include 'WitsIssueBundle:Issue/Partial:issues_list.html.twig' %}
